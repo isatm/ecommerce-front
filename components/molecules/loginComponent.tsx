@@ -10,6 +10,7 @@ import { loginService } from "@/libs/authService"
 
 import InputComponent from "@/components/atoms/inputComponent"
 import ButtonComponent from "@/components/atoms/buttonComponent"
+import { supabase } from "@/libs/supabaseClient"
 
 export default function LoginComponent() {
   const { 
@@ -20,16 +21,31 @@ export default function LoginComponent() {
     resolver: zodResolver(loginScheme)
   })
   
-  const onSubmit: SubmitHandler<LoginDTO> = (data) => {
-    loginService(data)
-      .then((info) => {
-        // Guardar en cookie (expira en 7 días)
-        Cookies.set("token", info.access_token, { expires: 7, secure: true, sameSite: "strict" })
+const onSubmit: SubmitHandler<LoginDTO> = async (data) => {
+  try {
+    const { user, password } = data
+
+    // Reconvertir: lo que tu schema llama "user" es realmente el email
+    const { data: loginData, error } = await supabase.auth.signInWithPassword({
+      email: user,
+      password,
+    })
+
+    if (error) throw error
+
+    // Guardar token en cookie
+    if (loginData.session) {
+      Cookies.set("token", loginData.session.access_token, {
+        expires: 7,
+        secure: true,
+        sameSite: "strict",
       })
-      .catch(() => {
-        console.error("Error en solicitud")
-      })
+      console.log("Login correcto ✅")
+    }
+  } catch (err) {
+    console.error("Error en login ❌", err)
   }
+}
 
   const onErrors = () => {
     console.log("Errores", errors)
