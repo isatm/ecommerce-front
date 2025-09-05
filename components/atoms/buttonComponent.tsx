@@ -1,28 +1,45 @@
-import React from 'react';
+import { ReactNode } from "react";
 
-type ButtonComponentProps = {
-    children: React.ReactNode;
-    onClick?: () => void;
-    type?: 'button' | 'submit' | 'reset';
-    disabled?: boolean;
-    className?: string;
-};
+interface ButtonProps {
+  type: number; //estilo que quieres que tenga el boton
+  content?: string; //contenido que quieres que tenga el boton (opcional)
+  icon?: ReactNode; // El ícono es opcional
+}
 
-const ButtonComponent: React.FC<ButtonComponentProps> = ({
-    children,
-    onClick,
-    type = 'button',
-    disabled = false,
-    className = '',
-}) => (
-    <button
-        type={type}
-        onClick={onClick}
-        disabled={disabled}
-        className={className}
-    >
-        {children}
-    </button>
-);
+//este boton es una funcion a la cual se le pasa un numero y el contenido que quieres que aparezca en el boton
+export default function ButtonComponent({type, content, icon}:ButtonProps) {
 
-export default ButtonComponent
+  let style;
+
+  //en base al numero que le pases este adoptara determinado estilo, correspondiente a ese numer
+
+  switch (type) {
+    case 1:
+      style = "text-black hover:text-orange-400 font-medium py-2 px-4 rounded-lg transition"; // boton de login y register en el header
+      break;
+    case 2:
+      style = "w-full bg-yellow-400 hover:bg-yellow-300 text-black font-medium py-2 rounded-lg transition"; // iniciar sesion
+      break;
+    case 3:
+      style = ""; // negro de necesitas ayuda
+      break;
+    default:
+      style = "bg-black-500 text-white-500";
+  }
+  return (
+    <div>
+        {/* Se le pasa la variable style a classname con el estilo que se quiera usar */}
+        <button className={style}> 
+          {/* colocas el contenido que quieres que aparezca en el boton. ejemplo "inicia sesión" o "registrar" */}
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5em" }}>
+            {icon}
+            {content}
+            </span>
+        </button>
+    </div>
+  )
+}
+/**
+ * Que hacer:
+ * nose, no esperaba llegar tan lejos
+ */
