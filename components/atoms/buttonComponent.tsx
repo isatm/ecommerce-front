@@ -1,6 +1,9 @@
+//este boton es una funcion a la cual se le pasa un numero y el contenido que quieres que aparezca en el boton
 export default function ButtonComponent(type: Number, content:string) {
 
   let style;
+
+  //en base al numero que le pases este adoptara determinado estilo, correspondiente a ese numer
 
   switch (type) {
     case 1:
@@ -17,10 +20,15 @@ export default function ButtonComponent(type: Number, content:string) {
   }
   return (
     <div>
-        <button className={style}>
+        {/* Se le pasa la variable style a classname con el estilo que se quiera usar */}
+        <button className={style}> 
+          {/* colocas el contenido que quieres que aparezca en el boton. ejemplo "inicia sesión" o "registrar" */}
           {content}
         </button>
     </div>
   )
 }
-//variantes para diferentes tipos de botones con los diferentes tipos de classnames para que sea solo importarlas y cambiarle la funcionalidad
+/**
+ * Que hacer:
+ * nose, no esperaba llegar tan lejos
+ */
