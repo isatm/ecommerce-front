@@ -1,4 +1,3 @@
-// app/(auth)/category/page.tsx
 export default function ShoppingCar() {
     return (
         <div>

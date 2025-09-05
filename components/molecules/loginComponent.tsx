@@ -38,7 +38,13 @@ export default function LoginComponent() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit, onErrors)} className="space-y-4 p-6 max-w-md mx-auto bg-white rounded-lg shadow">
-      
+
+      <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
+          Email
+      </label>      
       <InputComponent
         label="Introduce el usuario"
         typeElement="text"
@@ -47,6 +53,12 @@ export default function LoginComponent() {
         register={register}
       />
 
+      <label
+            htmlFor="contraseña"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
+          Contraseña
+      </label>    
       <InputComponent
         label="Introduce la contraseña"
         typeElement="password"

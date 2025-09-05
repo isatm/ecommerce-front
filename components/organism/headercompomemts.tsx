@@ -21,22 +21,22 @@ export default function HeaderComponent() {
             </div>
             
             <div className="hidden lg:flex lg:gap-x-12">
-            <a href="/products" className="text-sm/6 font-semibold text-black hover:text-amber-100 transition-colors">Products</a>
-            <a href="/category" className="text-sm/6 font-semibold text-black hover:text-amber-100 transition-colors">Categories</a>
-            <a href="/porfil" className="text-sm/6 font-semibold text-black hover:text-amber-100 transition-colors">Profile</a>
-            <a href="/shopping_Car" className="text-sm/6 font-semibold text-black hover:text-amber-100 transition-colors">Cart</a>
-            <a href="/favorit_Products" className="text-sm/6 font-semibold text-black hover:text-amber-100 transition-colors">Favorite</a>
+            <a href="products" className="text-sm/6 font-semibold text-black hover:text-amber-100 transition-colors">Products</a>
+            <a href="category" className="text-sm/6 font-semibold text-black hover:text-amber-100 transition-colors">Categories</a>
+            <a href="perfil" className="text-sm/6 font-semibold text-black hover:text-amber-100 transition-colors">Perfile</a>
+            <a href="shopping_Car" className="text-sm/6 font-semibold text-black hover:text-amber-100 transition-colors">Cart</a>
+            <a href="favorite_Products" className="text-sm/6 font-semibold text-black hover:text-amber-100 transition-colors">Favorite</a>
             </div>
             
             <div className="flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-4">
-            <a href="/register">
-                <ButtonComponent className="bg-white text-black hover:bg-black px-4 py-2 rounded-md transition-colors border border-white">
+            <a href="register">
+                <ButtonComponent className="bg-white text-black active:bg-white active:text-white px-4 py-2 rounded-md transition-colors border border-white">
                 Register 
                 </ButtonComponent>
             </a>
             
-            <a href="/login">
-                <ButtonComponent className="bg-white text-black hover:bg-black px-4 py-2 rounded-md transition-colors border border-white">
+            <a href="login">
+                <ButtonComponent className="bg-white text-black active:bg-white active:text-white px-4 py-2 rounded-md transition-colors border border-white">
                 Log in 
                 </ButtonComponent>
             </a>
