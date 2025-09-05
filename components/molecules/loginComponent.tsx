@@ -3,6 +3,7 @@
 import { useForm, SubmitHandler } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Cookies from "js-cookie"
+import {ArrowUp} from "lucide-react"; // Importa el ícono que deseas usar
 
 import { LoginDTO } from "@/interfaces/login"
 import { loginScheme } from "@/schemas/login"
@@ -10,6 +11,7 @@ import { loginService } from "@/libs/authService"
 
 import InputComponent from "@/components/atoms/inputComponent"
 import ButtonComponent from "@/components/atoms/buttonComponent"
+import { ar } from "zod/locales"
 
 export default function LoginComponent() {
   const { 
@@ -55,7 +57,11 @@ export default function LoginComponent() {
         register={register}
       />
 
-      {ButtonComponent(2, "Iniciar sesión")}
+      <ButtonComponent
+        type={2}
+        content="¿Necesitas ayuda?"
+        icon={<ArrowUp size={18} />}
+      />
     </form>
   )
 }
