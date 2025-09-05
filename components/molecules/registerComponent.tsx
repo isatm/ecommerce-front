@@ -107,12 +107,10 @@ export default function RegisterComponent() {
                 register={register}
             />
 
-            <ButtonComponent
-                type="submit"
-                className="w-full bg-black hover:bg-black text-white font-medium py-2 rounded-lg transition"
-            >
-                Registrarse
-            </ButtonComponent>
+            <button className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-medium py-2 rounded-lg transition" type="submit">
+        Registrarse
+      </button>
+
         </form>
     );
 }

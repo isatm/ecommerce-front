@@ -29,16 +29,12 @@ export default function HeaderComponent() {
             </div>
             
             <div className="flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-4">
-            <a href="register">
-                <ButtonComponent className="bg-white text-black active:bg-white active:text-white px-4 py-2 rounded-md transition-colors border border-white">
-                Register 
-                </ButtonComponent>
-            </a>
-            
             <a href="login">
-                <ButtonComponent className="bg-white text-black active:bg-white active:text-white px-4 py-2 rounded-md transition-colors border border-white">
-                Log in 
-                </ButtonComponent>
+                <ButtonComponent type={1} content="Iniciar sesión" />   
+
+            </a>
+            <a href="register">
+                <ButtonComponent type={1} content="Registrarse" />
             </a>
             </div>
         </nav>
