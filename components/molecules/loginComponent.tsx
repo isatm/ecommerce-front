@@ -82,9 +82,10 @@ const onSubmit: SubmitHandler<LoginDTO> = async (data) => {
         name="password"
         register={register}
       />
-      <button className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-medium py-2 rounded-lg transition" type="submit">
-        Iniciar sesión
-      </button>
+      <ButtonComponent
+        type={3}
+        content="Iniciar sesión"
+      />
     </form>
   )
 }

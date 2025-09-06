@@ -21,7 +21,7 @@ export default function ButtonComponent({type, content, icon}:ButtonProps) {
       style = "w-full bg-yellow-400 hover:bg-yellow-300 text-black font-medium py-2 rounded-lg transition"; // iniciar sesion
       break;
     case 3:
-      style = ""; // negro de necesitas ayuda
+      style = "w-full bg-yellow-400 hover:bg-yellow-300 text-black font-medium py-2 rounded-lg transition"; // negro de necesitas ayuda
       break;
     default:
       style = "bg-black-500 text-white-500";
