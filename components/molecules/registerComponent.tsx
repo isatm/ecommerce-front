@@ -37,79 +37,45 @@ export default function RegisterComponent() {
             onSubmit={handleSubmit(onSubmit, onErrors)}
             className="space-y-4 p-6 max-w-md mx-auto bg-white rounded-lg shadow"
         >
-            <label
-                htmlFor="Nombre"
-                className="block text-sm font-medium text-gray-700 mb-1"
-            >
-                Nombre
-            </label>
             <InputComponent
                 label="Introduce el nombre"
                 typeElement="text"
                 idElement="name"
-                name="name"
-                register={register}
+                nameRegister="name"
             />
 
-            <label
-                htmlFor="Apellido"
-                className="block text-sm font-medium text-gray-700 mb-1"
-            >
-                Apellido
-            </label>
             <InputComponent
                 label="Introduce el/los apellido/s"
                 typeElement="text"
                 idElement="lastsame"
-                name="lastname"
-                register={register}
+                nameRegister="lastname"
             />
 
-            <label
-                htmlFor="Correo electrónico"
-                className="block text-sm font-medium text-gray-700 mb-1"
-            >
-                Correo electrónico
-            </label>
             <InputComponent
                 label="Introduce el email"
                 typeElement="text"
                 idElement="email"
-                name="email"
-                register={register}
+                nameRegister="email"
             />
 
-            <label
-                htmlFor="Confirmación de email"
-                className="block text-sm font-medium text-gray-700 mb-1"
-            >
-                Confirmación de email
-            </label>
             <InputComponent
                 label="Comfirmación de correo"
                 typeElement="text"
                 idElement="email"
-                name="email"
-                register={register}
+                nameRegister="email"
             />
 
-            <label
-                htmlFor="Contraseña"
-                className="block text-sm font-medium text-gray-700 mb-1"
-            >
-                Contraseña
-            </label>
             <InputComponent
                 label="Introduce la contraseña"
                 typeElement="password"
                 idElement="password"
-                name="password"
-                register={register}
+                nameRegister="password"
             />
 
-            <button className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-medium py-2 rounded-lg transition" type="submit">
-        Registrarse
-      </button>
+            <ButtonComponent
+                type={3}
+                content="Registrarse"
+            />
 
         </form>
     );

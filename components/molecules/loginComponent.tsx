@@ -54,37 +54,24 @@ const onSubmit: SubmitHandler<LoginDTO> = async (data) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit, onErrors)} className="space-y-4 p-6 max-w-md mx-auto bg-white rounded-lg shadow">
-
-      <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
-          Email
-      </label>      
+    
       <InputComponent
-        label="Introduce el usuario"
-        typeElement="text"
-        idElement="user"
-        name="user"
-        register={register}
+      label="Introduce el usuario"
+      typeElement="text"
+      idElement="user"         // idElement: el atributo 'id' del input, usado para asociar el label y para accesibilidad
+      nameRegister="user"      // nameRegister: el nombre del campo que usará react-hook-form para registrar el valor
       />
-
-      <label
-            htmlFor="contraseña"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
-          Contraseña
-      </label>    
+      
       <InputComponent
-        label="Introduce la contraseña"
-        typeElement="password"
-        idElement="password"
-        name="password"
-        register={register}
+      label="Introduce la contraseña"
+      typeElement="password"
+      idElement="password"
+      nameRegister="password"
       />
+      
       <ButtonComponent
-        type={3}
-        content="Iniciar sesión"
+      type={3}
+      content="Iniciar sesión"
       />
     </form>
   )

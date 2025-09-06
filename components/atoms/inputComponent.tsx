@@ -1,39 +1,41 @@
-import { UseFormRegister } from "react-hook-form"
+import { useForm } from "react-hook-form"
+
+import { standardInput } from "@/utils/Token"
 
 interface valuesSelect {
   value: string
   label: string
 }
-interface InputComponentProps {
+interface InputComponentsProps {
   label: string
   typeElement: "text" | "password"
   idElement: string
+  nameRegister: string
   listValues?: valuesSelect[]
-  name: string
-  register: UseFormRegister<any>
 }
 
-export default function InputComponent({ label, typeElement, idElement, name, listValues, register }: InputComponentProps) {
+export default function InputComponents({ label, typeElement, idElement, listValues, nameRegister }: InputComponentsProps) {
+  const { register } = useForm()
   return (
     <>
-      <label htmlFor={idElement} className="font-semibold">
-        {label}
+      <label htmlFor={ idElement } className="font-semibold">
+        { label }
       </label>
       {
         listValues?.length ? (
-          <select id={idElement} {...register(name)}>
-            {listValues.map(item => (
-              <option key={item.value} value={item.value}>
-                {item.label}
-              </option>
-            ))}
+          <select name="" id="">
+            {
+              listValues.map(item => (
+                <option value={item.value}>{ item.label }</option>
+              ))
+            }
           </select>
         ) : (
           <input
-            {...register(name)}
-            type={typeElement}
-            id={idElement}
-            className="mt-1 w-full border border-gray-400 rounded-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            {...register(nameRegister)}
+            type={ typeElement === "text" ? "text" : "password" }
+            id={ idElement }
+            className={standardInput}
           />
         )
       }

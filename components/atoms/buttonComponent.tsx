@@ -39,7 +39,3 @@ export default function ButtonComponent({type, content, icon}:ButtonProps) {
     </div>
   )
 }
-/**
- * Que hacer:
- * nose, no esperaba llegar tan lejos
- */
