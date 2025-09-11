@@ -1,11 +1,9 @@
-export default function CategoryLayoutPage({
-    children,
-    }: {
-    children: React.ReactNode;
-    }) {
-    return (
-        <div>
-        {children}
-        </div>
-    );
+import { ReactNode } from "react"
+
+export default function ProductLayouy({ children }: { children: ReactNode }) {
+  return (
+    <div className="product-layout">
+      {children}
+    </div>
+  )
 }

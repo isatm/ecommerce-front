@@ -1,43 +1,57 @@
-import ButtonComponent from "../atoms/buttonComponent"
+"use client";
+
+import ButtonComponent from "../atoms/buttonComponent";
+import InputComponent from "../atoms/inputComponent";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+
+interface SearchForm {
+  search: string;
+}
 
 export default function HeaderComponent() {
-    return (
-        <header className="bg-white-500">
-        <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
-            <div className="flex lg:flex-1">
-            <a href="/" className="-m-1.5 p-1.5 flex items-center">
-                <span className="sr-only">Your Company</span>
-                <img src="https://cdn.freelogovectors.net/wp-content/uploads/2020/02/reverb-logo.png" alt="Company Logo" className="h-25 w-auto"/>
-            </a>
-            </div>
-            
-            <div className="flex lg:hidden">
-            <button type="button" className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-200 hover:text-white hover:bg-amber-600 transition-colors">
-                <span className="sr-only">Open main menu</span>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" data-slot="icon" aria-hidden="true" className="size-6">
-                <path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-            </button>
-            </div>
-            
-            <div className="hidden lg:flex lg:gap-x-12">
-            <a href="products" className="text-sm/6 font-semibold text-black hover:text-amber-100 transition-colors">Products</a>
-            <a href="category" className="text-sm/6 font-semibold text-black hover:text-amber-100 transition-colors">Categories</a>
-            <a href="perfil" className="text-sm/6 font-semibold text-black hover:text-amber-100 transition-colors">Perfile</a>
-            <a href="shopping_Car" className="text-sm/6 font-semibold text-black hover:text-amber-100 transition-colors">Cart</a>
-            <a href="favorite_Products" className="text-sm/6 font-semibold text-black hover:text-amber-100 transition-colors">Favorite</a>
-            </div>
-            
-            <div className="flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-4">
-            <a href="login">
-                <ButtonComponent type={1} content="Iniciar sesión" />   
+  const { register, handleSubmit } = useForm<SearchForm>();
+  const router = useRouter();
 
+  const onSubmit = (data: SearchForm) => {
+    router.push(`/products/${data.search}`); 
+  };
+
+  return (
+    <header className="bg-white shadow-sm">
+      <nav className="flex items-center justify-between p-4 lg:px-8">
+        {/* Logo + Input */}
+        <div className="flex justify-center flex-1">
+          <div className="flex items-center gap-6 w-full max-w-2xl">
+            <a href="/" className="-m-1.5 p-1.5 flex items-center">
+              <img
+                src="https://solidsound.wpenginepowered.com/wp-content/uploads/2019/02/Reverb-Logo-Black_square-1-300x177.png"
+                alt="Reverb Logo"
+                className="h-18 w-auto"
+              />
             </a>
-            <a href="register">
-                <ButtonComponent type={1} content="Registrarse" />
-            </a>
-            </div>
-        </nav>
-        </header>
-    )
+            <form onSubmit={handleSubmit(onSubmit)} className="flex-1">
+              <InputComponent
+                label=""
+                typeElement="text"
+                idElement="search"
+                name="search"
+                register={register}
+              />
+            </form>
+          </div>
+        </div>
+
+        {/* Botones */}
+        <div className="flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-4">
+          <a href="register">
+            <ButtonComponent type={1} content="Registrarse" />
+          </a>
+          <a href="login">
+            <ButtonComponent type={1} content="Iniciar sesión" />
+          </a>
+        </div>
+      </nav>
+    </header>
+  );
 }

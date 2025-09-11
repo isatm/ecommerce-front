@@ -17,7 +17,7 @@ interface InputComponentProps {
 export default function InputComponent({ label, typeElement, idElement, name, listValues, register }: InputComponentProps) {
   return (
     <>
-      <label htmlFor={idElement} className="font-semibold text-black">
+      <label htmlFor={idElement} className="font-semibold">
         {label}
       </label>
       {
