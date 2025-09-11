@@ -25,7 +25,7 @@ const onSubmit: SubmitHandler<LoginDTO> = async (data) => {
   try {
     const { user, password } = data
 
-    // Reconvertir: lo que tu schema llama "user" es realmente el email
+    // Reconvertir
     const { data: loginData, error } = await supabase.auth.signInWithPassword({
       email: user,
       password,
