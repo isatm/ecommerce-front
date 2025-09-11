@@ -41,35 +41,40 @@ export default function RegisterComponent() {
                 label="Introduce el nombre"
                 typeElement="text"
                 idElement="name"
-                nameRegister="name"
+                name="name"
+                register={register}
             />
 
             <InputComponent
                 label="Introduce el/los apellido/s"
                 typeElement="text"
                 idElement="lastsame"
-                nameRegister="lastname"
+                name="lastname"
+                register={register}
             />
 
             <InputComponent
                 label="Introduce el email"
                 typeElement="text"
                 idElement="email"
-                nameRegister="email"
+                name="email"
+                register={register}
             />
 
             <InputComponent
                 label="Comfirmación de correo"
                 typeElement="text"
                 idElement="email"
-                nameRegister="email"
+                name="email"
+                register={register}
             />
 
             <InputComponent
                 label="Introduce la contraseña"
                 typeElement="password"
                 idElement="password"
-                nameRegister="password"
+                name="password"
+                register={register}
             />
 
             <ButtonComponent
