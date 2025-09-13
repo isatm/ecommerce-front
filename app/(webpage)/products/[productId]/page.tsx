@@ -14,7 +14,7 @@ export default async function Page({ params }: PageProps) {
     .from("products")
     .select("id, name, description, price, category, stock, image_url, created_at")
     .eq("id", productId)
-    .single();
+    .maybeSingle();
 
   console.log("router", productId);
 
