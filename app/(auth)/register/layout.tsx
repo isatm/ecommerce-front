@@ -1,4 +1,12 @@
-export default function CategoryLayoutPage({
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: "Registrarse | Reverb",
+    description: "Crea una cuenta para comprar y vender equipos en Reverb.",
+    };
+    
+
+    export default function CategoryLayoutPage({
     children,
     }: {
     children: React.ReactNode;
