@@ -4,6 +4,8 @@ import ButtonComponent from "../atoms/buttonComponent";
 import InputComponent from "../atoms/inputComponent";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 
 interface SearchForm {
   search: string;
@@ -23,13 +25,13 @@ export default function HeaderComponent() {
         {/* Logo + Input */}
         <div className="flex justify-center flex-1">
           <div className="flex items-center gap-6 w-full max-w-2xl">
-            <a href="/" className="-m-1.5 p-1.5 flex items-center">
-              <img
+            <Link href="/" className="-m-1.5 p-1.5 flex items-center">
+              <Image
                 src="https://solidsound.wpenginepowered.com/wp-content/uploads/2019/02/Reverb-Logo-Black_square-1-300x177.png"
                 alt="Reverb Logo"
                 className="h-18 w-auto"
               />
-            </a>
+            </Link>
             <form onSubmit={handleSubmit(onSubmit)} className="flex-1">
               <InputComponent
                 label=""

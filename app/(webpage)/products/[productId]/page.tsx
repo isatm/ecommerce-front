@@ -1,22 +1,27 @@
-import { supabase } from "../../../../libs/supabaseClient";
+import { supabase } from "@/libs/supabaseClient";
+import Image from "next/image";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     productId: string;
-  };
+  }>;
 }
 
-export default async function Page({ params }: PageProps) {
-  const { productId } = params;
+export default async function Page({ params }: PageProps) { //Es async debido a la supabase
+  
+  const obteinId = async () => {
+        const { productId } = await params
+    return productId || ''
+  }
 
   // Buscar producto en Supabase
   const { data: product, error } = await supabase
     .from("products")
     .select("id, name, description, price, category, stock, image_url, created_at")
-    .eq("id", productId)
+    .eq("id", obteinId)
     .maybeSingle();
 
-  console.log("router", productId);
+  console.log("router", obteinId);
 
   if (error) {
     console.error(error);
@@ -35,7 +40,7 @@ export default async function Page({ params }: PageProps) {
       <p>Precio: ${product.price}</p>
       <p>Stock: {product.stock}</p>
       {product.image_url && (
-        <img src={product.image_url} alt={product.name} width={300} />
+        <Image src={product.image_url} alt={product.name} width={300} />
       )}
     </div>
   );

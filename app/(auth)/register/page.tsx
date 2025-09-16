@@ -1,5 +1,5 @@
 import RegisterComponent from "@/components/molecules/registerComponent"
-import { registerOptions } from "@/utils/Token";
+import { registerOptions } from "@/utils/Tokens";
 
 export default function RegisterPage() {
     return (
