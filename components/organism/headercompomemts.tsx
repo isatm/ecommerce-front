@@ -30,6 +30,8 @@ export default function HeaderComponent() {
                 src="https://solidsound.wpenginepowered.com/wp-content/uploads/2019/02/Reverb-Logo-Black_square-1-300x177.png"
                 alt="Reverb Logo"
                 className="h-18 w-auto"
+                width={100}
+                height={100}
               />
             </Link>
             <form onSubmit={handleSubmit(onSubmit)} className="flex-1">
