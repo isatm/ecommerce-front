@@ -20,40 +20,78 @@ export default function HeaderComponent() {
   };
 
   return (
-    <header className="bg-white shadow-sm">
-      <nav className="flex items-center justify-between p-4 lg:px-8">
+    <header className="bg-white shadow-sm h-18 px-6 shadow-sm border-b border-gray-200 max-w-7xl mx-auto px-4">
+      <nav className="flex gap-6 font-medium items-center h-full">
         {/* Logo + Input */}
-        <div className="flex justify-center flex-1">
-          <div className="flex items-center gap-6 w-full max-w-2xl">
+        
+        {/* <div className="flex flex-1">
+          <div className="flex items-center flex-1">
             <Link href="/" className="-m-1.5 p-1.5 flex items-center">
               <Image
                 src="https://solidsound.wpenginepowered.com/wp-content/uploads/2019/02/Reverb-Logo-Black_square-1-300x177.png"
                 alt="Reverb Logo"
-                className="h-18 w-auto"
+                className="h-17 w-auto mr-4"
                 width={100}
                 height={100}
               />
             </Link>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex-1">
-              <InputComponent
-                label=""
-                typeElement="text"
-                idElement="search"
-                name="search"
-                register={register}
-              />
-            </form>
+             <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex-1 hidden md:flex"
+          >
+            <InputComponent
+              label=""
+              typeElement="text"
+              idElement="search"
+              name="search"
+              register={register}
+            />
+          </form>
+            
           </div>
+        </div> */}
+        <div className="flex items-center">
+          <div className="block lg:hidden mr-4">
+          hola
+          </div>
+          <Link href="/" className="-m-1.5 p-1.5 flex items-center">
+              <Image
+                src="https://solidsound.wpenginepowered.com/wp-content/uploads/2019/02/Reverb-Logo-Black_square-1-300x177.png"
+                alt="Reverb Logo"
+                className="h-17 w-auto mr-4"
+                width={100}
+                height={100}
+              />
+            </Link>
+        </div>
+        <div className="flex-1">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex-1 "
+          >
+            <InputComponent
+              label=""
+              typeElement="text"
+              idElement="search"
+              name="search"
+              register={register}
+            />
+          </form>
         </div>
 
         {/* Botones */}
-        <div className="flex lg:flex-1 lg:justify-end lg:items-center lg:gap-x-4">
-          <a href="register">
+        <div className="flex items-center gap-4">
+          <a href="sellsearch" className="bg-orange-500 text-white font-bold py-3 px-6 rounded-full hover:bg-orange-600 transition">
+              Vende tu equipo
+          </a>
+          <div className="flex text-sm hidden lg:flex gap-6">
+            <a href="register">
             <ButtonComponent type={1} content="Registrarse" />
-          </a>
-          <a href="login">
-            <ButtonComponent type={1} content="Iniciar sesión" />
-          </a>
+            </a>
+            <a href="login">
+              <ButtonComponent type={1} content="Iniciar sesión" />
+            </a>
+          </div>
         </div>
       </nav>
     </header>
