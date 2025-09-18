@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { useState } from "react";
 
 interface ButtonProps {
   type: number; //estilo que quieres que tenga el boton
@@ -23,13 +24,15 @@ export default function ButtonComponent({type, content, icon}:ButtonProps) {
     case 3:
       style = "w-full bg-yellow-400 hover:bg-yellow-300 text-black font-medium py-2 rounded-lg transition"; // negro de necesitas ayuda
       break;
+    case 4:
+
     default:
       style = "bg-black-500 text-white-500";
   }
   return (
     <div>
         {/* Se le pasa la variable style a classname con el estilo que se quiera usar */}
-        <button className={style}> 
+        <button className={style} > 
           {/* colocas el contenido que quieres que aparezca en el boton. ejemplo "inicia sesión" o "registrar" */}
             <span style={{ display: "inline-flex", alignItems: "center", gap: "0.5em" }}>
             {icon}
