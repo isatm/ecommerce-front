@@ -19,32 +19,37 @@ interface SearchForm {
   search: string;
 }
 
+//Hacemos una interfaz provicional para prductos
+// Para que tsx sepa sus argumentos y no de error en el build
+// Además para que un producto sea buscado, agregado  y además buscado en la API
+// debe tener un id y un nombre por el momento
+//  Tener cuidado  al agregar arreglos que sean any o  desconoocidos que dan error, por favor aaaaaaaaaaaaaaaaaaa
+
+interface Product {
+  id: string | number;
+  name: string;
+}
+
 export default function HeaderComponent() {
-  // Se añade "watch" para poder observar el valor del input mientras se escribe
-  const { register, handleSubmit, watch } = useForm<SearchForm>();
-  const router = useRouter();
+    const { register, handleSubmit, watch } = useForm<SearchForm>();
+    const router = useRouter();
 
-  // Estado local para guardar resultados de la búsqueda
-  const [results, setResults] = useState<any[]>([]);
+    const [results, setResults] = useState<Product[]>([]);
 
-  // Capturamos en tiempo real lo que el usuario escribe en el input
-  const searchTerm = watch("search");
+    const searchTerm = watch("search");
 
-  // Función que consulta el servicio de productos
-  const handleSearch = async (term: string) => {
-    if (term.length < 2) {
-      // Si el término es muy corto, limpiamos resultados
-      setResults([]);
-      return;
-    }
-    try {
-      // Llamada al servicio que consulta en Supabase
-      const products = await searchProducts(term);
-      setResults(products);
-    } catch (err) {
-      console.error(err);
-      setResults([]);
-    }
+    const handleSearch = async (term: string) => {
+      if (term.length < 2) {
+        setResults([]);
+        return;
+      }
+      try {
+        const products = await searchProducts(term);
+        setResults(products);
+      } catch (err: unknown) {
+        console.error("Error al buscar productos:", err);
+        setResults([]);
+      }
   };
 
   // useEffect se ejecuta cada vez que cambia el valor del input "search"
@@ -57,14 +62,14 @@ export default function HeaderComponent() {
   }, [searchTerm]);
 
   // Al enviar el formulario con Enter
-  const onSubmit = (data: { search: string }) => {
-    if (results.length > 0) {
-      // Redirige al primer producto encontrado
-      router.push(`/products/${results[0].id}`);
-    } else {
-      alert("No se encontraron productos");
-    }
-  };
+    const onSubmit = () => {
+      if (results.length > 0) {
+        router.push(`/products/${results[0].id}`);
+      } else {
+        alert("No se encontraron productos");
+      }
+    };
+
   return (
     <header>
       <header className="bg-white shadow-sm h-18 px-6 shadow-sm border-b border-gray-200 max-w-7xl mx-auto px-4">

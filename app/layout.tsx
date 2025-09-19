@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import HeaderComponent from "@/components/organism/headercompomemts";
+import Footer from "@/components/organism/footerComponents";
 
 export const metadata: Metadata = {
   title: "Instrumentos musicales a la venta: equipo musical nuevo de | Reverb ",
@@ -15,9 +16,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <HeaderComponent/>
-        {children}
+      <body className="flex flex-col min-h-screen">
+        <HeaderComponent />
+        <main className="flex-grow">
+          {children}
+          <p className="text-xl text-gray-700"></p>
+        </main>
+        <Footer />
       </body>
     </html>
   );
