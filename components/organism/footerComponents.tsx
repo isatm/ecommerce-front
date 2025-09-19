@@ -11,7 +11,7 @@ interface SearchForm {
     }
     
     // Exportamos el componente footer
-    export default function footerComponent() {
+    export default function FooterComponent() {
     const { register, handleSubmit } = useForm<SearchForm>();
     
     // Enviar el formulario, tomando el valor del input donde se ingresa el correo y luego se busca el correo en el backend para después aceptar la suscripción
