@@ -88,10 +88,10 @@ interface SearchForm {
                 Suscribir
                 </button>
             </form>
-            <p className="text-xs text-gray-500 mt-2">
+            <h5 className="text-xs text-gray-500 mt-2">
                 Al hacer clic en Suscribir, acepto recibir ofertas y promociones exclusivas,
                 noticias y reseñas, además de consejos personalizados para comprar y vender en Reverb.
-            </p>
+            </h5>
             </div>
         </div>
 
@@ -104,11 +104,11 @@ interface SearchForm {
 
                 
             <div className="text-center md:text-left mt-6 md:mt-0">
-                <p className="text-sm m">
+                <h4 className="text-sm m">
                 © 2025 Reverb.com LLC. <Link href="/" className="text-gray-400 hover:underline">Términos y políticas</Link>
                 <p className="text-sm m">
                     <Link href="/" className="text-gray-400 hover:underline">Política de privacidad</Link> </p>
-                </p>
+                </h4>
             </div>
 
             </div>
@@ -119,7 +119,6 @@ interface SearchForm {
                 Sus compras permiten que algunos programas de música juveniles obtengan el equipo que necesitan para hacer su música.
                 </p>
             </div>
-
             </div>
         </div>
         </footer>
