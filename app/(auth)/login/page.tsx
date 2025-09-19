@@ -1,3 +1,5 @@
+"use client";
+
 import LoginComponent from "@/components/molecules/loginComponent"
 import { useState } from "react";
 export default function LoginPage() {
