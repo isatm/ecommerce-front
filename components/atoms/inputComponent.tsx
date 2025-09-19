@@ -8,7 +8,7 @@ interface valuesSelect {
 
 interface InputComponentProps<T extends FieldValues> {
   label: string
-  typeElement: "text" | "password"
+  typeElement: "text" | "password" | "email"
   idElement: string
   listValues?: valuesSelect[]
   name: Path<T>

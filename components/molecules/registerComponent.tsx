@@ -9,28 +9,37 @@ import InputComponent from "@/components/atoms/inputComponent"
 import ButtonComponent from "@/components/atoms/buttonComponent"
 import { registerService } from "@/libs/authService"
 
+import { useRouter } from "next/navigation";
+
+
 export default function RegisterComponent() {
+    const router = useRouter();
     const {
-        register,
-        handleSubmit,
-        formState: { errors }
-    } = useForm<RegisterDTO>({
-        resolver: zodResolver(RegisterScheme)
-    });
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<RegisterDTO>({
+    resolver: zodResolver(RegisterScheme)
+  });
 
-    const onSubmit: SubmitHandler<RegisterDTO> = (data) => {
-        registerService(data)
-        if (Object.keys(errors).length >1) {
-            alert("Por favor, corrige los errores en el formulario.");
-            return;
-        }
-        alert("Datos enviados");
+  const onSubmit: SubmitHandler<RegisterDTO> = async (data) => {
+    const result = await registerService(data);
+
+    if (!result) {
+        alert("Hubo un error al registrarse. Inténtalo de nuevo.");
+        return;
+    }
+
+    alert("Registro exitoso. Revisa tu correo para confirmar tu cuenta.");
+    router.push("/login");
+
     };
 
-    const onErrors = () => {
-        console.log("Errores", errors);
-        alert("Información incompleta");
-    };
+  const onErrors = () => {
+    console.log("Errores", errors);
+    alert("Información incompleta");
+  };
+
 
     return (
         <form
@@ -55,19 +64,20 @@ export default function RegisterComponent() {
 
             <InputComponent
                 label="Introduce el email"
-                typeElement="text"
+                typeElement="email"
                 idElement="email"
                 name="email"
                 register={register}
             />
 
             <InputComponent
-                label="Comfirmación de correo"
-                typeElement="text"
-                idElement="email"
-                name="email"
-                register={register}
+            label="Confirmación de correo"
+            typeElement="text"
+            idElement="confirmEmail"
+            name="confirmEmail"
+            register={register}
             />
+
 
             <InputComponent
                 label="Introduce la contraseña"
