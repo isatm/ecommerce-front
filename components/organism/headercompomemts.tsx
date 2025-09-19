@@ -12,18 +12,11 @@ import LoginPage from "@/app/(auth)/login/page";
 import RegisterPage from "@/app/(auth)/register/page";
 
 import { searchProducts } from "@/libs/productService";
-// Importamos hooks para manejar estado y efectos
 import { useState, useEffect } from "react";
 
 interface SearchForm {
   search: string;
 }
-
-//Hacemos una interfaz provicional para prductos
-// Para que tsx sepa sus argumentos y no de error en el build
-// Además para que un producto sea buscado, agregado  y además buscado en la API
-// debe tener un id y un nombre por el momento
-//  Tener cuidado  al agregar arreglos que sean any o  desconoocidos que dan error, por favor aaaaaaaaaaaaaaaaaaa
 
 interface Product {
   id: string | number;
@@ -31,50 +24,46 @@ interface Product {
 }
 
 export default function HeaderComponent() {
-    const { register, handleSubmit, watch } = useForm<SearchForm>();
-    const router = useRouter();
+  const { register, handleSubmit, watch } = useForm<SearchForm>();
+  const router = useRouter();
+  const [results, setResults] = useState<Product[]>([]);
+  const searchTerm = watch("search");
 
-    const [results, setResults] = useState<Product[]>([]);
-
-    const searchTerm = watch("search");
-
-    const handleSearch = async (term: string) => {
-      if (term.length < 2) {
-        setResults([]);
-        return;
-      }
-      try {
-        const products = await searchProducts(term);
-        setResults(products);
-      } catch (err: unknown) {
-        console.error("Error al buscar productos:", err);
-        setResults([]);
-      }
+  const handleSearch = async (term: string) => {
+    if (term.length < 2) {
+      setResults([]);
+      return;
+    }
+    try {
+      const products = await searchProducts(term);
+      setResults(products);
+    } catch (err: unknown) {
+      console.error("Error al buscar productos:", err);
+      setResults([]);
+    }
   };
 
-  // useEffect se ejecuta cada vez que cambia el valor del input "search"
   useEffect(() => {
     if (searchTerm) {
       handleSearch(searchTerm);
     } else {
-      setResults([]); // Si el input queda vacío, limpiamos
+      setResults([]);
     }
   }, [searchTerm]);
 
-  // Al enviar el formulario con Enter
-    const onSubmit = () => {
-      if (results.length > 0) {
-        router.push(`/products/${results[0].id}`);
-      } else {
-        alert("No se encontraron productos");
-      }
-    };
+  const onSubmit = () => {
+    if (results.length > 0) {
+      router.push(`/products/${results[0].id}`);
+    } else {
+      alert("No se encontraron productos");
+    }
+  };
 
   return (
-    <header>
-      <header className="bg-white shadow-sm h-18 px-6 shadow-sm border-b border-gray-200 max-w-7xl mx-auto px-4">
+    <header className="w-full">
+      {/* HEADER SUPERIOR */}
+      <header className="bg-white shadow-sm h-18 px-6 border-b border-gray-200 w-full">
         <nav className="flex gap-6 font-medium items-center h-full">
-          
           {/* Logo + Input */}
           <div className="flex items-center">
             <div className="block lg:hidden mr-4">
@@ -103,7 +92,6 @@ export default function HeaderComponent() {
               />
             </form>
 
-            {/* Lista de resultados */}
             {results.length > 0 && (
               <ul className="absolute bg-white border rounded-md shadow-md mt-1 w-full z-50">
                 {results.map((product) => (
@@ -140,13 +128,20 @@ export default function HeaderComponent() {
         </nav>
       </header>
 
-      <menu className="bg-white shadow-sm h-10 px-6 shadow-sm border-b border-gray-200 max-w-7xl mx-auto px-4">
-        <div className="flex h-screen gap-4">
-          <div className="w-1/2 flex text-sm hidden lg:flex border-gray-200 justify-center">
+      {/* MENU INFERIOR */}
+      <menu className="bg-white shadow-sm h-10 px-6 border-b border-gray-200 w-full text-xs">
+        <div className="flex   ">
+          {/* Categorías */}
+          <div className="flex w-1/2">
+            <div className="flex hidden lg:flex gap-2 justify-start whitespace-nowrap overflow-hidden">
             <ButtonComponent type={1} content="Guitarras" />
             <ButtonComponent type={1} content="Pedales y amplificadores" />
             <ButtonComponent type={1} content="Teclados y Sintetizadores" />
             <ButtonComponent type={1} content="Equipo de grabación" />
+            <ButtonComponent type={1} content="Baterias" />
+            <ButtonComponent type={1} content="Equipo Dj y audio" />
+            <ButtonComponent type={1} content="Más categorías" />
+          </div>
             <ToggleButtonComponent
               options={[
                 "Guitarras",
@@ -157,11 +152,13 @@ export default function HeaderComponent() {
                 "Equipo Dj y audio",
                 "Más categorías",
               ]}
-              buttonStyle="text-black hover:text-orange-400 font-medium py-2 px-4 rounded-lg transition"
+              buttonStyle="hidden lg:flex text-black hover:text-orange-400 font-medium py-2 px-4 rounded-lg transition whitespace-nowrap"
               content="Ver todo"
             />
           </div>
-          <div className="w-1/2 flex text-sm hidden lg:flex border-gray-200 justify-center">
+
+          {/* Marcas y enlaces */}
+          <div className="flex  hidden lg:flex  justify-start whitespace-nowrap gap-1/2 w-1/2">
             <ButtonComponent type={1} content="Marcas" />
             <a
               href="news"
