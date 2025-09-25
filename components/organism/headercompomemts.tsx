@@ -10,9 +10,11 @@ import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
 import EmerPageButton from "../atoms/buttons/emerPageButtonComponent";
 import LoginPage from "@/app/(auth)/login/page";
 import RegisterPage from "@/app/(auth)/register/page";
+import { ShoppingCart } from 'lucide-react';
 
 import { searchProducts } from "@/libs/productService";
 import { useState, useEffect } from "react";
+import { Heart } from 'lucide-react';
 
 interface SearchForm {
   search: string;
@@ -115,10 +117,23 @@ export default function HeaderComponent() {
             >
               Vende tu equipo
             </a>
-            <div className="flex text-sm hidden lg:flex gap-6">
+            <a href="favorites" className="flex flex-col items-center text-black-600 hover:text-orange-400 transition">
+              <Heart />
+              <div className="text-xs">
+              Favoritos
+              </div>
+            </a>
+            <a href="cart" className="flex flex-col items-center text-black-600 hover:text-orange-400 transition">
+              <ShoppingCart />
+              <div className="text-xs">
+              Carrito
+              </div>
+            </a>
+            <div className="flex text-sm hidden lg:flex ">
               <EmerPageButton buttonLabel="Registrarse" buttonStyle="text-black hover:text-orange-400 font-medium py-2 px-4 rounded-lg transition">
                 <RegisterPage />
               </EmerPageButton>
+              
 
               <EmerPageButton buttonLabel="Iniciar sesión" buttonStyle="text-black hover:text-orange-400 font-medium py-2 px-4 rounded-lg transition">
                 <LoginPage />
