@@ -1,64 +1,63 @@
-import { create } from "zustand"; 
-// manejo de estado
-// en pocas palabras zustand es el dueño de la pagina, donde con la funcion create donde tomamos y jugamos con los produtos
-// podemos gestionarlos y condicionarlos a nuestro gusto, es como un hook donde se manejan estados, pero el hook es de react
-// hook-> estados o metodos sonde se puede condcionar el sistema, pero no creo que tan flexible como zustadn, ya que este es más extenso de utilidad
-// hook es más para menjo de codigo directo sin tanto condicional
+"use client";
 
-// IMPORTANTE: es posible no utilizar zustand, peroooooooo habría que utilizar apis y aumentar la complejidad misma del codigo
+import { userCartStore } from "@/store/cartStore"; // 👈 ajusta la ruta
+import ButtonComponent from "@/components/atoms/buttonComponent";
 
-import { Product } from "@/interfaces/product";
-import { CartStore } from "@/interfaces/cart";
+export default function CartComponent() {
+    const { products, removeProduct, updateQuantity, getTotal } = userCartStore();
 
-export const userCartStore = create<CartStore>((set, get) => ({products: [],
-    
-    // Logica de agregar producto con los parametros de producto
-    addProduct: (product: Product) => {
-        set((state) => {  // Damos un estado al valor del producto, donde si el id del prodcuto a agregar es igual a un producto que se
-            // encuentra en la pagina entonces sabemos que el producto se encuentra
-        const existingProduct = state.products.find(p => p.id === product.id);
-        
-        // Si el producto existe entonces, hacemos un codicional que retorna el estado del producto, donde es mapeado
-        // y con ello al ver que se encuientra entonces la cantidad de productos se agrega juajuajua (que nunca nos compren) 
-        if (existingProduct) {
-            return {
-            products: state.products.map(p =>
-                p.id === product.id
-                ? { ...p, quantity: p.quantity + 1 }
-                : p
-            )
-            };
-        } // ahora tetornamos el prudcto y la cantidad de este
-        return { 
-            products: [...state.products, { ...product, quantity: 1 }] 
-        };
-        });
-    },
-    
-    // segun el id, vemos el estado del prodcuto, lo filtramos e eliminamos
-    removeProduct: (productId: number) => {
-        set((state) => ({
-        products: state.products.filter(p => p.id !== productId)
-        }));
-    },
-    
-    // Pasamos los parametros, estados, buscamos mapeando los prodcutos si son igual de forma opacional o recorrida, cambiamos la canridad o 
-    // lo que se desea actualizar, después filtramos sin cambiar el arreglo para actualizar el valor y la cantidad
-    updateQuantity: (productId: number, quantity: number) => {
-        set((state) => ({
-        products: state.products.map(p =>
-            p.id === productId
-            ? { ...p, quantity: Math.max(0, quantity) }
-            : p
-        ).filter(p => p.quantity > 0)
-        }));
-    },
+    return (
+        <div className="space-y-4 p-6 max-w-md mx-auto bg-white rounded-lg shadow">
+        <h2 className="text-xl font-bold text-center">Tu Carrito</h2>
 
-    // pues obtenemos los productos y cantidad xd, para qué más?
-    getTotal: () => {
-        const { products } = get();
-        return products.reduce((total, product) => 
-        total + (product.price * product.quantity), 0
-        );
-    }
-}));
+        {/* Lista de productos */}
+        {products.length === 0 ? (
+            <p className="text-center text-gray-500">El carrito está vacío</p>
+        ) : (
+            products.map((p) => (
+            <div
+                key={p.id}
+                className="flex items-center justify-between p-3 bg-gray-50 rounded-md shadow-sm"
+            >
+                <div>
+                <p className="font-semibold">{p.name}</p>
+                <p className="text-sm text-gray-600">
+                    ${p.price} x {p.quantity} = ${p.price * p.quantity}
+                </p>
+                </div>
+
+                <div className="flex gap-2">
+                <button
+                    className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                    onClick={() => updateQuantity(p.id, p.quantity - 1)}
+                >
+                    -
+                </button>
+                <button
+                    className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
+                    onClick={() => updateQuantity(p.id, p.quantity + 1)}
+                >
+                    +
+                </button>
+                <button
+                    className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                    onClick={() => removeProduct(p.id)}
+                >
+                    
+                </button>
+                </div>
+            </div>
+            ))
+        )}
+
+        {/* Total */}
+        <div className="text-center font-bold text-lg">
+            Total: ${getTotal()}
+        </div>
+
+        {products.length > 0 && (
+            <ButtonComponent type={3} content="Proceder al pago" />
+        )}
+        </div>
+    );
+}
