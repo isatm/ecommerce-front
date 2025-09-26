@@ -11,18 +11,15 @@ import EmerPageButton from "../atoms/buttons/emerPageButtonComponent";
 import LoginPage from "@/app/(auth)/login/page";
 import RegisterPage from "@/app/(auth)/register/page";
 import { ShoppingCart } from 'lucide-react';
+import { Product} from '@/interfaces/product'
 
 import { searchProducts } from "@/libs/productService";
 import { useState, useEffect } from "react";
 import { Heart } from 'lucide-react';
 
+
 interface SearchForm {
   search: string;
-}
-
-interface Product {
-  id: string | number;
-  name: string;
 }
 
 export default function HeaderComponent() {
@@ -37,8 +34,13 @@ export default function HeaderComponent() {
       return;
     }
     try {
-      const products = await searchProducts(term);
-      setResults(products);
+      const products = await searchProducts(term);     
+      const productsWithPrice = products.map(product => ({
+        ...product, // es un precio estatico por el momento, que le es asignado de forma predeterminada
+        price: 0
+      }));
+      
+      setResults(productsWithPrice);
     } catch (err: unknown) {
       console.error("Error al buscar productos:", err);
       setResults([]);
