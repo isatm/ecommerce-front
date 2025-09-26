@@ -25,7 +25,7 @@ interface SearchForm {
 export default function HeaderComponent() {
   const { register, handleSubmit, watch } = useForm<SearchForm>();
   const router = useRouter();
-  const [results, setResults] = useState<Product[]>([]);
+  const [results, setResults] = useState<Partial<Product>[]>([]);
   const searchTerm = watch("search");
 
   const handleSearch = async (term: string) => {
@@ -34,7 +34,8 @@ export default function HeaderComponent() {
       return;
     }
     try {
-      const products = await searchProducts(term);     
+      const products = await searchProducts(term);  
+         
       const productsWithPrice = products.map(product => ({
         ...product, // es un precio estatico por el momento, que le es asignado de forma predeterminada
         price: 0
