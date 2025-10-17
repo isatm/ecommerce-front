@@ -30,8 +30,6 @@ export default function RegisterComponent() {
         return;
     }
 
-    alert("Registro exitoso. Revisa tu correo para confirmar tu cuenta.");
-    router.push("/login");
 
     };
 

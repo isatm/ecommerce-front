@@ -12,6 +12,7 @@ export const registerService = async (body : RegisterDTO) => {
             data: {
                 name,
                 lastname,
+                role: "buyer",
             },
         },
     });
@@ -19,7 +20,9 @@ export const registerService = async (body : RegisterDTO) => {
         console.error("Error al registrarse, informacion no completa ", error.message)
         throw error;
     }
-
+    
+    console.log("Registro correcto", registerData);
+    console.log("Rol del usuario:", registerData?.user?.user_metadata?.role);
     console.log("Registro correcto", registerData);
     return registerData;
 }

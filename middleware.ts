@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
     const { data , error } = await supabase.auth.getUser(token.value);
     
 
-    // AQUÍ VEMOS SI EL TOKEN ES VALIDO PARA LA ITERACION
+    // AQUI SI NO HAY TOKEN O EL ROL NO ES EXISTENTE TE MANDA AL LOGIN
 
     if(error || !data.user) {
         console.error("Error en middleware, el usuario no anda por ahí o algo anda mal", error?.message);
@@ -27,7 +27,6 @@ export async function middleware(request: NextRequest) {
     if(pathname.startsWith('/favorites') && role !== 'buyer') {
         return NextResponse.redirect(new URL('/', request.url));
     }
-    
     return NextResponse.next();
 }
 export const config = {
