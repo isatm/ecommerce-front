@@ -30,6 +30,8 @@ export const loginService = async (body: LoginDTO) => {
 
   return loginData;
 };
+
+/*
 export const registerService = async (formData: RegisterDTO) => {
   const { name, lastname, email, password } = formData; 
 
@@ -46,9 +48,9 @@ export const registerService = async (formData: RegisterDTO) => {
 
   if (error) {
     console.error("Error en registerService:", error.message);
-    return null; // 🚨 aquí devolvemos null si falla
+    return null; // aquí devolvemos null si falla
   }
 
   console.log("Usuario registrado en Supabase:", data);
   return data; // esto contiene { user, session }
-};
+};*/

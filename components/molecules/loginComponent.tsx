@@ -1,12 +1,10 @@
 "use client";
-
-
 import { useForm, SubmitHandler } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 import { LoginDTO } from "@/interfaces/login"
 import { loginScheme } from "@/schemas/login"
-import { loginService } from "@/libs/authService"
+import { loginService } from "@/libs/loginService"
 
 import InputComponent from "@/components/atoms/inputComponent"
 import ButtonComponent from "@/components/atoms/buttonComponent"
@@ -14,7 +12,7 @@ import ButtonComponent from "@/components/atoms/buttonComponent"
 import { useRouter } from "next/navigation";
 
 interface LoginComponentProps {
-  onClose: () => void; // 👈 ahora es opcional
+  onClose: () => void; 
 }
 
 export default function LoginComponent({ onClose }: LoginComponentProps) {

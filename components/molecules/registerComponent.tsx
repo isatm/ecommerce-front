@@ -7,7 +7,7 @@ import { RegisterScheme } from "@/schemas/register"
 
 import InputComponent from "@/components/atoms/inputComponent"
 import ButtonComponent from "@/components/atoms/buttonComponent"
-import { registerService } from "@/libs/authService"
+import { registerService } from "@/libs/loginService"
 
 import { useRouter } from "next/navigation";
 
