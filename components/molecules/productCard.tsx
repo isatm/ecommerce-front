@@ -1,35 +1,28 @@
+import { Product } from "@/interfaces/product";
 import Image from "next/image";
 
-interface ProductCardProps {
-  title: string;
-  description: string;
-  category: string;
-  price: number;
-  stock: number;
-  imageUrl: string;
-}
 
 export default function ProductCard({
-  title,
-  description,
-  category,
-  price,
-  stock,
-  imageUrl,
-}: ProductCardProps) {
+    name,
+    description,
+    category,
+    price,
+    stock,
+    image_url,
+  }: Product) {
   return (
     <div className="rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
       <div className="relative w-full h-52">
         <Image
-          src={imageUrl || "/fallback.png"}
-          alt={title || "Imagen de producto"}
+          src={image_url || "/fallback.png"}
+          alt={name || "Imagen de producto"}
           fill
           className="object-cover"
         />
       </div>
 
       <div className="p-4">
-        <h3 className="text-lg font-semibold">{title}</h3>
+        <h3 className="text-lg font-semibold">{name}</h3>
         <p className="text-sm text-gray-500">{description}</p>
         <p className="text-xs mt-1 text-gray-400">Categoría: {category}</p>
 

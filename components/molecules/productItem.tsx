@@ -1,13 +1,10 @@
 import React from "react";
+import { Props } from "@/interfaces/propsItem";
 import { userCartStore } from "@/store/cartStore";
-import { Product } from "@/interfaces/product";
+import { useProductItem } from "@/hooks/useProductItem";
 
-interface Props {
-    product: Product;
-    }
-
-    const ProductItem: React.FC<Props> = ({ product }) => {
-    const addToCart = userCartStore((state) => state.addProduct);
+export function ProductItem({ product }: Props) {
+    const {  addToCart } = useProductItem();
 
     return (
         <div className="border p-4 rounded-lg shadow-md">
@@ -23,4 +20,3 @@ interface Props {
     );
 };
 
-export default ProductItem;
