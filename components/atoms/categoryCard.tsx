@@ -1,9 +1,6 @@
+import { CategoryCardProps } from "@/interfaces/categoryProps";
 import Image from "next/image";
 
-interface CategoryCardProps {
-  name: string;
-  image: string;
-}
 
 export default function CategoryCard({ name, image }: CategoryCardProps) {
   return (

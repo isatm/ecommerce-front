@@ -1,13 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ModalButtonProps } from "@/interfaces/modalButtontProps";
 import { ReactNode } from "react";
 
-interface ModalButtonProps {
-  buttonLabel?: string;
-  icon?: ReactNode; // El ícono es opcional
-  buttonStyle?: string;
-  children: React.ReactNode; // contenido que irá dentro del modal
-}
 
 export default function EmerPageButton({
   buttonLabel,

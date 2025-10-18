@@ -1,28 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useRegional } from "@/hooks/useRegional";
 
 export default function RegionalConfigAlert() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
-  const handleAccept = () => {
-    setIsOpen(false);
-    localStorage.setItem("locationModalAccepted", "true");
-  };
-
-  if (!isOpen) return null;
+  const { handleAccept, handleClose } = useRegional();
 
   return (
     <div className="fixed bottom-[5rem] left-1/2 transform -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-[50rem]">

@@ -1,19 +1,7 @@
+import { InputComponentProps } from "@/interfaces/input"
 import { standardInput } from "@/utils/Tokens"
 import { UseFormRegister, Path, FieldValues } from "react-hook-form"
 
-interface valuesSelect {
-  value: string
-  label: string
-}
-
-interface InputComponentProps<T extends FieldValues> {
-  label: string
-  typeElement: "text" | "password" | "email"
-  idElement: string
-  listValues?: valuesSelect[]
-  name: Path<T>
-  register: UseFormRegister<T>
-}
 
 export default function InputComponent<T extends FieldValues>({
   label,

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { userCartStore } from "@/store/cartStore"; 
+import { userCartStore } from "@/hooks/usecartStore"; 
 import EmerPageButton from "../atoms/buttons/emerPageButtonComponent";
 import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
 import { Product } from "@/interfaces/product";

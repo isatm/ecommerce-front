@@ -18,12 +18,12 @@ export default function RegisterComponent() {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm<RegisterDTO>({
-    resolver: zodResolver(RegisterScheme)
-  });
+    } = useForm<RegisterDTO>({
+        resolver: zodResolver(RegisterScheme)
+});
 
-  const onSubmit: SubmitHandler<RegisterDTO> = async (data) => {
-    const result = await registerService(data);
+    const onSubmit: SubmitHandler<RegisterDTO> = async (data) => {
+        const result = await registerService(data);
 
     if (!result) {
         alert("Hubo un error al registrarse. Inténtalo de nuevo.");
@@ -33,10 +33,10 @@ export default function RegisterComponent() {
 
     };
 
-  const onErrors = () => {
-    console.log("Errores", errors);
-    alert("Información incompleta");
-  };
+    const onErrors = () => {
+        console.log("Errores", errors);
+        alert("Información incompleta");
+    };
 
 
     return (

@@ -1,14 +1,6 @@
 import ProductCard from "@/components/molecules/productCard";
+import { Product } from "@/interfaces/product";
 
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  price: number;
-  stock: number;
-  imageUrl: string;
-}
 
 export default function ProductGrid({ products }: { products: Product[] }) {
   return (

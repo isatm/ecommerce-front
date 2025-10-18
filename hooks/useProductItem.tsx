@@ -1,4 +1,4 @@
-import { userCartStore } from "@/store/cartStore";
+import { userCartStore } from "@/hooks/usecartStore";
 import { Props } from "@/interfaces/propsItem";
 
 export function useProductItem() {
