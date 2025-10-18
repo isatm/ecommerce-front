@@ -5,25 +5,11 @@ import { userCartStore } from "@/hooks/usecartStore";
 import EmerPageButton from "../atoms/buttons/emerPageButtonComponent";
 import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
 import { Product } from "@/interfaces/product";
-import { useRouter } from "next/navigation"; 
+import { useProductItem } from "@/hooks/useProductItem";
 
 export default function ProductItem({ product }: { product: Product }) {
-  const addProduct = userCartStore((state) => state.addProduct); 
-  const router = useRouter(); 
 
-  const handleAddToCart = () => {
-    addProduct({
-      id: product.id,
-      name: product.name,
-      description: product.description,
-      price: product.price,
-      category: product.category,
-      stock: product.stock,
-      image_url: product.image_url,
-    });
-
-    router.push("/cart"); 
-  };
+  const { handleAddToCart } = useProductItem();
 
   return (
     <div className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-lg shadow-md">

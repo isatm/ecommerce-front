@@ -3,21 +3,13 @@
 import React from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+
+import useFooter from "@/hooks/useFooter";
 import InputComponent from "../atoms/inputComponent";
 
-//Utilizamos forma de busqueda en el footer gracias a la accion de ingresar correo y de ello buscarlo y después hacer la acción de suscribir
-interface SearchForm {
-    search: string;
-    }
-    
-    // Exportamos el componente footer
-    export default function FooterComponent() {
-    const { register, handleSubmit } = useForm<SearchForm>();
-    
-    // Enviar el formulario, tomando el valor del input donde se ingresa el correo y luego se busca el correo en el backend para después aceptar la suscripción
-    const onSubmit = (data: SearchForm) => {
-        console.log("Valor del correo:", data.search);
-    };
+
+export default function FooterComponent() {
+    const { register, handleSubmit, onSubmit } = useFooter();
 
     return (
         <footer className="bg-gray-900 text-white shadow-lg">

@@ -1,15 +1,22 @@
 import { userCartStore } from "@/hooks/usecartStore";
-import { Props } from "@/interfaces/propsItem";
+import { useRouter } from "next/router";
 
 export function useProductItem() {
-    const addToCart = userCartStore((state) => state.addProduct);
-
-    const handleAddToCart = (props: Props) => {
-        addToCart(props.product);
+    const addProduct = userCartStore((state) => state.addProduct); 
+    const router = useRouter(); 
+    
+    const handleAddToCart = (product: any) => {
+        addProduct({
+            id: product.id,
+            name: product.name,
+            description: product.description,
+            price: product.price,
+            category: product.category,
+            stock: product.stock,
+            image_url: product.image_url,
+        });
+    
+        router.push("/cart");
     };
-
-    return {
-        handleAddToCart,
-        addToCart
-    };
+    return { handleAddToCart}; 
 }
