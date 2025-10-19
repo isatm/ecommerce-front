@@ -19,7 +19,7 @@ export function useLogin() {
         try {
         const loginData = await loginService(data);
         alert("Login correcto");
-        //onclose();  
+        window.onclose?.(new Event("close"));
         router.push("/");
         } catch (err) {
         alert("Usuario o contraseña incorrectos");

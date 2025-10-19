@@ -11,7 +11,6 @@ export async function middleware(request: NextRequest) {
 
     const { data , error } = await supabase.auth.getUser(token.value);
     
-
     // AQUI SI NO HAY TOKEN O EL ROL NO ES EXISTENTE TE MANDA AL LOGIN
 
     if(error || !data.user) {
@@ -25,10 +24,17 @@ export async function middleware(request: NextRequest) {
     const role = data.user.user_metadata.role;
 
     if(pathname.startsWith('/favorites') && role !== 'buyer') {
-        return NextResponse.redirect(new URL('/', request.url));
-    }
+        return NextResponse.redirect(new URL('/login', request.url));
+    } 
+    
+    /*if(pathname === '/' && role === 'buyer') {
+        return NextResponse.redirect(new URL('/favorites', request.url));
+    }*/
+
     return NextResponse.next();
-}
+
+};
+
 export const config = {
-    matcher: ['/favorites/:path*'],
+    matcher: ['/favorites/:path*'], /*,'/'*/
 }
