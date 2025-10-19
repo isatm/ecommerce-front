@@ -19,7 +19,8 @@ export function useLogin() {
         try {
         const loginData = await loginService(data);
         alert("Login correcto");
-        window.onclose?.(new Event("close"));
+        window.onclose?.(new Event("close")); // Se cambio la linea onclose() por window.onclose?.(), ya que esta esperaba un parametro que no se enviaba así que no 
+        // supe solucionarlo así que confié en el consejo de la ia para repararlo de esta manera.
         router.push("/");
         } catch (err) {
         alert("Usuario o contraseña incorrectos");
