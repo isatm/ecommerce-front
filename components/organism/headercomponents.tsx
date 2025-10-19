@@ -1,9 +1,7 @@
-"use client";
-
+'use client';
+import { useHeaderComponent } from "@/hooks/useHeader"; 
 import ButtonComponent from "../atoms/buttonComponent";
 import InputComponent from "../atoms/inputComponent";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
@@ -11,59 +9,11 @@ import EmerPageButton from "../atoms/buttons/emerPageButtonComponent";
 import LoginPage from "@/app/(auth)/login/page";
 import RegisterPage from "@/app/(auth)/register/page";
 import { ShoppingCart } from 'lucide-react';
-import { Product} from '@/interfaces/product'
-
-import { searchProducts } from "@/libs/productService";
-import { useState, useEffect } from "react";
 import { Heart } from 'lucide-react';
 
-
-interface SearchForm {
-  search: string;
-}
-
 export default function HeaderComponent() {
-  const { register, handleSubmit, watch } = useForm<SearchForm>();
-  const router = useRouter();
-  const [results, setResults] = useState<Partial<Product>[]>([]);
-  const searchTerm = watch("search");
-
-  const handleSearch = async (term: string) => {
-    if (term.length < 2) {
-      setResults([]);
-      return;
-    }
-    try {
-      const products = await searchProducts(term);  
-        
-      const productsWithPrice = products.map(product => ({
-        ...product, // es un precio estatico por el momento, que le es asignado de forma predeterminada
-        price: 0
-      }));
-      
-      setResults(productsWithPrice);
-    } catch (err: unknown) {
-      console.error("Error al buscar productos:", err);
-      setResults([]);
-    }
-  };
-
-  useEffect(() => {
-    if (searchTerm) {
-      handleSearch(searchTerm);
-    } else {
-      setResults([]);
-    }
-  }, [searchTerm]);
-
-  const onSubmit = () => {
-    if (results.length > 0) {
-      router.push(`/products/${results[0].id}`);
-    } else {
-      alert("No se encontraron productos");
-    }
-  };
-
+  const { register, handleSubmit, results, onSubmit, router } = useHeaderComponent();
+  
   return (
     <header className="w-full">
       {/* HEADER SUPERIOR */}
