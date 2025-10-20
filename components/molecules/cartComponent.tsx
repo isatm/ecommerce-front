@@ -1,5 +1,6 @@
 "use client";
-import { userCartStore } from "@/hooks/usecartStore";
+
+import { userCartStore } from "@/store/cartStore";
 import Image from "next/image";
 
 export default function Cart() {

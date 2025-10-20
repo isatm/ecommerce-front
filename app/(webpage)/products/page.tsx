@@ -1,4 +1,5 @@
 // app/products/page.tsx
+
 import { supabase } from "@/libs/supabaseClient";
 import ProductGrid from "@/components/organism/productGrid";
 

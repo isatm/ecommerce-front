@@ -4,11 +4,8 @@ import { searchProducts } from "@/libs/productService";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { SearchForm } from '@/interfaces/searchForm';
 
-
-interface SearchForm {
-  search: string;
-}
 export function useHeaderComponent() {
     const { register, handleSubmit, watch } = useForm<SearchForm>();
     const router = useRouter();

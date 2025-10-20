@@ -1,3 +1,5 @@
+'use client'
+
 import { ToggleButtonProps } from "@/interfaces/toggleProps";
 
 import { useState } from "react";

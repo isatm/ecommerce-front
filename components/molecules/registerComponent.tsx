@@ -1,7 +1,9 @@
 'use client'
+
 import InputComponent from "@/components/atoms/inputComponent"
 import ButtonComponent from "@/components/atoms/buttonComponent"
 import { useRegisterComponent } from "@/hooks/useRegister"
+
 export default function RegisterComponent() {
     const {register ,handleSubmit, onSubmit, onErrors} = useRegisterComponent()
 
