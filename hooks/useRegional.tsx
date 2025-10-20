@@ -13,11 +13,17 @@ export function useRegional() {
         return () => clearTimeout(timer);
     }, []);
 
-    const handleClose = () => {
+    const handleClose = (e?: React.MouseEvent) => {
+        if (e) {
+            e.stopPropagation();
+        }
         setIsOpen(false);
     };
 
-    const handleAccept = () => {
+    const handleAccept = (e?: React.MouseEvent) => {
+        if (e) {
+            e.stopPropagation();
+        }
         setIsOpen(false);
         localStorage.setItem("locationModalAccepted", "true");
     };
@@ -28,5 +34,3 @@ export function useRegional() {
         handleAccept
     };
 }
-
-export default useRegional;

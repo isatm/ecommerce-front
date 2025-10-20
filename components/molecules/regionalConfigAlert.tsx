@@ -3,7 +3,11 @@
 import { useRegional } from "@/hooks/useRegional";
 
 export default function RegionalConfigAlert() {
-  const { handleAccept, handleClose } = useRegional();
+  const { handleAccept, handleClose, isOpen } = useRegional(); // ← Agregar destructuración completa
+
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <div className="fixed bottom-[5rem] left-1/2 transform -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-[50rem]">
@@ -18,18 +22,18 @@ export default function RegionalConfigAlert() {
             Región de envío: <strong>Colombia</strong>
           </p>
           <p className="text-[0.85rem] text-gray-500 m-0">
-            Moneda: <strong>$ Dólar de los Estados Unidos</strong>
+            Moneda: <strong><em>$ Dólar de los Estados Unidos</em></strong>
           </p>
         </div>
         <div className="flex gap-2 justify-end">
           <button
-            onClick={handleClose}
+            onClick={(e) => handleClose(e)} // ← Pasar el evento
             className="px-4 py-2 bg-gray-100 text-[0.85rem] text-gray-700 rounded-md hover:bg-gray-200 cursor-pointer"
           >
             Actualizar la configuración regional
           </button>
           <button
-            onClick={handleAccept}
+            onClick={(e) => handleAccept(e)} // ← Pasar el evento
             className="px-4 py-2 bg-gray-900 text-[0.85rem] text-white rounded-md hover:bg-gray-800 cursor-pointer"
           >
             Aceptar
