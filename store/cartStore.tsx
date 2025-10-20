@@ -9,7 +9,7 @@ import { persist } from "zustand/middleware";
 // hook es más para menjo de codigo directo sin tanto condicional
 
 // IMPORTANTE: es posible no utilizar zustand, peroooooooo habría que utilizar apis y aumentar la complejidad misma del codigo
-
+// no entiendo nada
 import { Product } from "@/interfaces/product";
 import { CartStore } from "@/interfaces/cart";
 

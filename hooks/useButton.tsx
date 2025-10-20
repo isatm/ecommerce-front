@@ -17,6 +17,8 @@ export function useButton({type, content, icon }:ButtonProps) {
         style = "w-full bg-yellow-400 hover:bg-yellow-300 text-black font-medium py-2 rounded-lg transition"; // negro de necesitas ayuda
         break;
         case 4:
+        style = "w-full bg-yellow-400 hover:bg-yellow-300 text-black font-medium py-2 rounded-lg transition";
+        break;
 
         default:
         style = "bg-black-500 text-white-500";
