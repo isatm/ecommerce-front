@@ -1,3 +1,5 @@
+"use client"
+
 import { SearchForm } from "@/interfaces/searchForm";
 import { useForm } from "react-hook-form";
 

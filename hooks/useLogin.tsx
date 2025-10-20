@@ -1,3 +1,5 @@
+"use client"
+
 import { LoginDTO } from "@/interfaces/login";
 import { loginService } from "@/libs/loginService";
 import { loginScheme } from "@/schemas/login";

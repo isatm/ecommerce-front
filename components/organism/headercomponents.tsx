@@ -10,6 +10,7 @@ import LoginPage from "@/app/(auth)/login/page";
 import RegisterPage from "@/app/(auth)/register/page";
 import { ShoppingCart } from 'lucide-react';
 import { Heart } from 'lucide-react';
+import { AlignJustifyIcon } from 'lucide-react';
 
 export default function HeaderComponent() {
   const { register, handleSubmit, results, onSubmit, router } = useHeaderComponent();
@@ -22,7 +23,7 @@ export default function HeaderComponent() {
           {/* Logo + Input */}
           <div className="flex items-center">
             <div className="block lg:hidden mr-4">
-              <ButtonComponent type={4} icon="TextAlignJustify" />
+              <ButtonComponent type={4} content="Home" icon= {AlignJustifyIcon} /> {/* Se ha cambiado, se agrego content e el icon tuvo que cambiar*/}
             </div>
             <Link href="/" className="-m-1.5 p-1.5 flex items-center">
               <Image
