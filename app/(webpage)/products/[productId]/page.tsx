@@ -1,5 +1,6 @@
 import { supabase } from "@/libs/supabaseClient";
 import ProductItem from "@/components/organism/productItem"
+import { notFound } from "next/navigation";
 
 interface PageProps {
   params: Promise<{
@@ -19,10 +20,9 @@ export default async function Page({ params }: PageProps) {
     .eq("id", await obteinId())
     .maybeSingle();
 
-  if (error) {
-    console.error(error);
-    return <div>Error al cargar el producto</div>;
-  }
+    if (error) {
+        notFound();
+    }
 
   if (!product) {
     return <div>Producto no encontrado</div>;
