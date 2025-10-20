@@ -1,3 +1,4 @@
+import RegionalConfigAlert from '@/components/molecules/regionalConfigAlert';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     return (
         <div>
         {children}
+        <RegionalConfigAlert />
         </div>
     );
 }
