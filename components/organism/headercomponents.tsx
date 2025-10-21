@@ -71,7 +71,7 @@ export default function HeaderComponent() {
             >
               Vende tu equipo
             </a>
-            <a href="favorites" className="flex flex-col items-center text-black-600 hover:text-orange-400 transition">
+            <a href="favorite" className="flex flex-col items-center text-black-600 hover:text-orange-400 transition">
               <Heart />
               <div className="text-xs">
               Favoritos

@@ -23,12 +23,12 @@ export async function middleware(request: NextRequest) {
 
     const role = data.user.user_metadata.role;
 
-    if(pathname.startsWith('/favorites') && role !== 'buyer') {
+    if(pathname.startsWith('/favorite_Products') && role !== 'buyer') {
         return NextResponse.redirect(new URL('/login', request.url));
     } 
     
     /*if(pathname === '/' && role === 'buyer') {
-        return NextResponse.redirect(new URL('/favorites', request.url));
+        return NextResponse.redirect(new URL('/favorite_Products', request.url));
     }*/
 
     return NextResponse.next();
@@ -36,5 +36,5 @@ export async function middleware(request: NextRequest) {
 };
 
 export const config = {
-    matcher: ['/favorites/:path*'], /*,'/'*/
+    matcher: ['/favorite_Products/:path*'], /*,'/'*/
 }
