@@ -5,6 +5,17 @@ export async function middleware(request: NextRequest) {
     const token = request.cookies.get("token");
     const { pathname } = request.nextUrl
 
+    //Proteger rutas privadas sin autenticación
+    const isProtected = 
+        pathname.startsWith("/dashboard") || 
+        pathname.startsWith("/favorites");
+
+    if (isProtected && !token) {
+        return NextResponse.redirect(new URL("/login", request.url));
+    }
+
+
+    //Silva
     if(!token) {
         return NextResponse.redirect(new URL('/login', request.url));
     }
@@ -17,7 +28,6 @@ export async function middleware(request: NextRequest) {
         console.error("Error en middleware, el usuario no anda por ahí o algo anda mal", error?.message);
         return NextResponse.redirect(new URL('/singin', request.url));
     }
-    
 
     // AQUÍ SE RESTRINGEN LAS RUTAS POR ROL
 
@@ -36,5 +46,5 @@ export async function middleware(request: NextRequest) {
 };
 
 export const config = {
-    matcher: ['/favorites/:path*', '/dashboard/:path*'], /*,'/'*/
+    matcher: ['/favorites/:path*', '/dashboard/:path*'],
 }

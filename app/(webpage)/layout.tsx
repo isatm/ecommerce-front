@@ -3,7 +3,7 @@ import "@/app/globals.css";
 
 import HeaderComponent from "@/components/organism/headercomponents";
 import FooterComponent from "@/components/organism/footerComponents";
-import { AuthProvider } from "@/context/authContext";
+import { AuthProvider } from "@/contexts/authContext";
 
 export const metadata: Metadata = {
   title: "Instrumentos musicales a la venta: equipo musical nuevo de | Reverb",
