@@ -10,7 +10,7 @@ export default async function HomePage() {
   const { data: products, error } = await supabase
     .from("products")
     .select("*")
-    .limit(8); // Muestra solo 8 productos en el home
+    .limit(8); 
 
   if (error) {
     console.error(error.message);

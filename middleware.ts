@@ -15,7 +15,7 @@ export async function middleware(request: NextRequest) {
 
     if(error || !data.user) {
         console.error("Error en middleware, el usuario no anda por ahí o algo anda mal", error?.message);
-        return NextResponse.redirect(new URL('/login', request.url));
+        return NextResponse.redirect(new URL('/singin', request.url));
     }
     
 
@@ -36,5 +36,5 @@ export async function middleware(request: NextRequest) {
 };
 
 export const config = {
-    matcher: ['/favorites/:path*'], /*,'/'*/
+    matcher: ['/favorites/:path*', '/dashboard/:path*'], /*,'/'*/
 }

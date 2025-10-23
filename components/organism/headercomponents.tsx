@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
 import EmerPageButton from "../atoms/buttons/emerPageButtonComponent";
-import LoginPage from "@/app/(auth)/login/page";
+import LoginPage from "@/app/(auth)/singin/page";
 import RegisterPage from "@/app/(auth)/register/page";
 import { ShoppingCart } from 'lucide-react';
 import { Heart } from 'lucide-react';

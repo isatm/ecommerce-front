@@ -6,10 +6,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="w-full flex flex-col min-h-screen">
-          {children}
-      </body>
-    </html>
+    {children}
   );
 }
