@@ -35,11 +35,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) =>{
         const token = Cookies.get("token");
         if (token) {
             supabase.auth.getUser().then(({ data: { user }, error }) => {
-                if (error) {
-                    console.error("Error obteniendo el token:", error.message);
-                    Cookies.remove("token");
-                    setUser(null);
-                } else if (user) {
+                if (user) {
                     const userData: User = {
                         name: user.user_metadata.name || "",
                         role: user.user_metadata.role || "user",
@@ -60,7 +56,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) =>{
 
     const singIn = (userData: User) => {
         Cookies.set("token", userData.token, 
-            { expires: 7, 
+            { expires: 70000, 
             secure: true, 
             sameSite: "strict"
         });
@@ -80,4 +76,4 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) =>{
     );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export default AuthProvider;

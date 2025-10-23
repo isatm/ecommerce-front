@@ -4,6 +4,7 @@ import "@/app/globals.css";
 
 import HeaderComponent from "@/components/organism/headercomponents";
 import FooterComponent from "@/components/organism/footerComponents";
+import { AuthProvider } from "@/authcontext/authContext";
 
 export const metadata: Metadata = {
   title: "Instrumentos musicales a la venta: equipo musical nuevo de | Reverb ",
@@ -18,12 +19,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="w-full flex flex-col min-h-screen">
+        <AuthProvider>
         <HeaderComponent />
         <main className="flex-grow">
           {children}
           <p className="text-xl text-gray-700"></p>
         </main>
         <FooterComponent />
+        </AuthProvider>
       </body>
     </html>
   );
