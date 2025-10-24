@@ -4,18 +4,14 @@ import InputComponent from "../atoms/inputComponent";
 import Link from "next/link";
 import Image from "next/image";
 import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
-import { ShoppingCart } from 'lucide-react';
+import { Search, ShoppingCart } from 'lucide-react';
 import { Heart } from 'lucide-react';
 import { navLinkClass } from "@/utils/Tokens";
 import Button from "../atoms/buttonComponent"; 
 import React from 'react'; 
 
-
 export default function HeaderComponent() {
   const { register, handleSubmit, results, onSubmit, router } = useHeaderComponent();
-
-  // Clase común para los enlaces de navegación que cambian de color al hover
-  
 
   return (
     <header className="w-full">
@@ -40,10 +36,13 @@ export default function HeaderComponent() {
             <form onSubmit={handleSubmit(onSubmit)} className="flex-1">
               <InputComponent
                 label=""
-                typeElement="text"
+                typeElement="search" 
                 idElement="search"
                 name="search"
                 register={register}
+                placeholder="Compra equipos musicales usados & nuevos..."
+                className="w-full" 
+                iconRight={<Search size={18} />} 
               />
             </form>
 
