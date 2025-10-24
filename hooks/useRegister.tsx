@@ -4,14 +4,13 @@ import { registerService } from "@/libs/registerService"
 
 import { useRouter } from "next/navigation";
 
-
 import { useForm, SubmitHandler } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { RegisterDTO } from "@/interfaces/register"
 import { RegisterScheme } from "@/schemas/register"
 
 
-export function useRegisterComponent(){
+export function useRegister(){
     const router = useRouter();
     const {
     register,
