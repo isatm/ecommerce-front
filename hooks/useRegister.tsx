@@ -9,7 +9,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { RegisterDTO } from "@/interfaces/register"
 import { RegisterScheme } from "@/schemas/register"
 
-
 export function useRegister(){
     const router = useRouter();
     const {

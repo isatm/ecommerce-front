@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
 
-import HeaderComponent from "@/components/organism/headerComponents";
 import FooterComponent from "@/components/organism/footerComponents";
 import { AuthProvider } from "@/contexts/authContext";
 
@@ -17,7 +16,6 @@ export default function RootLayout({
 }>) {
   return (
         <AuthProvider>
-        <HeaderComponent />
         <main className="flex-grow">
           {children}
           <p className="text-xl text-gray-700"></p>

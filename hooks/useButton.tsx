@@ -4,8 +4,10 @@ import {
   buttonPrimaryStyles,
   buttonSecondaryStyles,
   buttonDarkStyles,
-  buttonGoogleStyles,
-  buttonDisabledStyles
+  buttonGoogleStyles, 
+  buttonDisabledStyles,
+  buttonAppleStyles, 
+  buttonFacebookStyles 
 } from "@/utils/Tokens"
 import clsx from 'clsx';
 
@@ -15,8 +17,10 @@ export const useButton = (props: ButtonProps) => {
   const variantStyles: Record<ButtonVariant, string> = {
     primary: buttonPrimaryStyles,
     secondary: buttonSecondaryStyles,
-    dark: buttonDarkStyles,
-    google: buttonGoogleStyles,
+    dark: buttonDarkStyles, // Este es el botón "Iniciar sesión"
+    google: buttonGoogleStyles, // Botón gris con borde
+    apple: buttonGoogleStyles, // Botón gris con borde (usamos el mismo estilo que Google)
+    facebook: buttonGoogleStyles // Botón gris con borde (usamos el mismo estilo que Google)
   };
 
   const style = clsx(
@@ -24,7 +28,7 @@ export const useButton = (props: ButtonProps) => {
     variantStyles[variant],
     fullWidth && 'w-full',
     disabled && buttonDisabledStyles,
-    className 
+    className
   );
 
   return { style };

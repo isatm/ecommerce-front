@@ -70,7 +70,7 @@ export default function InputComponent<T extends FieldValues>({
             id={idElement}
             placeholder={placeholder}
             className={clsx(
-              "w-full border border-gray-300 hover:border-gray-400 focus:border-gray-500 rounded-md py-2 text-[15px] text-gray-700 placeholder-gray-400 focus:outline-none transition-all duration-150",
+              "w-full border border-gray-300 focus:border-gray-400 rounded-md py-2 text-[15px] text-gray-700 placeholder-gray-400 focus:outline-none transition-all duration-150", // Ajustado focus:border-gray-400
               paddingLeft,
               paddingRight,
               className,
