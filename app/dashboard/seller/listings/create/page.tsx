@@ -1,4 +1,4 @@
-import SimpleProductForm from "@/components/organism/seller/simpleProductForm";
+import SimpleProductForm from "@/components/organism/seller/simpleProductFormComponent";
 
 export default function CreateListingPage() {
   return (

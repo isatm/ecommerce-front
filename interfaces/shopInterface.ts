@@ -1,4 +1,4 @@
-import { Product } from "./product";
+import { Product } from "./productInterface";
 
 export interface Shop{
     user_id: string;

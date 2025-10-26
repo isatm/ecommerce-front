@@ -1,4 +1,4 @@
-import { ButtonProps, ButtonVariant } from "@/interfaces/buttonProps";
+import { ButtonProps, ButtonVariant } from "@/interfaces/buttonPropsInterface";
 import {
   buttonBaseStyles,
   buttonPrimaryStyles,
@@ -8,7 +8,7 @@ import {
   buttonDisabledStyles,
   buttonAppleStyles, 
   buttonFacebookStyles 
-} from "@/utils/Tokens"
+} from "@/utils/tokensUtils"
 import clsx from 'clsx';
 
 export const useButton = (props: ButtonProps) => {

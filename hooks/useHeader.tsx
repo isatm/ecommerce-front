@@ -1,5 +1,5 @@
 "use client"
-import { Product} from '@/interfaces/product'
+import { Product} from '@/interfaces/productInterface'
 import { searchProducts } from "@/libs/productService";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";

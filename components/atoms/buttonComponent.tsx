@@ -1,4 +1,4 @@
-import { ButtonProps } from "@/interfaces/buttonProps"; 
+import { ButtonProps } from "@/interfaces/buttonPropsInterface"; 
 import { useButton } from "@/hooks/useButton";    
 import React from 'react';
 

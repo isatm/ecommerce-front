@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ModalButtonProps } from "@/interfaces/modalButtontProps";
+import { ModalButtonProps } from "@/interfaces/modalButtontPropsInterface";
 import { ReactNode } from "react";
 
 

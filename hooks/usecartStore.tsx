@@ -10,8 +10,8 @@ import { persist } from "zustand/middleware";
 
 // IMPORTANTE: es posible no utilizar zustand, peroooooooo habría que utilizar apis y aumentar la complejidad misma del codigo
 
-import { Product } from "@/interfaces/product";
-import { CartStore } from "@/interfaces/cart";
+import { Product } from "@/interfaces/productInterface";
+import { CartStore } from "@/interfaces/cartInterface";
 
 // 👇 Aquí ahora usamos `persist` para que el carrito quede guardado en localStorage
 export const userCartStore = create<CartStore>()(

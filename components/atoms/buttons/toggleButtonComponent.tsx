@@ -1,4 +1,4 @@
-import { ToggleButtonProps } from "@/interfaces/toggleProps";
+import { ToggleButtonProps } from "@/interfaces/togglePropsInterface";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";

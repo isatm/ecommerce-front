@@ -1,7 +1,7 @@
 "use client";
-import { LoginDTO } from "@/interfaces/login";
+import { LoginDTO } from "@/interfaces/loginInterface";
 import { loginService } from "@/libs/loginService";
-import { loginScheme } from "@/schemas/login";
+import { loginScheme } from "@/schemas/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";

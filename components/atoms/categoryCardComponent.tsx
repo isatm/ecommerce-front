@@ -1,4 +1,4 @@
-import { CategoryCardProps } from "@/interfaces/categoryProps";
+import { CategoryCardProps } from "@/interfaces/categoryPropsInterface";
 import Image from "next/image";
 
 

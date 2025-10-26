@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { buyerService } from "@/libs/buyerService";
-import { Shop } from "@/interfaces/shop";
+import { Shop } from "@/interfaces/shopInterface";
 
 export default function RecordComponent() {
     const [shops, setShops] = useState<Shop[]>([]);

@@ -1,5 +1,5 @@
 'use client';
-import { InputComponentProps } from "@/interfaces/input";
+import { InputComponentProps } from "@/interfaces/inputInterface";
 import { FieldValues } from "react-hook-form";
 import useInput from "@/hooks/useInput";
 import clsx from "clsx";

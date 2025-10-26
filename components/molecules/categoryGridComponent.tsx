@@ -1,5 +1,5 @@
-import CategoryCard from "../atoms/categoryCard";
-import { categories } from "@/utils/Categories";
+import CategoryCard from "../atoms/categoryCardComponent";
+import { categories } from "@/utils/categoriesUtils";
 
 export default function CategoryGrid() {
   return (

@@ -1,4 +1,4 @@
-import RegionalConfigAlert from '@/components/molecules/regionalConfigAlert';
+import RegionalConfigAlert from '@/components/molecules/regionalConfigAlertComponent';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -6,15 +6,14 @@ export const metadata: Metadata = {
     description: "Crea una cuenta para comprar y vender equipos en Reverb.",
     };
     
-    export default function CategoryLayoutPage({
-    children,
-    }: {
-    children: React.ReactNode;
-    }) {
-    return (
-        <div>
-        {children}
-        <RegionalConfigAlert />
-        </div>
-    );
-}
+export default function CategoryLayoutPage({
+    children,}:
+    {
+        children: React.ReactNode; }) {
+            return (
+                <div>
+                    {children}
+                    <RegionalConfigAlert />
+                </div>
+            );
+    }

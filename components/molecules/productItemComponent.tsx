@@ -1,5 +1,5 @@
 import React from "react";
-import { Props } from "@/interfaces/propsItem";
+import { Props } from "@/interfaces/propsItemInterface";
 import { userCartStore } from "@/hooks/usecartStore";
 import { useProductItem } from "@/hooks/useProductItem";
 

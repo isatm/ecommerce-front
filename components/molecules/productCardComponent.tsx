@@ -1,4 +1,4 @@
-import { Product } from "@/interfaces/product";
+import { Product } from "@/interfaces/productInterface";
 import Image from "next/image";
 
 

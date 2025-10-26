@@ -1,6 +1,6 @@
 
-import ProductCard from "@/components/molecules/productCard";
-import { Product } from "@/interfaces/product";
+import ProductCard from "@/components/molecules/productCardComponent";
+import { Product } from "@/interfaces/productInterface";
 
 export default function ProductGrid({ products }: { products: Product[] }) {
   return (

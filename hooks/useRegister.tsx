@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 
 import { useForm, SubmitHandler } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { RegisterDTO } from "@/interfaces/register"
-import { RegisterScheme } from "@/schemas/register"
+import { RegisterDTO } from "@/interfaces/registerInterface"
+import { RegisterScheme } from "@/schemas/registerSchema"
 
 export function useRegister(){
     const router = useRouter();

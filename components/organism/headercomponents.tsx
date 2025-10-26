@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
 import { Search, Heart } from 'lucide-react'; 
-import { navLinkClass } from "@/utils/Tokens";
+import { navLinkClass } from "@/utils/tokensUtils";
 import Button from "../atoms/buttonComponent";
 import React from 'react';
 import { useAuth } from "@/contexts/authContext";

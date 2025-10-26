@@ -1,4 +1,4 @@
-import { RegisterDTO } from "@/interfaces/register";
+import { RegisterDTO } from "@/interfaces/registerInterface";
 import Cookies from "js-cookie";
 import { supabase } from "@/libs/supabaseClient";
 

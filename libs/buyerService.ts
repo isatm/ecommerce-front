@@ -1,8 +1,8 @@
 
 // Falta un mejor manejo de cartItem y Shops
 
-import { CartItem } from "@/interfaces/cart";
-import { Shop } from "@/interfaces/shop";
+import { CartItem } from "@/interfaces/cartInterface";
+import { Shop } from "@/interfaces/shopInterface";
 
 import { supabase } from "@/libs/supabaseClient";
 

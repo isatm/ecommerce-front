@@ -10,17 +10,14 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-        <AuthProvider>
-        <main className="flex-grow">
-          {children}
-          <p className="text-xl text-gray-700"></p>
-        </main>
-        <FooterComponent />
-        </AuthProvider>
-  );
+  children, }: Readonly<{ children: React.ReactNode; }>) {
+    return (
+            <AuthProvider>
+          <main className="flex-grow">
+              {children}
+            <p className="text-xl text-gray-700"></p>
+          </main>
+            <FooterComponent />
+            </AuthProvider>
+    );
 }
