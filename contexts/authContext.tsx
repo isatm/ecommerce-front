@@ -1,79 +1,77 @@
 'use client'
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { supabase } from "@/libs/supabaseClient";
 
 type User = {
-    name: string;
-    role: 'admin' | 'user' | 'buyer' | 'seller';
-    token: string;
-    email: string;
-    lastname: string;
-}
-
-type AuthContextType = {
-    user: User | null;
-    singIn: (userData: User) => void;
-    signOut: () => void;
-    loading: boolean;
-
+  name: string;
+  role: "admin" | "user" | "buyer" | "seller";
+  token: string;
+  email: string;
+  lastname: string;
 };
 
-const AuthContext = createContext<AuthContextType>({
-    user: null,
-    singIn: () => {},
-    signOut: () => {},
-    loading: true,
+export type AuthContextType = {
+  user: User | null;
+  singIn: (userData: User) => void;
+  signOut: () => void;
+  loading: boolean;
+};
+
+export const AuthContext = createContext<AuthContextType>({
+  user: null,
+  singIn: () => {},
+  signOut: () => {},
+  loading: true,
 });
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) =>{
-    const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState(true);
+const cookieOptions: Cookies.CookieAttributes = {
+  expires: 7, 
+  path: "/",
+  sameSite: "lax",
+};
 
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const token = Cookies.get("token");
-        if (token) {
-            supabase.auth.getUser().then(({ data: { user }, error }) => {
-                if (user) {
-                    const userData: User = {
-                        name: user.user_metadata.name || "",
-                        role: user.user_metadata.role || "user",
-                        token: token,
-                        email: user.email || "",
-                        lastname: user.user_metadata.lastname || "",
-                    };
-                    setUser(userData);
+  useEffect(() => {
+    const userCookie = Cookies.get("user");
+    const token = Cookies.get("token");
 
-            } else {
-                setUser(null);
-            }});
-        } else {
-            setLoading(false);
-        }
-    }, []);
-
-
-    const singIn = (userData: User) => {
-        Cookies.set("token", userData.token, 
-            { expires: 70000, 
-            secure: true, 
-            sameSite: "strict"
-        });
-        setUser(userData);
-    }
-
-    const signOut = () => {
-        Cookies.remove("token");
-        supabase.auth.signOut();
+    if (userCookie) {
+      try {
+        const parsed: User = JSON.parse(userCookie);
+        setUser(parsed);
+      } catch (err) {
+        Cookies.remove("user");
         setUser(null);
+      }
+    } else if (token) {
+      setUser(null);
+    } else {
+      setUser(null);
     }
 
-    return (
-        <AuthContext.Provider value={{ user, singIn, signOut, loading }}>
-            {children}
-        </AuthContext.Provider>
-    );
+    setLoading(false);
+  }, []);
+
+  const singIn = (userData: User) => {
+    Cookies.set("token", userData.token, cookieOptions);
+    Cookies.set("user", JSON.stringify(userData), cookieOptions);
+    setUser(userData);
+  };
+
+  const signOut = () => {
+    Cookies.remove("token");
+    Cookies.remove("user");
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, singIn, signOut, loading }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

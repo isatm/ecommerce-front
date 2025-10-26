@@ -6,6 +6,7 @@ import { loginScheme } from "@/schemas/login";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useAuth } from "./useAuth"; 
 
 export function useLogin() {
     const router = useRouter();
@@ -16,16 +17,34 @@ export function useLogin() {
     } = useForm<LoginDTO>({
         resolver: zodResolver(loginScheme)
     });
+
+    const { singIn } = useAuth(); 
         
     const onSubmit: SubmitHandler<LoginDTO> = async (data) => {
         try {
-        const loginData = await loginService(data);
-        alert("Login correcto");
-        window.onclose?.(new Event("close")); // Se cambio la linea onclose() por window.onclose?.(), ya que esta esperaba un parametro que no se enviaba así que no 
-        // supe solucionarlo así que confié en el consejo de la ia para repararlo de esta manera.
-        router.push("/");
-        } catch (err) {
-        alert("Usuario o contraseña incorrectos");
+            const loginData = await loginService(data);
+
+            if (loginData.session && loginData.user) {
+                const userData = {
+                    name: loginData.user.user_metadata.name || "",
+                    role: loginData.user.user_metadata.role || "user", 
+                    token: loginData.session.access_token,
+                    email: loginData.user.email || "",
+                    lastname: loginData.user.user_metadata.lastname || "",
+                };
+                
+                singIn(userData); 
+
+                alert("Login correcto");
+
+                router.refresh();
+                router.push("/dashboard"); 
+            } else {
+                alert("Error: No se pudo obtener la sesión o los datos del usuario.");
+            }
+        } catch (err: any) { 
+            console.error("Error en login:", err);
+            alert("Usuario o contraseña incorrectos");
         }
     };
         
