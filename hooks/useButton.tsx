@@ -1,4 +1,4 @@
-import { ButtonProps, ButtonVariant } from "@/interfaces/buttonPropsInterface";
+import { ButtonProps, ButtonVariant } from "@/interfaces/buttonInterfaces/buttonPropsInterface";
 import {
   buttonBaseStyles,
   buttonPrimaryStyles,

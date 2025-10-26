@@ -1,14 +1,8 @@
 "use client";
-import { ReactNode } from "react";
+
 import Link from "next/link"; 
 
-interface AuthContainerProps {
-  title: string;
-  subtitle?: string;
-  link?: { href: string; text: string; label: string };
-  videoSrc?: string;
-  children: ReactNode;
-}
+import { AuthContainerProps } from "@/interfaces/authInterfaces/authContainerPropsInterface";
 
 export default function AuthContainer({
   title,

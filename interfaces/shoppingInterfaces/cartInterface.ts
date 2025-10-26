@@ -1,4 +1,4 @@
-import { Product } from "./productInterface";
+import { Product } from "@/interfaces/shoppingInterfaces/productInterface";
 
 // Definir carro
 export interface CartItem extends Product {

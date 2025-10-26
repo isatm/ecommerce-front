@@ -4,7 +4,7 @@ import Image from "next/image";
 import { userCartStore } from "@/hooks/usecartStore"; 
 import EmerPageButton from "../atoms/buttons/emerPageButtonComponent";
 import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
-import { Product } from "@/interfaces/productInterface";
+import { Product } from "@/interfaces/shoppingInterfaces/productInterface";
 import { useProductItem } from "@/hooks/useProductItem";
 
 export default function ProductItem({ product }: { product: Product }) {

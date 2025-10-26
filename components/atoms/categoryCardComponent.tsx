@@ -1,6 +1,8 @@
-import { CategoryCardProps } from "@/interfaces/categoryPropsInterface";
+'use client';
+
 import Image from "next/image";
 
+import { CategoryCardProps } from "@/interfaces/shoppingInterfaces/categoryPropsInterface";
 
 export default function CategoryCard({ name, image }: CategoryCardProps) {
   return (

@@ -1,9 +1,11 @@
 'use client';
-import { InputComponentProps } from "@/interfaces/inputInterface";
+
 import { FieldValues } from "react-hook-form";
-import useInput from "@/hooks/useInput";
 import clsx from "clsx";
-import React from "react"; 
+import React from "react";
+
+import { InputComponentProps } from "@/interfaces/inputInterfaces/inputInterface";
+import useInput from "@/hooks/useInput";
 
 export default function InputComponent<T extends FieldValues>({
   label,

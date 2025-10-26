@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { CreateSellerProfileFormValues } from "@/interfaces/sellerInterface";
+import { CreateSellerProfileFormValues } from "@/interfaces/rolsInterfaces/sellerInterface";
 import { supabase } from "@/libs/supabaseClient";
 import { useRouter } from "next/navigation";
 import { useAuth, User } from "@/contexts/authContext";

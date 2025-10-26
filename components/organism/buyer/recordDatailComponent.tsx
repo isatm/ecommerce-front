@@ -1,35 +1,10 @@
 ' use client ';
 
-import { useEffect, useState } from "react";
-
-import { buyerService } from "@/libs/buyerService";
-import { Shop } from "@/interfaces/shopInterface";
+import { useRecord } from "@/hooks/useRecord";
 
 export default function RecordComponent() {
-    const [shops, setShops] = useState<Shop[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<string | null>(null);
-
-    useEffect(() => {
-        const fetchShops = async () => {
-            try {   
-                const data = await buyerService.getUserPurchases();
-                setShops(data);
-            } catch (err) {
-                setError("Error al cargar los registros de compra.");
-            }
-            setLoading(false);
-        };
-
-        fetchShops();
-    }, []);
-
-    if (loading) {
-        return <div>Cargando registros de compra...</div>;
-    }
-    if (error) {
-        return <div>{error}</div>;
-    }
+    const { shops, loading, error } = useRecord(); // después desarrolamos la logica
+    
     return (
         <div className="bg-white shadow-md rounded-lg p-6">
             <h2 className="text-2xl font-bold mb-4">Historial de Compras</h2>   
@@ -50,4 +25,4 @@ export default function RecordComponent() {
             )}
         </div>
     );
-}
+};

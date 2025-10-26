@@ -1,5 +1,7 @@
-import { Product } from "@/interfaces/productInterface";
+
 import Image from "next/image";
+
+import { Product } from "@/interfaces/shoppingInterfaces/productInterface";
 
 
 export default function ProductCard({
@@ -10,6 +12,7 @@ export default function ProductCard({
     stock,
     image_url,
   }: Product) {
+    
   return (
     <div className="rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
       <div className="relative w-full h-52">

@@ -2,7 +2,7 @@
 import InputComponent from "@/components/atoms/inputComponent";
 import Button from "@/components/atoms/buttonComponent";
 import { useCreateSellerProfile } from "@/hooks/useCreateSellerProfile";
-import { CreateSellerProfileFormValues } from "@/interfaces/sellerInterface"; 
+import { CreateSellerProfileFormValues } from "@/interfaces/rolsInterfaces/sellerInterface"; 
 import { MapPin } from 'lucide-react'; 
 
 export default function CreateSellerProfileForm() {

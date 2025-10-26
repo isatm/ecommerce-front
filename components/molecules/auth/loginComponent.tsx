@@ -1,11 +1,12 @@
 "use client";
-import InputComponent from "@/components/atoms/inputComponent";
-import LoginComponentProps from "@/interfaces/loginComponentPropsInterface";
-import useLogin from "@/hooks/useLogin";
-import Button from "@/components/atoms/buttonComponent";
+
 import Link from "next/link";
 import React from 'react';
 
+import InputComponent from "@/components/atoms/inputComponent";
+import LoginComponentProps from "@/interfaces/loginInterfaces/loginComponentPropsInterface";
+import useLogin from "@/hooks/useLogin";
+import Button from "@/components/atoms/buttonComponent";
 
 export default function LoginComponent({ onClose }: LoginComponentProps) {
   const { handleSubmit, register, onErrors, onSubmit } = useLogin();

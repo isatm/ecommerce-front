@@ -1,6 +1,6 @@
+
 import React from "react";
-import { Props } from "@/interfaces/propsItemInterface";
-import { userCartStore } from "@/hooks/usecartStore";
+import { Props } from "@/interfaces/shoppingInterfaces/propsItemInterface";
 import { useProductItem } from "@/hooks/useProductItem";
 
 export function ProductItem({ product }: Props) {

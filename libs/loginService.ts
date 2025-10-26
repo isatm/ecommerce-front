@@ -1,7 +1,8 @@
 //import { apiFetch } from "./singletonFetch"
-import { RegisterDTO } from "@/interfaces/registerInterface"
+
+import { RegisterDTO } from "@/interfaces/registerInterfaces/registerInterface"
 import Cookies from "js-cookie";
-import { LoginDTO } from "@/interfaces/loginInterface"
+import { LoginDTO } from "@/interfaces/loginInterfaces/loginInterface"
 import { supabase } from "@/libs/supabaseClient";
 
 export const loginService = async (body: LoginDTO) => {

@@ -1,0 +1,10 @@
+import SimpleProductForm from "@/components/organism/seller/simpleProductFormComponent";
+
+export default function CreateListingPage() {
+    return (
+        <div className="py-10">
+            <h1 className="text-3xl font-bold mb-8 text-gray-800">Create New Product Listing</h1>
+            <SimpleProductForm />
+        </div>
+    );
+}
