@@ -1,3 +1,5 @@
+'use client';
+
 import { ButtonProps, ButtonVariant } from "@/interfaces/buttonInterfaces/buttonPropsInterface";
 import {
   buttonBaseStyles,

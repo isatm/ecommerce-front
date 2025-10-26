@@ -1,4 +1,4 @@
-
+'use client';
 
 import { useState, useMemo, ReactNode } from "react";
 import { Eye, EyeOff, Search } from "lucide-react";

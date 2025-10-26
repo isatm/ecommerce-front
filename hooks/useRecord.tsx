@@ -1,3 +1,4 @@
+'use client';
 
 import { Shop } from "@/interfaces/shoppingInterfaces/shopInterface";
 import { buyerService } from "@/libs/buyerService";

@@ -1,3 +1,4 @@
+'use client';
 
 import { userCartStore } from "@/hooks/usecartStore";
 import { useRouter } from "next/router";
