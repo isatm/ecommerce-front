@@ -21,7 +21,8 @@ export const userCartStore = create<CartStore>()(
             
             // Logica de agregar producto con los parametros de producto
             addProduct: (product: Product) => {
-                set((state) => {  // Damos un estado al valor del producto, donde si el id del prodcuto a agregar es igual a un producto que se
+                set((state: CartStore) => { 
+                    // Damos un estado al valor del producto, donde si el id del prodcuto a agregar es igual a un producto que se
                     // encuentra en la pagina entonces sabemos que el producto se encuentra
                 const existingProduct = state.products.find(p => p.id === product.id);
                 
@@ -36,8 +37,10 @@ export const userCartStore = create<CartStore>()(
                     )
                     };
                 } // ahora tetornamos el prudcto y la cantidad de este
+                // aseguramos que el nuevo elemento cumpla con la interfaz CartItem (incluyendo user_id)
+                const newCartItem = { ...product, quantity: 1, user_id: "" };
                 return { 
-                    products: [...state.products, { ...product, quantity: 1 }] 
+                    products: [...state.products, newCartItem] 
                 };
                 });
             },

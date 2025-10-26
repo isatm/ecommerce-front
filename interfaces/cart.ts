@@ -4,6 +4,7 @@ import { Product } from "./product";
 export interface CartItem extends Product {
     quantity: number;
     price: number;
+    user_id: string;
 }
 // Importante, la interpretación de está libea es herencia, donde vemos la cantidad de productos que el hijo hereda de su padre, producto es padre xd
 

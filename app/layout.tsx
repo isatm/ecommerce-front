@@ -1,5 +1,5 @@
 import "@/app/globals.css";
-import HeaderComponent from "@/components/organism/headerComponents";
+import HeaderComponent from "@/components/organism/headercomponents";
 import AuthProvider from "@/contexts/authContext";
 
 export default function RootLayout({

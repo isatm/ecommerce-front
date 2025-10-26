@@ -3,6 +3,7 @@ import InputComponent from "@/components/atoms/inputComponent";
 import { useRegister } from "@/hooks/useRegister";
 import Button from "@/components/atoms/buttonComponent"; // Asegúrate de importar Button
 import Link from "next/link"; // Para los enlaces de Condiciones de uso
+import Image from 'next/image';
 
 export default function RegisterComponent() {
   const { handleSubmit, register, onErrors, onSubmit } = useRegister();
@@ -10,13 +11,13 @@ export default function RegisterComponent() {
   return (
     <div className="w-full"> 
       <div className="grid grid-cols-3 gap-2 mb-6">
-        <Button variant="google" icon={<img src="images/icons/google_logo.png" alt="Google" className="h-5 w-5" />} className="py-2 text-sm px-2">
+        <Button variant="google" icon={<Image src="/images/icons/google_logo.png" alt="Google" width={20} height={20} className="h-5 w-5" />} className="py-2 text-sm px-2">
           Google
         </Button>
-        <Button variant="google" icon={<img src="images/icons/apple_logo.png" alt="Apple" className="h-5 w-5" />} className="py-2 text-sm px-2">
+        <Button variant="google" icon={<Image src="/images/icons/apple_logo.png" alt="Apple" width={20} height={20} className="h-5 w-5" />} className="py-2 text-sm px-2">
           Apple
         </Button>
-        <Button variant="google" icon={<img src="images/icons/facebook_logo.png" alt="Facebook" className="h-5 w-5" />} className="py-2 text-sm px-2">
+        <Button variant="google" icon={<Image src="/images/icons/facebook_logo.png" alt="Facebook" width={20} height={20} className="h-5 w-5" />} className="py-2 text-sm px-2">
           Facebook
         </Button>
       </div>
@@ -127,15 +128,7 @@ export default function RegisterComponent() {
               className="mt-1 h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
             />
             <label htmlFor="acceptTerms" className="ml-2 block text-gray-900 leading-tight">
-              Al hacer clic en "Registrarse", acepto expresamente las{" "}
-              <Link href="#" className="underline text-blue-600 hover:text-blue-800">
-                Condiciones de uso
-              </Link>{" "}
-              y la{" "}
-              <Link href="#" className="underline text-blue-600 hover:text-blue-800">
-                Política de privacidad
-              </Link>{" "}
-              de Reverb.
+            <p>Al registrarte, aceptas nuestros Términos de Servicio y Política de Privacidad.</p>
             </label>
           </div>
         </div>
