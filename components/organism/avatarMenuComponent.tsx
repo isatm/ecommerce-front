@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/contexts/authContext';
 import { Bell, ShoppingCart } from 'lucide-react'; 
 
 export default function AvatarMenu() {
@@ -94,7 +94,7 @@ export default function AvatarMenu() {
 
             <div className="py-1">
               <p className="text-xs font-semibold uppercase text-gray-500 px-4 pt-2 pb-1">Selling</p>
-              <Link href="/sell-your-gear" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sell Your Gear</Link>
+              <Link href="/dashboard/seller/listings/create" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sell Your Gear</Link>
               <Link href="/my-shop" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Shop</Link>
               <Link href="/shop-settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Shop Settings</Link>
               <Link href="/listings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Listings</Link>

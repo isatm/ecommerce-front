@@ -8,7 +8,7 @@ import { Search, Heart } from 'lucide-react';
 import { navLinkClass } from "@/utils/Tokens";
 import Button from "../atoms/buttonComponent";
 import React from 'react';
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "@/contexts/authContext";
 import AvatarMenu from "@/components/organism/avatarMenuComponent";
 
 export default function HeaderComponent() {
@@ -65,10 +65,12 @@ export default function HeaderComponent() {
 
           {/* Botones / AvatarMenu condicional */}
           <div className="flex items-center gap-4">
-            <Button variant="primary">
-              Vende tu equipo
-            </Button>
-
+            <Link href="/dashboard/seller/listings/create" >
+              <Button variant="primary">
+                Vende tu equipo
+              </Button>
+            </Link>
+            
             {loading ? (
               <div className="flex items-center gap-4">
                 <div className="w-16 h-6 bg-gray-200 rounded animate-pulse"></div>
