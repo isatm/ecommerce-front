@@ -2,9 +2,12 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { supabase } from "@/libs/supabaseClient";
+
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/authContext";
+
+import { supabase } from "@/libs/supabaseClient";
+
 import { v4 as uuidv4 } from "uuid";
 
 type FormValues = {
@@ -60,7 +63,7 @@ export default function SimpleProductForm() {
         }
 
         // Insertar producto
-        const { data, error: insertError } = await supabase
+        const {error: insertError } = await supabase
         .from("products")
         .insert({
             seller_id: sellerId,
@@ -78,9 +81,15 @@ export default function SimpleProductForm() {
 
         alert("Producto creado exitosamente!");
         router.push("/dashboard/seller/listings");
-    } catch (err: any) {
+
+    } catch (err) { 
+      
         console.error("Error al crear producto:", err);
-        setError(err?.message ?? "Error desconocido al crear producto.");
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Error desconocido al crear producto."
+        );
     }
   };
 

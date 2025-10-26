@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { buyerService } from "@/libs/buyerService";
 import { Shop } from "@/interfaces/shop";
 
-export default async function RecordComponent() {
+export default function RecordComponent() {
     const [shops, setShops] = useState<Shop[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
