@@ -1,3 +1,4 @@
+'use client';
 import SimpleProductForm from "@/components/organism/seller/simpleProductFormComponent";
 
 export default function CreateListingPage() {

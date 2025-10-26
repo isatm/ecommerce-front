@@ -1,3 +1,5 @@
+' use client';
+
 import CartComponent from "@/components/molecules/cartComponent";
 
 export default function CartPage() {

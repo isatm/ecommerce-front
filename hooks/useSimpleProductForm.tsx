@@ -1,8 +1,9 @@
-'use client'
+'use client';
 
 import { useAuth } from "@/contexts/authContext";
 import { FormValues } from "@/interfaces/shoppingInterfaces/formValues";
 import { supabase } from "@/libs/supabaseClient";
+
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";

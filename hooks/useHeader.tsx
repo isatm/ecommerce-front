@@ -1,14 +1,13 @@
-"use client"
-import { Product} from '@/interfaces/shoppingInterfaces/productInterface'
-import { searchProducts } from "@/libs/productService";
+
+
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
+import { Product} from '@/interfaces/shoppingInterfaces/productInterface'
+import { searchProducts } from "@/libs/productService";
+import { SearchForm } from '@/interfaces/searchInterfaces/searchInterface';
 
-interface SearchForm {
-  search: string;
-}
 export function useHeaderComponent() {
     const { register, handleSubmit, watch } = useForm<SearchForm>();
     const router = useRouter();

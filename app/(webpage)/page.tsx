@@ -1,3 +1,5 @@
+' use client';
+
 import { supabase } from "@/libs/supabaseClient";
 import ProductGrid from "@/components/organism/productGridComponent";
 import CategoryGrid from "@/components/molecules/categoryGridComponent";
