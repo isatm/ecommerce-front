@@ -11,7 +11,7 @@ export default function RegisterPage() {
       title="Crea una cuenta"
       subtitle="¿Ya tienes una cuenta?"
       link={{
-        href: "/singin", 
+        href: "/signin", 
         text: "Iniciar sesión.",
         label: "",
       }}

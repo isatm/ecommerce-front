@@ -1,37 +1,45 @@
 'use client'
 
-import { registerService } from "@/libs/registerService"
-
+import { registerService } from "@/libs/registerService";
 import { useRouter } from "next/navigation";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { RegisterScheme, RegisterFormValues } from "@/schemas/register";
 
-import { useForm, SubmitHandler } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { RegisterDTO } from "@/interfaces/register"
-import { RegisterScheme } from "@/schemas/register"
+export function useRegister() {
+  const router = useRouter();
 
-export function useRegister(){
-    const router = useRouter();
-    const {
+  const {
     register,
     handleSubmit,
+    setError,
     formState: { errors }
-    } = useForm<RegisterDTO>({
-        resolver: zodResolver(RegisterScheme)
-    });
+  } = useForm<RegisterFormValues>({
+    resolver: zodResolver(RegisterScheme),
+    defaultValues: {
+      name: "",
+      lastname: "",
+      email: "",
+      confirmEmail: "",
+      password: ""
+    }
+  });
 
-    const onSubmit: SubmitHandler<RegisterDTO> = async (data) => {
-        const result = await registerService(data);
-        if (!result) {
-            alert("Hubo un error al registrarse. Inténtalo de nuevo.");
-            return;
-        }
-    };
+  const onSubmit: SubmitHandler<RegisterFormValues> = async (data) => {
+    try {
+      const { confirmEmail, ...payload } = data;
+      await registerService(payload);
+      router.push("/signin");
+    } catch (err: any) {
+      console.error("Error en registro:", err);
+      alert(err?.message || "Error al registrarse.");
+    }
+  };
 
-    const onErrors = () => {
-        console.log("Errores", errors);
-        alert("Información incompleta");
-    };
+  const onErrors = (formErrors: any) => {
+    console.log("Errores detectados:", formErrors);
+    alert("Información incompleta o inválida. Revisa los campos marcados.");
+  };
 
-    return{onErrors, onSubmit, register, handleSubmit}
-
+  return { onSubmit, onErrors, register, handleSubmit, errors, setError };
 }

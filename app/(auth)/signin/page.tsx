@@ -11,7 +11,7 @@ export default function LoginPage() {
       title="Hola de nuevo"
       subtitle="¿Aún no tienes cuenta?"
       link={{
-        href: "/singup",
+        href: "/signup",
         text: "Crea una ya mismo.",
         label: "", 
       }}

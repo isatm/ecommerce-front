@@ -27,7 +27,6 @@ export function useLogin() {
       if (loginData.session && loginData.user) {
         const email = loginData.user.email;
 
-        
         const { data: userRow, error: userError } = await supabase
           .from("users")
           .select("id, role, name, lastname")
@@ -47,7 +46,7 @@ export function useLogin() {
 
         // construir objeto de usuario con el ID incluido
         const userData = {
-          id: userRow.id, // 👈 nuevo campo
+          id: userRow.id, 
           name: userRow.name || loginData.user.user_metadata.name || "",
           lastname: userRow.lastname || loginData.user.user_metadata.lastname || "",
           role: userRow.role || loginData.user.user_metadata.role || "buyer",

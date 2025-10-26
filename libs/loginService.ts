@@ -5,11 +5,11 @@ import { LoginDTO } from "@/interfaces/login"
 import { supabase } from "@/libs/supabaseClient";
 
 export const loginService = async (body: LoginDTO) => {
-  const { user, password } = body;
+  const { email, password } = body;
 
   // login con Supabase
   const { data: loginData, error } = await supabase.auth.signInWithPassword({
-    email: user, // aquí 'user' es realmente el email
+    email, 
     password,
   });
 
@@ -30,27 +30,3 @@ export const loginService = async (body: LoginDTO) => {
 
   return loginData;
 };
-
-/*
-export const registerService = async (formData: RegisterDTO) => {
-  const { name, lastname, email, password } = formData; 
-
-  const { data, error } = await supabase.auth.signUp({
-    email: email.trim().toLowerCase(),
-    password,
-    options: {
-      data: {
-        name,
-        lastname,
-      },
-    },
-  });
-
-  if (error) {
-    console.error("Error en registerService:", error.message);
-    return null; // aquí devolvemos null si falla
-  }
-
-  console.log("Usuario registrado en Supabase:", data);
-  return data; // esto contiene { user, session }
-};*/

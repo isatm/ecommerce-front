@@ -39,7 +39,7 @@ export default function LoginComponent({ onClose }: LoginComponentProps) {
             label=""
             typeElement="email"
             idElement="email"
-            name="user"
+            name="email"
             register={register}
             className="border-gray-300 focus:border-orange-500 rounded-md" // Asegúrate de que rounded-md es lo que quieres para el input
           />

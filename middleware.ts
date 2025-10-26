@@ -13,7 +13,7 @@ export async function middleware(request: NextRequest) {
 
   // Si ruta protegida y no hay token, redirigir a signin
   if (isProtected && !tokenCookie) {
-    const redirectUrl = new URL("/singin", request.url);
+    const redirectUrl = new URL("/signin", request.url);
     redirectUrl.searchParams.set("redirectedFrom", pathname);
     return NextResponse.redirect(redirectUrl);
   }
@@ -63,7 +63,7 @@ export async function middleware(request: NextRequest) {
 
   // Protección para favorites 
   if (pathname.startsWith("/favorites") && role !== "buyer") {
-    return NextResponse.redirect(new URL("/singin", request.url));
+    return NextResponse.redirect(new URL("/signin", request.url));
   }
 
   return NextResponse.next();

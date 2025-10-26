@@ -6,7 +6,7 @@ import Link from "next/link"; // Para los enlaces de Condiciones de uso
 import Image from 'next/image';
 
 export default function RegisterComponent() {
-  const { handleSubmit, register, onErrors, onSubmit } = useRegister();
+  const { handleSubmit, register, onErrors, onSubmit, errors  } = useRegister();
 
   return (
     <div className="w-full"> 
@@ -72,6 +72,21 @@ export default function RegisterComponent() {
         </div>
 
         <div>
+          <label htmlFor="confirmEmail" className="font-semibold text-sm block mb-1">Confirmar Email*</label>
+          <InputComponent
+            label=""
+            typeElement="email"
+            idElement="confirmEmail"
+            name="confirmEmail"
+            register={register}
+            className="border-gray-300 focus:border-orange-500 rounded-md"
+          />
+          {errors.confirmEmail && (
+            <p className="text-red-500 text-xs mt-1">{errors.confirmEmail.message}</p>
+          )}
+        </div>
+
+        <div>
           <label htmlFor="password" className="font-semibold text-sm block mb-1">Contraseña*</label>
           <InputComponent
             label=""
@@ -92,7 +107,7 @@ export default function RegisterComponent() {
         <Button type="submit" variant="dark" fullWidth className="mt-6 py-3 text-base">
           Registrarse
         </Button>
-        </form>
+      </form>
 
         {/* Mensaje de reCAPTCHA y Checkboxes */}
         <div className="mt-6 text-sm text-gray-600 space-y-4"> 

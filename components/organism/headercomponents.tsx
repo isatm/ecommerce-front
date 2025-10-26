@@ -97,13 +97,13 @@ export default function HeaderComponent() {
                 </Link>
                 <div className="flex text-sm hidden lg:flex ">
                   <Link
-                    href="/singup"
+                    href="/signup"
                     className="text-black hover:text-orange-500 font-medium py-2 px-4 rounded-lg transition"
                   >
                     Registrarse
                   </Link>
                   <Link
-                    href="/singin"
+                    href="/signin"
                     className="text-black hover:text-orange-500 font-medium py-2 px-4 rounded-lg transition"
                   >
                     Iniciar sesión
