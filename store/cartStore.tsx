@@ -67,9 +67,12 @@ export const userCartStore = create<CartStore>()(
             // pues obtenemos los productos y cantidad xd, para qué más?
             getTotal: () => {
                 const { products } = get();
-                return products.reduce((total, product) => 
-                total + (product.price * product.quantity), 0
-                );
+                return products.reduce((total, product) => {
+                    const price = Number(product.price) || 0;
+                    const quantity = product.quantity || 0;
+                    return total + price * quantity
+                }
+                ,0);
             }
         }),
         {

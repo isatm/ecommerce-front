@@ -1,6 +1,6 @@
-"use client";
+'use client";'
 
-import { userCartStore } from "@/hooks/usecartStore";
+import { userCartStore } from "@/store/cartStore";
 import { useRouter } from "next/navigation";
 
 export function useProductItem() {

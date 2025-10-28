@@ -1,14 +1,29 @@
 "use client";
+
 import Image from "next/image";
-import { userCartStore } from "@/hooks/usecartStore"; 
+import { userCartStore } from "@/store/cartStore"; 
 import EmerPageButton from "../atoms/buttons/emerPageButtonComponent";
 import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
 import { Product } from "@/interfaces/product";
-import { useProductItem } from "@/hooks/useProductItem";
+import { useRouter } from "next/navigation"; 
 
 export default function ProductItem({ product }: { product: Product }) {
+  const addProduct = userCartStore((state) => state.addProduct); 
+  const router = useRouter(); 
 
-  const { handleAddToCart } = useProductItem();
+  const handleAddToCart = () => {
+    addProduct({
+      id: product.id,
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      category: product.category,
+      stock: product.stock,
+      image_url: product.image_url,
+    });
+
+    router.push("/cart"); 
+  };
 
   return (
     <div className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-lg shadow-md">
