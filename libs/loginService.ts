@@ -6,11 +6,11 @@ import { LoginDTO } from "@/interfaces/loginInterfaces/loginInterface"
 import { supabase } from "@/libs/supabaseClient";
 
 export const loginService = async (body: LoginDTO) => {
-  const { user, password } = body;
+  const { email, password } = body;
 
   // login con Supabase
   const { data: loginData, error } = await supabase.auth.signInWithPassword({
-    email: user, // aquí 'user' es realmente el email
+    email: email, // aquí 'user' es realmente el email
     password,
   });
 

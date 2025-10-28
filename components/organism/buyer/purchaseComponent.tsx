@@ -5,14 +5,23 @@ import { userCartStore } from "@/hooks/usecartStore";
 import InputComponent from "@/components/atoms/inputComponent";
 import { useRegister } from "@/hooks/useRegister";
 import { supabase } from "@/libs/supabaseClient";
+import { useForm } from "react-hook-form";
+import { LoginDTO } from "@/interfaces/loginInterfaces/loginInterface";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginScheme } from "@/schemas/loginSchema";
 
 
 export default function PurchaseComponent() {
     const { getTotal, products } = userCartStore();
-    const { register, handleSubmit } = useRegister();
-    const errors: any = {};
     const [loading, setLoading] = useState(false);
     const [isClient, setIsClient] = useState(false);
+    const {
+            register,
+            handleSubmit,
+            formState: { errors },
+        } = useForm<LoginDTO>({
+            resolver: zodResolver(loginScheme),
+        });
 
     const [formData, setFormData] = useState({
         email: "",
@@ -25,7 +34,7 @@ export default function PurchaseComponent() {
         setIsClient(true);
     }, []);
 
-    const handleFormSubmit = async (data: any) => {
+    const handleFormSubmit = async () => {
         setLoading(true);
         try {
             
