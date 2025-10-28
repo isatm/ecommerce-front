@@ -6,6 +6,7 @@ import InputComponent from "@/components/atoms/inputComponent";
 import { useRegister } from "@/hooks/useRegister";
 import { supabase } from "@/libs/supabaseClient";
 
+
 export default function PurchaseComponent() {
     const { getTotal, products } = userCartStore();
     const { register, handleSubmit } = useRegister();
@@ -27,7 +28,8 @@ export default function PurchaseComponent() {
     const handleFormSubmit = async (data: any) => {
         setLoading(true);
         try {
-            // Verificar si el usuario existe en Supabase
+            
+            // cambiar por los nombres de las tablas
             const { data: userData, error: userError } = await supabase
                 .from("users")
                 .select("id, email, name, lastname")
@@ -56,7 +58,7 @@ export default function PurchaseComponent() {
 
             // Guardar la compra en Supabase
             const { data: purchase, error: purchaseError } = await supabase
-                .from("purchases") // Asegúrate de que esta tabla existe
+                .from("shop") 
                 .insert([purchaseData])
                 .select();
 
@@ -210,6 +212,7 @@ export default function PurchaseComponent() {
                         {loading ? "Procesando..." : `Confirmar Compra - $${getTotal().toFixed(2)}`}
                     </button>
                 </div>
+
 
                 <p className="text-xs text-gray-500 text-center">
                     Al confirmar la compra, aceptas nuestros términos y condiciones.

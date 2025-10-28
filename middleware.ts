@@ -61,6 +61,17 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+    if (pathname.startsWith("/purchase")) {
+    // Si no es seller, permitir acceso solo a la ruta create-profile (evitar redirect loop)
+    if (role !== "buyer") {
+      const allowed = pathname === "/purchase";
+      if (!allowed) {
+        const redirectUrl = new URL("/singin", request.url);
+        return NextResponse.redirect(redirectUrl);
+      }
+    }
+  }
+
   // Protección para favorites 
   if (pathname.startsWith("/favorites") && role !== "buyer") {
     return NextResponse.redirect(new URL("/singin", request.url));
@@ -70,5 +81,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/favorites/:path*"],
+  matcher: ["/dashboard/:path*", "/favorites/:path*", "/purchase/:path*"],
 };
