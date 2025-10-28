@@ -6,7 +6,8 @@ import * as z from "zod";
 import { CreateSellerProfileFormValues } from "@/interfaces/seller";
 import { supabase } from "@/libs/supabaseClient";
 import { useRouter } from "next/navigation";
-import { useAuth, User } from "@/contexts/authContext";
+import { useAuth } from "@/contexts/authContext";
+import { User } from "@/interfaces/user";
 
 const createSellerProfileSchema = z.object({
   displayName: z
@@ -20,7 +21,7 @@ const createSellerProfileSchema = z.object({
 
 export const useCreateSellerProfile = () => {
   const router = useRouter();
-  const { user, singIn } = useAuth();
+  const { user, signIn } = useAuth();
 
   const {
     register,
@@ -65,7 +66,7 @@ export const useCreateSellerProfile = () => {
         token: user.token,
       };
 
-      singIn(updatedUser);
+      signIn(updatedUser);
 
       console.log("Perfil de vendedor configurado:", updated);
       alert("¡Perfil de vendedor configurado exitosamente!");

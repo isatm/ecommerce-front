@@ -18,7 +18,7 @@ export function useLogin() {
     resolver: zodResolver(loginScheme),
   });
 
-  const { singIn } = useAuth();
+  const { signIn } = useAuth();
 
   const onSubmit: SubmitHandler<LoginDTO> = async (data) => {
     try {
@@ -55,7 +55,7 @@ export function useLogin() {
         };
 
         // guardar en cookies/context
-        singIn(userData);
+        signIn(userData);
 
         alert("✅ Login correcto");
         router.refresh();

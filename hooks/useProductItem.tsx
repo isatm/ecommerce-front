@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
 import { userCartStore } from "@/hooks/usecartStore";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export function useProductItem() {
     const addProduct = userCartStore((state) => state.addProduct); 

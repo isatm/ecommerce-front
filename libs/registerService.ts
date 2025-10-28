@@ -25,11 +25,10 @@ export const registerService = async (body: RegisterDTO) => {
 
   const user = registerData.user;
 
-  // Registrar también en la tabla pública
+  // Registrar en la tabla pública
   if (user) {
     const { error: insertError } = await supabase.from("users").insert([
       {
-        id: user.id, 
         name,
         lastname,
         email: email.trim().toLowerCase(),
