@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
 import type { Metadata } from "next"
+import RegionalConfigAlert from "@/components/molecules/regionalConfigAlertComponent";
 
 export const metadata: Metadata = {
     title: "Instrumentos musicales a la venta: equipo musical nuevo de | Reverb",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
     return (
         <div className="dashboard-layout">
         {children}
+        <RegionalConfigAlert />
         </div>
     )
 }

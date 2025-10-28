@@ -1,6 +1,7 @@
 "use client";
 import { userCartStore } from "@/hooks/usecartStore";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Cart() {
   const { products, removeProduct, updateQuantity, getTotal } = userCartStore();
@@ -78,9 +79,9 @@ export default function Cart() {
       {/* Total */}
       <div className="pt-4 border-t flex justify-between items-center">
         <p className="text-lg font-bold">Total: ${getTotal()}</p>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+        <Link href="/purchase" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
           Finalizar compra
-        </button>
+        </Link>
       </div>
     </div>
   );
