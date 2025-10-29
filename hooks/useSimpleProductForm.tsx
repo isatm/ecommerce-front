@@ -7,7 +7,7 @@ import { supabase } from "@/libs/supabaseClient";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { uuidv4 } from "zod";
+import { v4 as uuidv4 } from "uuid";
 
 export default function useSimpleProductForm() {
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormValues>();
@@ -34,23 +34,24 @@ export default function useSimpleProductForm() {
             // Subir imagen si hay
             let publicImageUrl: string | null = null;
             if (values.image?.length) {
-            const file = values.image[0];
-            const ext = file.name.split(".").pop();
-            const filename = `${uuidv4()}.${ext}`;
-            const filePath = `${sellerId}/${filename}`;
+                const file = values.image[0];
+                const ext = file.name.split(".").pop();
+                const filename = `${uuidv4()}.${ext}`;
+                const filePath = `${sellerId}/${filename}`;
 
-            const { error: uploadError } = await supabase.storage
-                .from("product_images")
-                .upload(filePath, file);
+                const { error: uploadError } = await supabase.storage
+                    .from("images")
+                    .upload(filePath, file);
 
-            if (uploadError) throw uploadError;
+                if (uploadError) throw uploadError;
 
-            const { data: publicUrlData } = supabase.storage
-                .from("product_images")
-                .getPublicUrl(filePath);
+                const { data: publicUrlData } = supabase.storage
+                    .from("images")
+                    .getPublicUrl(filePath);
 
-            publicImageUrl = publicUrlData?.publicUrl ?? null;
+                publicImageUrl = publicUrlData?.publicUrl ?? null;
             }
+
 
             // Insertar producto
             const {error: insertError } = await supabase
