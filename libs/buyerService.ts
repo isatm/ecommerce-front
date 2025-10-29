@@ -7,10 +7,12 @@ import { Shop } from "@/interfaces/shoppingInterfaces/shopInterface";
 import { supabase } from "@/libs/supabaseClient";
 
 export const buyerService = {
-    async createPurchase(cartItems: CartItem[], address: string): Promise<Shop> {
-        const { data: { user }, error: userError } = await supabase.auth.getUser();
-        
-
+    async createPurchase(cartItems: CartItem[], address: string, userInfo: {
+        fullName: string;
+        phone: string;
+        email: string;
+    }): Promise<Shop> {
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
         // vemos si el usuario existe en el token
         if (userError || !user) {
             console.error("Error obteniendo usuario:", userError);
@@ -24,10 +26,16 @@ export const buyerService = {
             .from('shops')
             .insert([
             {
-                user_id: user.id,
-                total,
-                estado: 'pendiente',
-                address: address 
+            gmail: userInfo.email,       
+            total,                        
+            state: 'pendiente',          
+            adress: address,             
+            date: new Date().toISOString().split('T')[0],
+            products: cartItems,         
+            phone: userInfo.phone,         
+            user_id: user.id,               
+            user_name: userInfo.fullName,    
+            created_at: new Date().toISOString() 
             }
         ])
 

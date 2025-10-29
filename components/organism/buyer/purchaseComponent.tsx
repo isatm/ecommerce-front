@@ -9,12 +9,14 @@ import { useForm } from "react-hook-form";
 import { LoginDTO } from "@/interfaces/loginInterfaces/loginInterface";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginScheme } from "@/schemas/loginSchema";
+import { buyerService } from "@/libs/buyerService";
 
 
 export default function PurchaseComponent() {
     const { getTotal, products } = userCartStore();
     const [loading, setLoading] = useState(false);
     const [isClient, setIsClient] = useState(false);
+    const [user, setUser] = useState();
     const {
             register,
             handleSubmit,
@@ -37,66 +39,51 @@ export default function PurchaseComponent() {
     const handleFormSubmit = async () => {
         setLoading(true);
         try {
-            
-            // cambiar por los nombres de las tablas
-            const { data: userData, error: userError } = await supabase
-                .from("users")
-                .select("id, email, name, lastname")
-                .eq("email", formData.email)
-                .maybeSingle();
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        if (!session) {
+            alert("Debes iniciar sesión para realizar una compra");
+            return;
+        }
 
-            if (userError) {
-                console.error("Error buscando usuario:", userError);
-                alert("Error al verificar usuario");
-                return;
+        if (products.length === 0) {
+            alert("El carrito está vacío");
+            return;
+        }
+
+        if (!formData.address.trim() || !formData.fullName.trim() || !formData.phone.trim()) {
+            alert("Por favor completa todos los campos requeridos");
+            return;
+        }
+
+        const purchase = await buyerService.createPurchase(
+            products, 
+            formData.address,
+            {
+            fullName: formData.fullName,
+            phone: formData.phone,
+            email: formData.email
             }
+        );
 
-            // Crear objeto de compra
-            const purchaseData = {
-                user_id: userData?.id || `guest_${Date.now()}`,
-                user_email: formData.email,
-                user_name: formData.fullName,
-                user_phone: formData.phone,
-                total: getTotal(),
-                state: 'pendiente' as const,
-                address: formData.address,
-                date: new Date().toISOString().split('T')[0],
-                products: products,
-                created_at: new Date().toISOString()
-            };
-
-            // Guardar la compra en Supabase
-            const { data: purchase, error: purchaseError } = await supabase
-                .from("shop") 
-                .insert([purchaseData])
-                .select();
-
-            if (purchaseError) {
-                console.error("Error guardando compra:", purchaseError);
-                alert("Error al procesar la compra");
-                return;
-            }
-
-            console.log("Compra guardada:", purchase);
-            alert("¡Compra realizada exitosamente!");
-            
+        console.log("Compra creada:", purchase);
+        alert("¡Compra realizada exitosamente!");
 
         } catch (error) {
-            console.error("Error en la compra:", error);
-            alert("Error al procesar la compra");
+        console.error("Error en la compra:", error);
+        alert(onmessage || "Error al procesar la compra");
         } finally {
-            setLoading(false);
+        setLoading(false);
         }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({
-            ...prev,
-            [name]: value
+        ...prev,
+        [name]: value
         }));
     };
-
     return (
         <div className="max-w-2xl mx-auto p-6">
             <h1 className="text-3xl font-bold mb-8 text-center">Finalizar Compra</h1>
