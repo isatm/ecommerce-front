@@ -6,10 +6,11 @@ import { Search, Heart } from 'lucide-react';
 import React from 'react';
 
 import { useHeaderComponent } from "@/hooks/useHeader";
-import InputComponent from "../atoms/inputComponent";
-import { useAuth } from "@/contexts/authContext";
-import AvatarMenu from "@/components/organism/avatarMenuComponent";
 import { navLinkClass } from "@/utils/tokensUtils";
+import { useAuth } from "@/contexts/authContext";
+
+import InputComponent from "../atoms/inputComponent";
+import AvatarMenu from "@/components/organism/avatarMenuComponent";
 import Button from "../atoms/buttonComponent";
 import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
 

@@ -3,10 +3,11 @@
 
 import { registerService } from "@/libs/services/registerService";
 import { useRouter } from "next/navigation";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+
 import { RegisterFormValues, RegisterScheme } from "@/schemas/registerSchema";
 
+import { useForm, SubmitHandler } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export function useRegister() {
   const router = useRouter();

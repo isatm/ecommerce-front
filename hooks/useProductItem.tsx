@@ -16,6 +16,7 @@ export function useProductItem() {
             category: product.category,
             stock: product.stock,
             image_url: product.image_url,
+            created_at: product.created_at,
         });
     
         router.push("/cart");

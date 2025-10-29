@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import RegionalConfigAlert from "@/components/molecules/regionalConfigAlertComponent";
 import { AuthProvider } from "@/contexts/authContext";
 
-
 export const metadata: Metadata = {
     title: "Reverb",
     };

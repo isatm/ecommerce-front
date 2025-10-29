@@ -3,11 +3,12 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { useRouter } from "next/navigation";
+
 import { CreateSellerProfileFormValues } from "@/interfaces/rolsInterfaces/sellerInterface";
 import { supabase } from "@/libs/supabaseClient";
-import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/authContext";
-import { User } from "@/interfaces/user";
+import { User } from "@/interfaces/rolsInterfaces/user";
 
 const createSellerProfileSchema = z.object({
   displayName: z

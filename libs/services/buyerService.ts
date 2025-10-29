@@ -1,8 +1,9 @@
 
 import { CartItem } from "@/interfaces/shoppingInterfaces/cartInterface";
-import { order } from "@/interfaces/shoppingInterfaces/orderInterface";
+import { orders } from "@/interfaces/shoppingInterfaces/orderInterface";
 
 import { supabase } from "@/libs/supabaseClient";
+
 
 export const buyerService = {
     async createPurchase(
@@ -11,60 +12,91 @@ export const buyerService = {
         userInfo: {
             fullName: string;
             phone: string;
-            email: string;
+            gmail: string;
         },
         userId: string | number
     ): Promise<{success: boolean, purchaseId?: string}> {
         try {
-        const { data: { user }, error: userError } = await supabase.auth.getUser();
-        
-        if (userError || !user) {
-            throw new Error("Usuario no autenticado");
-        }
-        
-      const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-
-        const { data, error } = await supabase
-            .from('shops')
-            .insert([
-            {
-                gmail: userInfo.email,
-                total,
-                state: 'pendiente',
-                adress: address,
-                date: new Date().toISOString().split('T')[0],
-                phone: userInfo.phone,
-                user_id: user.id,
-                user_name: userInfo.fullName,
-                products: cartItems
+            console.log('buyerService.createPurchase INICIADO');
+            
+            if (!userId) {
+                throw new Error("Usuario no autenticado");
             }
-            ])
-            .select('id') 
-            .single(); 
 
-        if (error) throw error;
+            const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-        return { success: true, purchaseId: data.id };
+            const orderData = {
+                user_id: userId, 
+                total: total,
+                status: 'pending',
+                fullname: userInfo.fullName,
+                address: address,
+                phone: userInfo.phone,
+                date: new Date().toISOString().split('T')[0],
+                gmail: userInfo.gmail,
+            };
+
+            console.log('Insertando en orders:', orderData);
+
+            const { data: order, error: orderError } = await supabase
+                .from('orders') 
+                .insert([orderData])
+                .select('id') 
+                .single(); 
+
+            if (orderError) {
+                console.error('Error creando orden:', orderError);
+                throw orderError;
+            }
+
+            console.log('Orden creada. ID:', order.id);
+
+            const orderItems = cartItems.map(item => ({
+                order_id: order.id,
+                product_id: item.id,
+                quantity: item.quantity,
+                unit_price: item.price
+            }));
+
+            const { error: itemsError } = await supabase
+                .from('order_items')
+                .insert(orderItems);
+
+            if (itemsError) {
+                console.error('Error creando order items:', itemsError);
+                throw itemsError;
+            }
+
+            return { success: true, purchaseId: order.id.toString() };
 
         } catch (error: any) {
-        console.error("Error en buyerService:", error);
-        throw error;
+            console.error("Error en buyerService:", error);
+            throw error;
         }
     },
 
-    async getUserPurchases(userId: string): Promise<order[]> {
-        const { data: { user } } = await supabase.auth.getUser();
-    
-        if (!user) throw new Error("Usuario no autenticado");
+    async getUserPurchases(userId: string): Promise<orders[]> {
+        try {
+            if (!userId) throw new Error("Usuario no autenticado");
 
-        const { data, error } = await supabase
-        .from('shops')
-        .select('*')
-        .eq('user_id', userId)
-        .order('created_at', { ascending: false });
+            const { data, error } = await supabase
+                .from('ordery') 
+                .select(`
+                    *,
+                    order_items (
+                        *,
+                        products (*)
+                    )
+                `)
+                .eq('user_id', userId)
+                .order('date', { ascending: false }); 
 
-        if (error) throw error;
+            if (error) throw error;
 
-        return (data as order[]) || [];
+            return (data as orders[]) || [];
+        } catch (error: any) {
+            console.error("Error getting user purchases:", error);
+            throw error;
+        }
     }
 };

@@ -1,8 +1,5 @@
 "use client";
 
-
-import { useState } from "react";
-
 import AuthContainer from "@/components/molecules/auth/authContainerComponent";
 import RegisterComponent from "@/components/molecules/auth/registerComponent";
 

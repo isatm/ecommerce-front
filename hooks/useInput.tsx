@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo, ReactNode } from "react";
-import { Eye, EyeOff, Search } from "lucide-react";
+import { Eye, EyeOff} from "lucide-react";
 
 export default function useInput(typeElement: string, iconLeft?: ReactNode, iconRight?: ReactNode) {
   const [showPassword, setShowPassword] = useState(false);

@@ -1,7 +1,9 @@
 "use client";
+
 import React, { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { User } from "@/interfaces/user";
+
+import { User } from "@/interfaces/rolsInterfaces/user";
 
 export type AuthContextType = {
   user: User | null;

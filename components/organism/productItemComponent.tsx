@@ -1,13 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import { userCartStore } from "@/store/cartStore"; 
 import EmerPageButton from "../atoms/buttons/emerPageButtonComponent";
 import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
-import { Product } from "@/interfaces/shoppingInterfaces/productInterface";
-import { useProductItem } from "@/hooks/useProductItem";
-import { useRouter } from "next/router";
 
+import { Product } from "@/interfaces/shoppingInterfaces/productInterface";
+import { userCartStore } from "@/store/cartStore"; 
+
+import { useRouter } from "next/router";
+import Image from "next/image";
 
 export default function ProductItem({ product }: { product: Product }) {
   const addProduct = userCartStore((state) => state.addProduct); 
@@ -22,6 +22,7 @@ export default function ProductItem({ product }: { product: Product }) {
       category: product.category,
       stock: product.stock,
       image_url: product.image_url,
+      created_at: product.created_at,
     });
 
     router.push("/cart"); 

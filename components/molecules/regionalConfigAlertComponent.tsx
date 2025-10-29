@@ -3,7 +3,7 @@
 import { useRegional } from "@/hooks/useRegional";
 
 export default function RegionalConfigAlert() {
-  const { handleAccept, handleClose, isOpen } = useRegional(); // ← Agregar destructuración completa
+  const { handleAccept, handleClose, isOpen } = useRegional(); 
 
   if (!isOpen) {
     return null;

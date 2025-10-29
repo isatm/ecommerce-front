@@ -1,8 +1,8 @@
+'use client';
 
 import Image from "next/image";
 
 import { Product } from "@/interfaces/shoppingInterfaces/productInterface";
-
 
 export default function ProductCard({
     name,

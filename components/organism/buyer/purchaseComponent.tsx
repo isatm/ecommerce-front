@@ -1,7 +1,7 @@
 'use client';
 
-import InputComponent from "@/components/atoms/inputComponent";
 import { usePurchase } from "@/hooks/usePurchase";
+
 import { useEffect, useState } from "react";
 
 export default function PurchaseComponent() {
@@ -34,22 +34,21 @@ export default function PurchaseComponent() {
                 <div className="space-y-4">
                     <h2 className="text-xl font-semibold border-b pb-2">Información de Contacto</h2>
                     
-                    <div>
-                        <label htmlFor="email" className="font-semibold text-sm block mb-2">
-                            Email *
-                        </label>
-                        <InputComponent
-                            label=""
-                            typeElement="email"
-                            idElement="email"
-                            name="email"
-                            register={register}
-                            className="border-gray-300 focus:border-orange-500 rounded-md"
-                        />
-                        {errors.email && (
-                            <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-                        )}
-                    </div>
+                <div>
+                    <label htmlFor="gmail" className="font-semibold text-sm block mb-2">
+                    Email *
+                    </label>
+                    <input
+                        type="email"  
+                        id="gmail"
+                        name="gmail"
+                        value={formData.gmail}  
+                        onChange={handleChange}
+                        required
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="tucorreo@gmail.com" 
+                    />
+                </div>
 
                     <div>
                         <label htmlFor="fullName" className="font-semibold text-sm block mb-2">
@@ -158,14 +157,15 @@ export default function PurchaseComponent() {
                     <button
                         type="button" 
                         onClick={() => {
-                            console.log('🔵 BOTÓN CLICKEADO - Iniciando compra...');
-                            console.log('📦 Productos:', products);
-                            console.log('👤 Usuario en formData:', formData);
-                            console.log('💰 Total calculado:', getTotal());
-                            handleSubmit(handleFormSubmit)();
+                            console.log('BOTÓN CLICKEADO - Iniciando compra...');
+                            console.log('Productos:', products);
+                            console.log(' Usuario en formData:', formData);
+                            console.log('Total calculado:', getTotal());
+                            
+                            handleFormSubmit();
                         }}
 
-                        disabled={loading || !isClient}
+                        disabled={loading}
                         className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold text-lg transition-colors disabled:bg-blue-400 disabled:cursor-not-allowed"
                     >
 

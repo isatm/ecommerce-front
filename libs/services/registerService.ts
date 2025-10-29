@@ -1,5 +1,4 @@
 import { RegisterDTO } from "@/interfaces/registerInterfaces/registerInterface";
-import Cookies from "js-cookie";
 import { supabase } from "@/libs/supabaseClient";
 
 export const registerService = async (body: RegisterDTO) => {

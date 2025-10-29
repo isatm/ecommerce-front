@@ -49,9 +49,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // Lógica de rutas seller
   if (pathname.startsWith("/dashboard/seller")) {
-    // Si no es seller, permitir acceso solo a la ruta create-profile (evitar redirect loop)
     if (role !== "seller") {
       const allowed = pathname === "/dashboard/seller/create-profile" || pathname === "/dashboard/seller/create-profile/";
       if (!allowed) {
@@ -61,18 +59,13 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-    if (pathname.startsWith("/purchase")) {
-    // Si no es seller, permitir acceso solo a la ruta create-profile (evitar redirect loop)
-    if (role !== "buyer" && role !== "seller") {
-      const allowed = pathname === "/purchase";
-      if (!allowed) {
-        const redirectUrl = new URL("/singin", request.url);
+  if (pathname.startsWith("/purchase")) {
+    if (role !== "buyer") {
+        const redirectUrl = new URL("/signin", request.url);
         return NextResponse.redirect(redirectUrl);
-      }
     }
   }
 
-  // Protección para favorites 
   if (pathname.startsWith("/favorites") && role !== "buyer") {
     return NextResponse.redirect(new URL("/signin", request.url));
   }

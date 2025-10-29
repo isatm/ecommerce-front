@@ -1,9 +1,8 @@
 
 import React from "react";
-import { Props } from "@/interfaces/shoppingInterfaces/propsItemInterface";
-import { useProductItem } from "@/hooks/useProductItem";
-import { userCartStore } from "@/store/cartStore";
 
+import { Props } from "@/interfaces/shoppingInterfaces/propsItemInterface";
+import { userCartStore } from "@/store/cartStore";
 
     const ProductItem: React.FC<Props> = ({ product }) => {
     const addToCart = userCartStore((state) => state.addProduct);

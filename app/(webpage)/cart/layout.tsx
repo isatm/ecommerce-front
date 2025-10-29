@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 
 import RegionalConfigAlert from '@/components/molecules/regionalConfigAlertComponent';
 
-
 export const metadata: Metadata = {
     title: "Reverb",
     };

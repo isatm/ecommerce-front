@@ -1,15 +1,17 @@
 'use client';
 
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { userCartStore } from "@/store/cartStore";
+import { useAuth } from "@/contexts/authContext";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+
 import { LoginDTO } from "@/interfaces/loginInterfaces/loginInterface";
 import { buyerService } from "@/libs/services/buyerService";
-import { supabase } from "@/libs/supabaseClient";
-import { userCartStore } from "@/store/cartStore";
 import { loginScheme } from "@/schemas/loginSchema";
-import { useAuth } from "@/contexts/authContext";
+
 
 export function usePurchase() {
     const router = useRouter();
@@ -27,30 +29,30 @@ export function usePurchase() {
     });
 
     const [formData, setFormData] = useState({
-        email: "",
+        gmail: "",
         address: "",
         phone: "",
         fullName: ""
     });
 
     const handleFormSubmit = async () => {
-        console.log('🔵 1. handleFormSubmit EJECUTADO');
-        console.log('👤 User:', user);
-        console.log('📦 Products:', products);
-        console.log('📝 FormData:', formData);
-        console.log('🛒 Total productos:', products.length);
+        console.log(' 1. handleFormSubmit EJECUTADO');
+        console.log(' User:', user);
+        console.log('Products:', products);
+        console.log(' FormData:', formData);
+        console.log('Total productos:', products.length);
 
         setLoading(true);
         try {
 
             if(!user) {
-                console.log('❌ 3. ERROR: No hay usuario');
+                console.log('3. ERROR: No hay usuario');
                 alert("Debe iniciar sesión para comprar");
                 return;
             }
 
             if (products.length === 0) {
-                console.log('❌ 5. ERROR: Carrito vacío');
+                console.log('5. ERROR: Carrito vacío');
                 alert("El carrito está vacío");
                 return;
             }
@@ -60,13 +62,35 @@ export function usePurchase() {
                 return;
             }
 
+            console.log('Datos enviados a createPurchase:', {
+            products: products,
+            address: formData.address,
+            userInfo: {
+                fullName: formData.fullName,
+                phone: formData.phone,
+                email: formData.gmail,
+            },
+            userId: user.id
+        });
+
+            if (!formData.gmail.trim() || !formData.address.trim() || !formData.fullName.trim() || !formData.phone.trim()) {
+            console.log('ERROR: Campos incompletos', {
+                gmail: formData.gmail,
+                address: formData.address,
+                fullName: formData.fullName,
+                phone: formData.phone
+            });
+            alert("Por favor completa todos los campos requeridos, incluido el email");
+            return;
+        }
+
             const purchase = await buyerService.createPurchase(
                 products, 
                 formData.address,
                 {
                     fullName: formData.fullName,
                     phone: formData.phone,
-                    email: formData.email,
+                    gmail: formData.gmail,
                 },
                 user.id
             );
@@ -76,7 +100,7 @@ export function usePurchase() {
 
             clearCart();
 
-            router.push("/dashboard/details");
+            router.push("/dashboard/buyer/details");
 
         } catch (error: any) {
             console.error("Error en la compra:", error);
@@ -92,7 +116,6 @@ export function usePurchase() {
             ...newData 
         }));
     };
-
 
     return {
         handleFormSubmit,

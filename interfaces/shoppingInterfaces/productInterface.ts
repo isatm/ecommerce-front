@@ -1,3 +1,4 @@
+
 export interface Product {
   id: number;
   name: string;
@@ -6,4 +7,5 @@ export interface Product {
   category: string;
   stock: number;
   image_url?: string;
+  created_at: string;
 }

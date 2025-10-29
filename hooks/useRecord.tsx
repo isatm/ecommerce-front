@@ -1,21 +1,22 @@
 'use client'
 
 import { useState, useEffect } from 'react';
+
 import { supabase } from '@/libs/supabaseClient';
-import { order } from '@/interfaces/shoppingInterfaces/orderInterface';
+import { orders } from '@/interfaces/shoppingInterfaces/orderInterface';
 import { useAuth } from '@/contexts/authContext';
 
 export function useRecord() {
-    const [shops, setShops] = useState<order[]>([]);
+    const [shops, setShops] = useState<orders[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const { user, loading: authLoading } = useAuth();
+    const { user } = useAuth();
 
     useEffect(() => {
         if (user) {
             fetchUserPurchases();
         }
-    }, [user]); // ✅ Agregar user como dependencia
+    }, [user]); 
 
     const fetchUserPurchases = async () => {
         try {
@@ -28,27 +29,31 @@ export function useRecord() {
             }
 
             const { data: purchases, error: purchasesError } = await supabase
-                .from('shops')
-                .select('*')
+                .from('orders') 
+                .select(`
+                    *,
+                    order_items (
+                        *,
+                        products (*)
+                    )
+                `)
                 .eq('user_id', user.id)
-                .order('created_at', { ascending: false });
+                .order('date', { ascending: false }); 
 
-            if (purchasesError) {
-                throw purchasesError;
-            }
+            if (purchasesError) throw purchasesError;
 
-            const formattedShops: order[] = (purchases || []).map(purchase => ({
-                fullname: purchase.fullname,
+            const formattedShops: orders[] = (purchases || []).map(purchase => ({
                 id: purchase.id,
-                gmail: purchase.gmail,
-                user_id: user.id,
+                fullname: purchase.fullname,
+                user_id: purchase.user_id,
                 total: purchase.total,
-                state: purchase.state,
-                address: purchase.adress, 
+                status: purchase.status, 
+                address: purchase.address, 
                 date: purchase.date,
                 phone: purchase.phone,
                 created_at: purchase.created_at,
-                products: purchase.products || [],
+                order_items: purchase.order_items || [], 
+                gmail: purchase.gmail,
             }));
 
             setShops(formattedShops);
@@ -61,10 +66,5 @@ export function useRecord() {
         }
     };
 
-    return {
-        shops,
-        loading: loading || authLoading,
-        error,
-        refetch: fetchUserPurchases
-    };
+    return { shops, loading, error, refetch: fetchUserPurchases };
 }
