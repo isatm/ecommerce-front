@@ -4,7 +4,6 @@ import { supabase } from "@/libs/supabaseClient";
 export const registerService = async (body: RegisterDTO) => {
   const { name, lastname, email, password } = body;
 
-  // Registrar en auth.users
   const { data: registerData, error } = await supabase.auth.signUp({
     email: email.trim().toLowerCase(),
     password,
@@ -18,7 +17,7 @@ export const registerService = async (body: RegisterDTO) => {
   });
 
   if (error) {
-    console.error("❌ Error al registrarse:", error.message);
+    console.error("Error al registrarse:", error.message);
     throw error;
   }
 
@@ -37,7 +36,7 @@ export const registerService = async (body: RegisterDTO) => {
     ]);
 
     if (insertError) {
-      console.error("❌ Error al insertar en tabla pública:", insertError.message);
+      console.error("Error al insertar en tabla pública:", insertError.message);
       throw insertError;
     }
   }
