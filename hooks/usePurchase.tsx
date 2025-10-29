@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -9,9 +9,11 @@ import { buyerService } from "@/libs/buyerService";
 import { supabase } from "@/libs/supabaseClient";
 import { userCartStore } from "@/store/cartStore";
 import { loginScheme } from "@/schemas/loginSchema";
+import { useAuth } from "@/contexts/authContext";
 
 export function usePurchase() {
     const router = useRouter();
+    const { user, loading: authLoading } = useAuth();
     const { getTotal, products, clearCart } = userCartStore();
     const [loading, setLoading] = useState(false);
     const [isClient, setIsClient] = useState(false);
@@ -34,10 +36,9 @@ export function usePurchase() {
     const handleFormSubmit = async () => {
         setLoading(true);
         try {
-            const { data: { session } } = await supabase.auth.getSession();
-            
-            if (!session) {
-                alert("Debes iniciar sesión para realizar una compra");
+
+            if(!user) {
+                alert("Debe iniciar sesión para comprar");
                 return;
             }
 
@@ -57,8 +58,9 @@ export function usePurchase() {
                 {
                     fullName: formData.fullName,
                     phone: formData.phone,
-                    email: formData.email
-                }
+                    email: formData.email,
+                },
+                user.id
             );
 
             console.log("Compra creada:", purchase);
@@ -70,7 +72,7 @@ export function usePurchase() {
 
         } catch (error: any) {
             console.error("Error en la compra:", error);
-            alert(error.message || "Error al procesar la compra"); // ✅ CORREGIDO
+            alert(error.message || "Error al procesar la compra"); 
         } finally {
             setLoading(false);
         }
@@ -91,7 +93,7 @@ export function usePurchase() {
         setIsClient,
         formData,
         errors,
-        loading,
+        loading: loading || authLoading,
         products,
         getTotal,
         register,

@@ -9,10 +9,11 @@ export const buyerService = {
         cartItems: CartItem[], 
         address: string, 
         userInfo: {
-        fullName: string;
-        phone: string;
-        email: string;
-        }
+            fullName: string;
+            phone: string;
+            email: string;
+        },
+        userId: string | number
     ): Promise<{success: boolean, purchaseId?: string}> {
         try {
         const { data: { user }, error: userError } = await supabase.auth.getUser();
@@ -51,7 +52,7 @@ export const buyerService = {
         }
     },
 
-    async getUserPurchases(): Promise<Shop[]> {
+    async getUserPurchases(userId: string): Promise<Shop[]> {
         const { data: { user } } = await supabase.auth.getUser();
     
         if (!user) throw new Error("Usuario no autenticado");
@@ -59,7 +60,7 @@ export const buyerService = {
         const { data, error } = await supabase
         .from('shops')
         .select('*')
-        .eq('user_id', user.id)
+        .eq('user_id', userId)
         .order('created_at', { ascending: false });
 
         if (error) throw error;

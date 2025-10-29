@@ -1,12 +1,15 @@
-// hooks/useRecord.ts
+'use client'
+
 import { useState, useEffect } from 'react';
 import { supabase } from '@/libs/supabaseClient';
 import { Shop } from '@/interfaces/shoppingInterfaces/shopInterface';
+import { useAuth } from '@/contexts/authContext';
 
 export function useRecord() {
     const [shops, setShops] = useState<Shop[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const { user, loading: authLoading } = useAuth();
 
     useEffect(() => {
         fetchUserPurchases();
@@ -60,7 +63,7 @@ export function useRecord() {
 
     return {
         shops,
-        loading,
+        loading: loading || authLoading,
         error,
         refetch: fetchUserPurchases
     };
