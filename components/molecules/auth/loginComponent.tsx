@@ -1,6 +1,7 @@
-"use client";
+'use client';
 
 import Link from "next/link";
+import Image from "next/image";
 import React from 'react';
 
 import InputComponent from "@/components/atoms/inputComponent";
@@ -8,20 +9,58 @@ import LoginComponentProps from "@/interfaces/loginInterfaces/loginComponentProp
 import useLogin from "@/hooks/useLogin";
 import Button from "@/components/atoms/buttonComponent";
 
-export default function LoginComponent({ onClose }: LoginComponentProps) {
+export default function LoginComponent({  }: LoginComponentProps) {
   const { handleSubmit, register, onErrors, onSubmit } = useLogin();
 
   return (
     <div className="w-full">
       {/* Botones de continuar con... en columnas, usando el estilo gris */}
       <div className="grid grid-cols-3 gap-2 mb-6"> 
-        <Button variant="google" icon={<img src="images/icons/google_logo.png" alt="Google" className="h-5 w-5" />} className="py-2 text-sm px-2"> 
+        <Button
+          variant="google"
+          icon={
+            <Image
+              src="/images/icons/google_logo.png"
+              alt="Google"
+              width={20}
+              height={20}
+              className="h-5 w-5"
+            />
+          }
+          className="py-2 text-sm px-2"
+        >
           Google
         </Button>
-        <Button variant="google" icon={<img src="images/icons/apple_logo.png" alt="Apple" className="h-5 w-5" />} className="py-2 text-sm px-2"> 
+
+        <Button
+          variant="google"
+          icon={
+            <Image
+              src="/images/icons/apple_logo.png"
+              alt="Apple"
+              width={20}
+              height={20}
+              className="h-5 w-5"
+            />
+          }
+          className="py-2 text-sm px-2"
+        >
           Apple
         </Button>
-        <Button variant="google" icon={<img src="images/icons/facebook_logo.png" alt="Facebook" className="h-5 w-5" />} className="py-2 text-sm px-2"> 
+
+        <Button
+          variant="google"
+          icon={
+            <Image
+              src="/images/icons/facebook_logo.png"
+              alt="Facebook"
+              width={20}
+              height={20}
+              className="h-5 w-5"
+            />
+          }
+          className="py-2 text-sm px-2"
+        >
           Facebook
         </Button>
       </div>
@@ -42,7 +81,7 @@ export default function LoginComponent({ onClose }: LoginComponentProps) {
             idElement="email"
             name="email"
             register={register}
-            className="border-gray-300 focus:border-orange-500 rounded-md" // Asegúrate de que rounded-md es lo que quieres para el input
+            className="border-gray-300 focus:border-orange-500 rounded-md"
           />
         </div>
 
@@ -76,9 +115,8 @@ export default function LoginComponent({ onClose }: LoginComponentProps) {
             </Link>
         </div>
 
-
         {/* Botón de Iniciar sesión oscuro */}
-        <Button type="submit" variant="dark" fullWidth className="mt-6 py-3 text-base"> {/* Usar variant="dark" */}
+        <Button type="submit" variant="dark" fullWidth className="mt-6 py-3 text-base">
           Iniciar sesión
         </Button>
       </form>

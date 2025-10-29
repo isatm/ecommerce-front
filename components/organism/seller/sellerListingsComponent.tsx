@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Button from '@/components/atoms/buttonComponent';
-import InputComponent from '@/components/atoms/inputComponent';
 import { useForm } from 'react-hook-form';
-import { Search, Loader2 } from 'lucide-react'; 
+import { Loader2 } from 'lucide-react'; 
 import { useAuth } from '@/contexts/authContext'; 
 import { getProductsBySellerId } from '@/libs/services/productService';
 import { Product } from '@/interfaces/shoppingInterfaces/productInterface'; 
@@ -14,7 +13,7 @@ interface ListingSearchForm {
 }
 
 export default function SellerListingsComponent() {
-  const { register, handleSubmit } = useForm<ListingSearchForm>();
+  const { handleSubmit } = useForm<ListingSearchForm>();
   const { user, loading: authLoading } = useAuth(); // Obtener usuario y estado de carga del AuthContext
   const [products, setProducts] = useState<Product[]>([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
@@ -132,7 +131,7 @@ export default function SellerListingsComponent() {
         </div>
       ) : (
         <div className="text-center py-10 border-2 border-dashed border-gray-300 rounded-lg">
-          <p className="text-gray-500 mb-4">You don't have any listings yet.</p>
+          <p className="text-gray-500 mb-4">You dont have any listings yet.</p>
           <Button variant="primary" onClick={() => console.log('Create a new listing clicked')}>
             Create a new listing
           </Button>

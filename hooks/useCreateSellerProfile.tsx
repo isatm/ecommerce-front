@@ -71,7 +71,7 @@ export const useCreateSellerProfile = () => {
 
       console.log("Perfil de vendedor configurado:", updated);
       alert("¡Perfil de vendedor configurado exitosamente!");
-      router.push("/dashboard/seller");
+      router.push("/dashboard");
     } catch (error: any) {
       console.error("Error al configurar perfil de vendedor:", error?.message || error);
       setError("displayName", {

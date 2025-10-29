@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import clsx from 'clsx';
 
@@ -15,7 +15,7 @@ interface TabNavigationProps {
   basePath: string; 
 }
 
-export default function TabNavigation({ tabs, basePath }: TabNavigationProps) {
+export default function TabNavigation({ tabs }: TabNavigationProps) {
   const router = useRouter();
   const pathname = usePathname();
 
