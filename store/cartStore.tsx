@@ -5,13 +5,6 @@ import { CartStore } from "@/interfaces/shoppingInterfaces/cartInterface";
 
 import { create } from "zustand"; 
 import { persist } from "zustand/middleware";
-// manejo de estado
-// en pocas palabras zustand es el dueño de la pagina, donde con la funcion create donde tomamos y jugamos con los produtos
-// podemos gestionarlos y condicionarlos a nuestro gusto, es como un hook donde se manejan estados, pero el hook es de react
-// hook-> estados o metodos sonde se puede condcionar el sistema, pero no creo que tan flexible como zustadn, ya que este es más extenso de utilidad
-// hook es más para menjo de codigo directo sin tanto condicional
-
-// IMPORTANTE: es posible no utilizar zustand, peroooooooo habría que utilizar apis y aumentar la complejidad misma del codigo
 
 // Aquí ahora usamos `persist` para que el carrito quede guardado en localStorage
 export const userCartStore = create<CartStore>()(
@@ -64,7 +57,7 @@ export const userCartStore = create<CartStore>()(
                 }));
             },
 
-            // pues obtenemos los productos y cantidad xd, para qué más?
+            // pues obtenemos los productos y cantidad
             getTotal: () => {
                 const { products } = get();
                 return products.reduce((total, product) => {
