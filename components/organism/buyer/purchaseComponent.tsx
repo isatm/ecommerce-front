@@ -5,7 +5,7 @@ import { usePurchase } from "@/hooks/usePurchase";
 import { useEffect, useState } from "react";
 
 export default function PurchaseComponent() {
-    const { setFormData, handleFormSubmit, handleSubmit, formData, errors, getTotal, loading, products, register} = usePurchase();
+    const { setFormData, handleFormSubmit, formData, getTotal, loading, products} = usePurchase();
     const [isClient, setIsClient] = useState(false);
     
     useEffect(() => {
@@ -17,12 +17,6 @@ export default function PurchaseComponent() {
         setFormData({
             [name]: value
         }); 
-    };
-
-    const handleInputChange = (field: keyof typeof formData, value: string) => {
-        setFormData({
-            [field]: value
-        });
     };
 
     return (

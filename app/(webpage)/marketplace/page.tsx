@@ -3,12 +3,12 @@ import ProductGrid from '@/components/organism/productGridComponent';
 import { searchProductsByQuery } from "@/libs/services/productService"; 
 
 interface SearchPageProps {
-  searchParams: {
-    query?: string;
-  };
+  searchParams: Promise<{
+    query: string;
+  }>;
 }
 
-async function SearchResults({ query }: { query: string | undefined }) {
+async function SearchResults({ query }: { query: string }) {
   if (!query) {
     return (
       <div className="container mx-auto p-4">
@@ -22,7 +22,7 @@ async function SearchResults({ query }: { query: string | undefined }) {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6">Resultados para: "{query}"</h1>
+      <h1 className="text-2xl font-bold mb-6">Resultados para: {query}</h1>
       {products.length === 0 ? (
         <p className="text-gray-600">No se encontraron productos que coincidan con tu búsqueda.</p>
       ) : (
@@ -32,10 +32,10 @@ async function SearchResults({ query }: { query: string | undefined }) {
   );
 }
 
-export default function SearchPage({ searchParams }: SearchPageProps) {
+export default async function SearchPage({ searchParams }: SearchPageProps) {
   return (
     <Suspense fallback={<div>Cargando resultados...</div>}>
-      <SearchResults query={searchParams.query} />
+      <SearchResults query={(await searchParams).query} />
     </Suspense>
   );
 }

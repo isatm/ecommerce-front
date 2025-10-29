@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { usePathname, useRouter } from 'next/navigation';
 import DashboardHeader from '@/components/organism/dashBoardHeaderComponent';
 import TabNavigation from '@/components/molecules/tabNavigationComponent';
 
@@ -10,20 +9,13 @@ import RecordComponent from '@/components/organism/buyer/recordDatailComponent';
 import SellerListingsComponent from '@/components/organism/seller/sellerListingsComponent';
 
 export default function DashboardPage() {
-  const router = useRouter();
-  const pathname = usePathname();
 
   // Define las pestañas del dashboard
   const tabs = [
     { name: 'Dashboard', href: '/dashboard', content: <p>Dashboard general content goes here.</p> },
     { name: 'Purchases', href: '/dashboard/buyer/details', content: <RecordComponent /> },
     { name: 'Selling', href: '/dashboard/seller/listings', content: <SellerListingsComponent /> },
-    // Puedes añadir más pestañas aquí si las necesitas
-    // { name: 'My Collection', href: '/dashboard/collection', content: <p>My Collection content</p> },
   ];
-
-  // Determinar el contenido a mostrar basado en la ruta actual
-  const currentTabContent = tabs.find(tab => pathname.startsWith(tab.href))?.content;
 
   return (
     <div className="container mx-auto px-4 py-8">

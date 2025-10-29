@@ -6,7 +6,7 @@ import AuthContainer from "@/components/molecules/auth/authContainerComponent";
 import LoginComponent from "@/components/molecules/auth/loginComponent";
 
 export default function LoginPage() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [, setIsOpen] = useState(true);
 
   return (
     <AuthContainer

@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { useAuth } from '@/contexts/authContext';
 import Button from '../atoms/buttonComponent';
 
@@ -25,7 +24,7 @@ export default function DashboardHeader() {
     );
   }
 
-  const userName = user.name?.toUpperCase() || 'USUARIO'; // Muestra el nombre o "USUARIO" si no hay
+  const userName = user.name?.toUpperCase() || 'USUARIO';
 
   return (
     <div className="bg-white p-6 rounded-lg shadow mb-6">

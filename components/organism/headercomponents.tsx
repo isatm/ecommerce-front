@@ -12,7 +12,6 @@ import { useAuth } from "@/contexts/authContext";
 import InputComponent from "../atoms/inputComponent";
 import AvatarMenu from "@/components/organism/avatarMenuComponent";
 import Button from "../atoms/buttonComponent";
-import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
 
 export default function HeaderComponent() {
   const { register, handleSubmit, results, onSubmit, router } = useHeaderComponent();
