@@ -1,12 +1,9 @@
 
 import React from "react";
-<<<<<<< HEAD:components/molecules/productItem.tsx
-import { userCartStore } from "@/store/cartStore";
-import { Props } from "@/interfaces/propsItem";
-=======
 import { Props } from "@/interfaces/shoppingInterfaces/propsItemInterface";
 import { useProductItem } from "@/hooks/useProductItem";
->>>>>>> mejoraHooks:components/molecules/productItemComponent.tsx
+import { userCartStore } from "@/store/cartStore";
+
 
     const ProductItem: React.FC<Props> = ({ product }) => {
     const addToCart = userCartStore((state) => state.addProduct);

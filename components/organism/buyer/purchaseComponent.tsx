@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import { userCartStore } from "@/hooks/usecartStore";
+import { userCartStore } from "@/store/cartStore";
 import InputComponent from "@/components/atoms/inputComponent";
 import { useRegister } from "@/hooks/useRegister";
 import { supabase } from "@/libs/supabaseClient";

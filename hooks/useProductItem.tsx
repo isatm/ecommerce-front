@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-'use client";'
-=======
 'use client';
->>>>>>> mejoraHooks
 
 import { userCartStore } from "@/store/cartStore";
 import { useRouter } from "next/navigation";

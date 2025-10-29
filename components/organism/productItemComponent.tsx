@@ -4,13 +4,10 @@ import Image from "next/image";
 import { userCartStore } from "@/store/cartStore"; 
 import EmerPageButton from "../atoms/buttons/emerPageButtonComponent";
 import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
-<<<<<<< HEAD:components/organism/productItem.tsx
-import { Product } from "@/interfaces/product";
-import { useRouter } from "next/navigation"; 
-=======
 import { Product } from "@/interfaces/shoppingInterfaces/productInterface";
 import { useProductItem } from "@/hooks/useProductItem";
->>>>>>> mejoraHooks:components/organism/productItemComponent.tsx
+import { useRouter } from "next/router";
+
 
 export default function ProductItem({ product }: { product: Product }) {
   const addProduct = userCartStore((state) => state.addProduct); 
