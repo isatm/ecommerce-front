@@ -7,6 +7,6 @@ export interface Shop{
     adress: string;
     created_at?: string;
     date: string;
-    products: Product
+    products: Product[];
     phone: string;
 }
