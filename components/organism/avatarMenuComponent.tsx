@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Bell, ShoppingCart } from 'lucide-react'; 
+import { Bell, Heart, ShoppingCart } from 'lucide-react'; 
 
 import useAvatarMenu from '@/hooks/useAvatarMenu';
 
@@ -16,6 +16,14 @@ export default function AvatarMenu() {
 
   return (
     <div className="relative flex items-center gap-4" ref={dropdownRef}>
+      {/* Icono de Favoritos */}
+      <Link href="/favorites" className="relative flex flex-col items-center text-black-600 hover:text-orange-500 transition">
+        <Heart />
+        <div className="text-xs">
+          Favoritos
+        </div>
+      </Link>
+
       {/* Icono de Notificaciones */}
       <Link href="/notifications" className="relative flex flex-col items-center text-black-600 hover:text-orange-500 transition">
         <Bell />
@@ -23,7 +31,7 @@ export default function AvatarMenu() {
           1
         </span>
         <div className="text-xs">
-          Notifications
+          Notificaciones
         </div>
       </Link>
 
@@ -34,7 +42,7 @@ export default function AvatarMenu() {
           3
         </span>
         <div className="text-xs">
-          Cart
+          Carrito
         </div>
       </Link>
 

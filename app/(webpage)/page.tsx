@@ -1,5 +1,4 @@
 ' use client';
-
 import Link from "next/link";
 
 import ProductGrid from "@/components/organism/productGridComponent";
@@ -8,8 +7,6 @@ import PromoBanner from "@/components/atoms/promoBannerComponent";
 import RegionalConfigAlert from "@/components/molecules/regionalConfigAlertComponent";
 
 import { supabase } from "@/libs/supabaseClient";
-
-
 
 export default async function HomePage() {
   const { data: products, error } = await supabase

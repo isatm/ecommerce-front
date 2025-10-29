@@ -32,11 +32,9 @@ export async function middleware(request: NextRequest) {
         role = parsed.role;
       }
     } catch (err) {
-      // cookie malformada -> ignorar y fallback
       console.warn("user cookie parse error in middleware", err);
     }
   } else {
-    // Fallback: intentar obtener usuario con supabase.auth.getUser si el token es un access token de Supabase
     try {
       const { data, error } = await supabase.auth.getUser(tokenCookie.value);
       if (error) {
@@ -66,7 +64,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  if (pathname.startsWith("/favorites") && role !== "buyer") {
+  if (pathname.startsWith("/favorites") && role !== "buyer" && role != "seller") {
     return NextResponse.redirect(new URL("/signin", request.url));
   }
 

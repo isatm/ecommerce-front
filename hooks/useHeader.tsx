@@ -23,7 +23,7 @@ export function useHeaderComponent() {
         const products = await searchProducts(term);  
             
         const productsWithPrice = products.map(product => ({
-            ...product, // es un precio estatico por el momento, que le es asignado de forma predeterminada
+            ...product, 
             price: 0
         }));
         

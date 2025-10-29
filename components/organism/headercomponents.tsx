@@ -22,8 +22,8 @@ export default function HeaderComponent() {
     <header className="w-full">
       {/* HEADER SUPERIOR */}
       <header className="bg-white shadow-sm h-18 px-6 border-b border-gray-200 w-full">
-        <nav className="flex gap-6 font-medium items-center h-full">
-          {/* Logo + Input */}
+        <nav className="flex gap-6 font-medium items-center h-full justify-between max-w-7xl mx-auto">
+          {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="-m-1.5 p-1.5 flex items-center">
               <Image
@@ -36,8 +36,8 @@ export default function HeaderComponent() {
             </Link>
           </div>
 
-          {/* Input con sugerencias */}
-          <div className="flex-1 relative">
+          {/* Input con sugerencias - tamaño reducido */}
+          <div className="flex-1 max-w-2xl relative">
             <form onSubmit={handleSubmit(onSubmit)} className="flex-1">
               <InputComponent
                 label=""
@@ -45,7 +45,7 @@ export default function HeaderComponent() {
                 idElement="search"
                 name="search"
                 register={register}
-                placeholder="Shop for used & new music gear..."
+                placeholder="Busca equipos musicales usados y nuevos..."
                 className="w-full"
                 iconRight={<Search size={18} />}
               />
@@ -86,7 +86,7 @@ export default function HeaderComponent() {
                 <Link href="/favorites" className="flex flex-col items-center text-black-600 hover:text-orange-500 transition">
                   <Heart />
                   <div className="text-xs">
-                    Favorites
+                    Favoritos
                   </div>
                 </Link>
                 {/* Carrito e Iniciar sesión/Registrarse */}
@@ -95,7 +95,7 @@ export default function HeaderComponent() {
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
                   </div>
                   <div className="text-xs">
-                    Cart
+                    Carrito
                   </div>
                 </Link>
                 <div className="flex text-sm hidden lg:flex ">
@@ -118,43 +118,28 @@ export default function HeaderComponent() {
         </nav>
       </header>
 
-      {/* HEADER INFERIOR */}
-      <menu className="bg-white shadow-sm h-10 px-6 border-b border-gray-200 w-full text-xs">
-        <div className="flex">
-          {/* Categorías */}
-          <div className="flex w-1/2">
-            <div className="flex hidden lg:flex gap-2 justify-start whitespace-nowrap overflow-hidden">
-              <Link href="#" className={navLinkClass}>Guitarras</Link>
-              <Link href="#" className={navLinkClass}>Pedals and Amplifiers</Link> 
-              <Link href="#" className={navLinkClass}>Keyboards and Synthesizers</Link>
-              <Link href="#" className={navLinkClass}>Recording Gear</Link> 
-              <Link href="#" className={navLinkClass}>Drums</Link> 
-              <Link href="#" className={navLinkClass}>DJ & Audio Equipment</Link> 
-              <Link href="#" className={navLinkClass}>More Categories</Link> 
+      {/* HEADER INFERIOR - ESTILO REVERB ORIGINAL */}
+      <menu className="bg-white shadow-sm h-10 border-b border-gray-200 w-full text-xs">
+        <div className="flex justify-between items-center h-full max-w-7xl mx-auto px-6">
+          {/* Lado izquierdo - Categorías principales */}
+          <div className="flex items-center gap-4">
+            <Link href="#" className={`${navLinkClass} whitespace-nowrap`}>Guitarras</Link>
+            <Link href="#" className={`${navLinkClass} whitespace-nowrap`}>Pedales y amplificadores</Link> 
+            <Link href="#" className={`${navLinkClass} whitespace-nowrap`}>Teclados y sintetizadores</Link>
+            <Link href="#" className={`${navLinkClass} whitespace-nowrap`}>Equipo de grabación</Link> 
+            <Link href="#" className={`${navLinkClass} whitespace-nowrap`}>Baterías</Link> 
+            <Link href="#" className={`${navLinkClass} whitespace-nowrap`}>Equipos de DJ y audio</Link> 
+            <div className="flex items-center gap-4">
+              <Link href="#" className={`${navLinkClass} whitespace-nowrap`}>Más categorías</Link>
+              <span className="text-gray-300">•</span>
             </div>
-            <ToggleButtonComponent
-              options={[
-                "Guitars",
-                "Pedals and Amplifiers",
-                "Keyboards and Synthesizers",
-                "Recording Gear",
-                "Drums",
-                "DJ & Audio Equipment",
-                "More Categories",
-              ]}
-              buttonStyle="hidden lg:flex text-black hover:text-orange-500 font-medium py-2 px-4 rounded-lg transition whitespace-nowrap"
-              content="View All" 
-            />
           </div>
 
-          {/* Marcas y enlaces */}
-          <div className="flex hidden lg:flex justify-start whitespace-nowrap gap-1/2 w-1/2">
-            <Link href="#" className={navLinkClass}>Brands</Link>
-            <Link href="news" className={navLinkClass}>News</Link>
-            <Link href="#" className={navLinkClass}>Explore</Link>
-            <Link href="news" className={navLinkClass}>Artist Shops</Link>
-            <Link href="news" className={navLinkClass}>Reverb Gives</Link>
-            <Link href="news" className={navLinkClass}>Help Center</Link>
+          {/* Lado derecho - Enlaces secundarios */}
+          <div className="flex items-center gap-4">
+            <Link href="#" className={`${navLinkClass} whitespace-nowrap`}>Marcas</Link>
+            <Link href="news" className={`${navLinkClass} whitespace-nowrap`}>Noticias</Link>
+            <Link href="#" className={`${navLinkClass} whitespace-nowrap`}>Explorar</Link>
           </div>
         </div>
       </menu>
