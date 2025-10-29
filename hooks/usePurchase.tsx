@@ -5,13 +5,11 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { userCartStore } from "@/store/cartStore";
 import { useAuth } from "@/contexts/authContext";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { LoginDTO } from "@/interfaces/loginInterfaces/loginInterface";
 import { buyerService } from "@/libs/services/buyerService";
 import { loginScheme } from "@/schemas/loginSchema";
-
 
 export function usePurchase() {
     const router = useRouter();
@@ -36,53 +34,33 @@ export function usePurchase() {
     });
 
     const handleFormSubmit = async () => {
-        console.log(' 1. handleFormSubmit EJECUTADO');
-        console.log(' User:', user);
+        console.log('1. handleFormSubmit EJECUTADO');
+        console.log('User:', user);
         console.log('Products:', products);
-        console.log(' FormData:', formData);
-        console.log('Total productos:', products.length);
+        console.log('FormData:', formData);
 
         setLoading(true);
         try {
-
-            if(!user) {
-                console.log('3. ERROR: No hay usuario');
-                alert("Debe iniciar sesión para comprar");
+            if (!user) {
+                console.log('Usuario no autenticado, redirigiendo a login...');
+                alert("Debe iniciar sesión para completar la compra");
+                router.push("/signin");
                 return;
             }
 
             if (products.length === 0) {
-                console.log('5. ERROR: Carrito vacío');
+                console.log('ERROR: Carrito vacío');
                 alert("El carrito está vacío");
                 return;
             }
 
-            if (!formData.address.trim() || !formData.fullName.trim() || !formData.phone.trim()) {
+            if (!formData.address.trim() || !formData.fullName.trim() || !formData.phone.trim() || !formData.gmail.trim()) {
+                console.log('ERROR: Campos incompletos');
                 alert("Por favor completa todos los campos requeridos");
                 return;
             }
 
-            console.log('Datos enviados a createPurchase:', {
-            products: products,
-            address: formData.address,
-            userInfo: {
-                fullName: formData.fullName,
-                phone: formData.phone,
-                email: formData.gmail,
-            },
-            userId: user.id
-        });
-
-            if (!formData.gmail.trim() || !formData.address.trim() || !formData.fullName.trim() || !formData.phone.trim()) {
-            console.log('ERROR: Campos incompletos', {
-                gmail: formData.gmail,
-                address: formData.address,
-                fullName: formData.fullName,
-                phone: formData.phone
-            });
-            alert("Por favor completa todos los campos requeridos, incluido el email");
-            return;
-        }
+            console.log('Procesando compra para usuario:', user.id);
 
             const purchase = await buyerService.createPurchase(
                 products, 
@@ -99,18 +77,17 @@ export function usePurchase() {
             alert("¡Compra realizada exitosamente!");
 
             clearCart();
-
             router.push("/dashboard/buyer/details");
 
         } catch (error: any) {
-            console.error("Error en la compra:", error);
+            console.error(" Error en la compra:", error);
             alert(error.message || "Error al procesar la compra"); 
         } finally {
             setLoading(false);
         }
     };
 
-    const updateFormData = (newData: Partial<FormData>) => {
+    const updateFormData = (newData: Partial<typeof formData>) => {
         setFormData(prev => ({ 
             ...prev, 
             ...newData 
@@ -128,6 +105,8 @@ export function usePurchase() {
         products,
         getTotal,
         register,
-        isClient
+        isClient,
+        isAuthenticated: !!user,
+        user
     };
 }

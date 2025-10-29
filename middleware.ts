@@ -60,7 +60,7 @@ export async function middleware(request: NextRequest) {
   }
 
   if (pathname.startsWith("/purchase")) {
-    if (role !== "buyer") {
+    if (role !== "buyer" && role != "seller") {
         const redirectUrl = new URL("/signin", request.url);
         return NextResponse.redirect(redirectUrl);
     }

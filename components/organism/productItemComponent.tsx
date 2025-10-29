@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import EmerPageButton from "../atoms/buttons/emerPageButtonComponent";
 import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
@@ -6,7 +6,7 @@ import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
 import { Product } from "@/interfaces/shoppingInterfaces/productInterface";
 import { userCartStore } from "@/store/cartStore"; 
 
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function ProductItem({ product }: { product: Product }) {

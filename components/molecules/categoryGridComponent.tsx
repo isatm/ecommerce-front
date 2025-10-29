@@ -1,4 +1,3 @@
-'use client';
 
 import CategoryCard from "../atoms/categoryCardComponent";
 import { categories } from "@/utils/categoriesUtils";
