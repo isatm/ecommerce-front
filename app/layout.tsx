@@ -1,13 +1,6 @@
-import type { Metadata } from "next";
-import "./globals.css";
-
-import HeaderComponent from "@/components/organism/headercompomemts";
-import FooterComponent from "@/components/organism/footerComponents";
-
-export const metadata: Metadata = {
-  title: "Instrumentos musicales a la venta: equipo musical nuevo de | Reverb ",
-  description: "Únete a millones de músicos de todo el mundo en Reverb. Encuentra tu próximo instrumento favorito (nuevo, de segunda mano o vintage) o vende uno de los tuyos.",
-};
+import "@/app/globals.css";
+import HeaderComponent from "@/components/organism/headercomponents";
+import { AuthProvider } from "@/contexts/authContext";
 
 export default function RootLayout({
   children,
@@ -17,12 +10,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="w-full flex flex-col min-h-screen">
-        <HeaderComponent />
-        <main className="flex-grow">
+          <AuthProvider>
+          <HeaderComponent />
           {children}
-          <p className="text-xl text-gray-700"></p>
-        </main>
-        <FooterComponent />
+          </AuthProvider>
       </body>
     </html>
   );

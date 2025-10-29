@@ -1,9 +1,9 @@
-// app/(auth)/category/page.tsx
+' use client';
+
 export default function CategoryPage() { 
     return (
     <div>
         <h1>Category Page</h1>
-    {}
     </div>
     );
 }

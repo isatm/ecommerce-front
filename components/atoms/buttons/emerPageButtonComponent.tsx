@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ReactNode } from "react";
 
-interface ModalButtonProps {
-  buttonLabel?: string;
-  icon?: ReactNode; // El ícono es opcional
-  buttonStyle?: string;
-  children: React.ReactNode; // contenido que irá dentro del modal
-}
+import { ModalButtonProps } from "@/interfaces/buttonInterfaces/modalButtontPropsInterface";
 
 export default function EmerPageButton({
   buttonLabel,
@@ -38,7 +32,7 @@ export default function EmerPageButton({
             {/* Contenedor del contenido */}
             <motion.div
               className="bg-white rounded-2xl shadow-lg p-6 max-w-lg w-full relative 
-                         max-h-[80vh] overflow-y-auto" 
+                          max-h-[80vh] overflow-y-auto" 
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}

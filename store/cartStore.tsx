@@ -1,0 +1,79 @@
+'use client';
+
+import { Product } from "@/interfaces/shoppingInterfaces/productInterface";
+import { CartStore } from "@/interfaces/shoppingInterfaces/cartInterface";
+
+import { create } from "zustand"; 
+import { persist } from "zustand/middleware";
+
+// Aquí ahora usamos `persist` para que el carrito quede guardado en localStorage
+export const userCartStore = create<CartStore>()(
+    persist(
+        (set, get) => ({
+            products: [],
+            
+            // Logica de agregar producto con los parametros de producto
+            addProduct: (product: Product) => {
+                set((state: CartStore) => { 
+                    // Damos un estado al valor del producto, donde si el id del prodcuto a agregar es igual a un producto que se
+                    // encuentra en la pagina entonces sabemos que el producto se encuentra
+                const existingProduct = state.products.find(p => p.id === product.id);
+                
+                // Si el producto existe entonces, hacemos un codicional que retorna el estado del producto, donde es mapeado
+                // y con ello al ver que se encuientra entonces la cantidad de productos se agrega juajuajua (que nunca nos compren) 
+                if (existingProduct) {
+                    return {
+                    products: state.products.map(p =>
+                        p.id === product.id
+                        ? { ...p, quantity: p.quantity + 1 }
+                        : p
+                    )
+                    };
+                } // ahora tetornamos el prudcto y la cantidad de este
+                // aseguramos que el nuevo elemento cumpla con la interfaz CartItem (incluyendo user_id)
+                const newCartItem = { ...product, quantity: 1, user_id: "" };
+                return { 
+                    products: [...state.products, newCartItem] 
+                };
+                });
+            },
+            
+            // segun el id, vemos el estado del prodcuto, lo filtramos e eliminamos
+            removeProduct: (productId: number) => {
+                set((state) => ({
+                products: state.products.filter(p => p.id !== productId)
+                }));
+            },
+            
+            // Pasamos los parametros, estados, buscamos mapeando los prodcutos si son igual de forma opacional o recorrida, cambiamos la canridad o 
+            // lo que se desea actualizar, después filtramos sin cambiar el arreglo para actualizar el valor y la cantidad
+            updateQuantity: (productId: number, quantity: number) => {
+                set((state) => ({
+                products: state.products.map(p =>
+                    p.id === productId
+                    ? { ...p, quantity: Math.max(0, quantity) }
+                    : p
+                ).filter(p => p.quantity > 0)
+                }));
+            },
+
+            // pues obtenemos los productos y cantidad
+            getTotal: () => {
+                const { products } = get();
+                return products.reduce((total, product) => {
+                    const price = Number(product.price) || 0;
+                    const quantity = product.quantity || 0;
+                    return total + price * quantity
+                }
+                ,0);
+            },
+            
+            clearCart: () => {
+                set({ products: [] });
+            }
+        }),
+        {
+            name: "cart-storage", 
+        }
+    )
+);

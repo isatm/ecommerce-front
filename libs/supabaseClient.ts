@@ -5,7 +5,7 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
-    persistSession: false,   // ❌ no usar localStorage
-    autoRefreshToken: false, // ❌ no refrescar automáticamente
+    persistSession: false,   // no usar localStorage
+    autoRefreshToken: false, 
   },
 })
