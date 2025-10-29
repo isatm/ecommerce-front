@@ -207,7 +207,7 @@ export default function CartComponent() {
                 <span>US${total.toLocaleString()}</span>
               </div>
 
-              <Link href="/checkout" className="block w-full mb-6">
+              <Link href="/purchase" className="block w-full mb-6">
                 <Button variant="dark" className="w-full py-4 text-xl font-semibold">
                   Proceder al pago
                 </Button>

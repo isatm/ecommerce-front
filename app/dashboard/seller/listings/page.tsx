@@ -1,12 +1,9 @@
 'use client';
 
-import SimpleProductForm from "@/components/organism/seller/simpleProductFormComponent";
+import SellerListingsComponent from "@/components/organism/seller/sellerListingsComponent";
 
-export default function CreateListingPage() {
+export default function SellerListingsPage() {
     return (
-        <div className="py-10">
-            <h1 className="text-3xl font-bold mb-8 text-gray-800">Create New Product Listing</h1>
-            <SimpleProductForm />
-        </div>
+        <SellerListingsComponent />
     );
 }

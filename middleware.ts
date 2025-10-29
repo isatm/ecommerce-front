@@ -6,7 +6,7 @@ export async function middleware(request: NextRequest) {
   const userCookie = request.cookies.get("user")?.value;
   const { pathname } = request.nextUrl;
 
-  // Rutas protegidas por Tokens
+  // Rutas protegidas de nuevos usuarios
   const isProtected =
     pathname.startsWith("/dashboard") ||
     pathname.startsWith("/favorites");

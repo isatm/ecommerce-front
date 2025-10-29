@@ -1,38 +1,60 @@
-' use client';
-import Link from "next/link";
+'use client';
 
-import ProductGrid from "@/components/organism/productGridComponent";
-import CategoryGrid from "@/components/molecules/categoryGridComponent";
-import PromoBanner from "@/components/atoms/promoBannerComponent";
-import RegionalConfigAlert from "@/components/molecules/regionalConfigAlertComponent";
+import React from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import DashboardHeader from '@/components/organism/dashBoardHeaderComponent';
+import TabNavigation from '@/components/molecules/tabNavigationComponent';
 
-import { supabase } from "@/libs/supabaseClient";
+// Importa tus componentes de contenido para cada pestaña
+import RecordComponent from '@/components/organism/buyer/recordDatailComponent';
+import SellerListingsComponent from '@/components/organism/seller/sellerListingsComponent';
 
-export default async function HomePage() {
-  const { data: products, error } = await supabase
-    .from("products")
-    .select("*")
-    .limit(8); 
+export default function DashboardPage() {
+  const router = useRouter();
+  const pathname = usePathname();
 
-  if (error) {
-    console.error(error.message);
-    return <p>Error cargando productos</p>;
-  }
+  // Define las pestañas del dashboard
+  const tabs = [
+    { name: 'Dashboard', href: '/dashboard', content: <p>Dashboard general content goes here.</p> },
+    { name: 'Purchases', href: '/dashboard/buyer/details', content: <RecordComponent /> },
+    { name: 'Selling', href: '/dashboard/seller/listings', content: <SellerListingsComponent /> },
+    // Puedes añadir más pestañas aquí si las necesitas
+    // { name: 'My Collection', href: '/dashboard/collection', content: <p>My Collection content</p> },
+  ];
+
+  // Determinar el contenido a mostrar basado en la ruta actual
+  const currentTabContent = tabs.find(tab => pathname.startsWith(tab.href))?.content;
 
   return (
-    <main className="container mx-auto px-4 py-6">
-      <ProductGrid products={products || []} />
-      <div className="flex justify-center my-8">
-        <Link
-          href="/products"
-          className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
-        >
-          Ver todo
-        </Link>
+    <div className="container mx-auto px-4 py-8">
+      {/* Encabezado del Dashboard */}
+      <DashboardHeader />
+
+      {/* Navegación de Pestañas */}
+      <TabNavigation tabs={tabs} basePath="/dashboard" />
+
+      {/* Contenido de la Pestaña Activa */}
+      <div className="mt-6">
+        {/* Este div contendrá el contenido de la pestaña activa,
+            Next.js se encargará de renderizar el `page.tsx` correspondiente a la ruta.
+            Si no usas rutas anidadas para el contenido de las pestañas,
+            podrías renderizar `currentTabContent` directamente aquí.
+        */}
+        {/* Para usar el contenido de los page.tsx anidados, simplemente se renderiza el children de la ruta.
+            Este componente actua como un layout para las rutas anidadas.
+            Next.js automáticamente renderizará el page.tsx correspondiente dentro del layout.
+        */}
+        {/* Para que los `page.tsx` anidados funcionen como contenido de las pestañas,
+            el `TabNavigation` debe manejar solo la navegación, y los `page.tsx`
+            de `/dashboard/buyer/purchases` y `/dashboard/seller/listings`
+            deben ser los que rendericen `RecordDetailComponent` y `SellerListingsComponent` respectivamente.
+        */}
+        {/* Aquí asumimos que los page.tsx anidados son los que renderizan el contenido. */}
+        {/* Si quieres que el `TabNavigation` renderice el contenido, descomenta:
+            {currentTabContent}
+            Y asegúrate de que tus `page.tsx` anidados sean solo redirecciones o no existan como tal.
+        */}
       </div>
-      <CategoryGrid />
-      <PromoBanner />
-      <RegionalConfigAlert />
-    </main>
+    </div>
   );
 }

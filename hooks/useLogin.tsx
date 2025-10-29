@@ -62,7 +62,7 @@ export function useLogin() {
 
         alert("✅ Login correcto");
         router.refresh();
-        router.push("/dashboard");
+        router.push("/");
       } else {
         alert("Error: No se pudo obtener la sesión o los datos del usuario.");
       }
