@@ -183,14 +183,6 @@ export default function PurchaseComponent() {
                     <p className="text-xs text-gray-500">
                         Al confirmar la compra, aceptas nuestros términos y condiciones.
                     </p>
-
-                    {process.env.NODE_ENV === 'development' && isClient && (
-                        <div className="text-xs text-green-600 bg-green-50 p-2 rounded border">
-                            <strong>DEBUG:</strong> Productos: {products.length} | 
-                            Total: ${getTotal().toFixed(2)} | 
-                            Cliente: {isClient ? 'Sí' : 'No'}
-                        </div>
-                    )}
                 </div>
             </div> 
         </div>
