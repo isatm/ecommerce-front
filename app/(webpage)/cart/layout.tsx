@@ -4,8 +4,7 @@ import RegionalConfigAlert from '@/components/molecules/regionalConfigAlertCompo
 
 
 export const metadata: Metadata = {
-    title: "Iniciar sesión | Reverb",
-    description: "Antes de hacer ofertas, enviar mensaje, comprar y vender equipos, tienes que ingresar a tu cuenta de Reverb.",
+    title: "Reverb",
     };
 
     export default function CategoryLayoutPage({
