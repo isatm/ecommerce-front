@@ -28,7 +28,7 @@ export default function AvatarMenu() {
       <Link href="/notifications" className="relative flex flex-col items-center text-black-600 hover:text-orange-500 transition">
         <Bell />
         <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-          1
+          0
         </span>
         <div className="text-xs">
           Notificaciones

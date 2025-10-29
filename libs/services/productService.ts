@@ -1,19 +1,62 @@
 import { supabase } from "@/libs/supabaseClient";
+import { Product } from "@/interfaces/shoppingInterfaces/productInterface"; 
 
-export async function searchProducts(term: string) {
-  if (!term) {
+export async function getProductById(id: string): Promise<Product | null> {
+  const { data, error } = await supabase
+    .from('products')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error) {
+    console.error("Error fetching product by ID:", error);
+    return null;
+  }
+  return data as Product;
+}
+
+export async function searchProductSuggestions(term: string): Promise<Partial<Product>[]> {
+  if (!term || term.length < 2) { 
     return [];
   }
 
   const { data, error } = await supabase
     .from("products")
-    .select("id, name")
+    .select("id, name, image_url, price, category, stock, description")
     .ilike("name", `${term}%`) 
-    .limit(5); 
+    .limit(5);
 
   if (error) {
-    throw new Error(error.message);
+    console.error("Error searching product suggestions:", error.message);
+    return []; 
   }
 
-  return data || [];
+  
+  return data.map(item => ({ 
+    id: item.id, 
+    name: item.name, 
+    price: item.price, 
+    image_url: item.image_url,
+    category: item.category,
+    stock: item.stock,
+    description: item.description
+  })) || [];
+}
+
+export async function searchProductsByQuery(query: string): Promise<Product[]> {
+  if (!query) {
+    return [];
+  }
+
+  const { data, error } = await supabase
+    .from('products')
+    .select('*')
+    .ilike('name', `%${query}%`) 
+    .order('name', { ascending: true }); 
+
+  if (error) {
+    console.error("Error searching products by query:", error.message);
+    return [];
+  }
+  return data as Product[];
 }

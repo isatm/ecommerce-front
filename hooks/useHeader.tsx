@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
-import { Product} from '@/interfaces/shoppingInterfaces/productInterface'
-import { searchProducts } from "@/libs/services/productService";
+import { Product } from '@/interfaces/shoppingInterfaces/productInterface'
+import { searchProductSuggestions } from "@/libs/services/productService"; // Usa la nueva función de sugerencias
 import { SearchForm } from '@/interfaces/searchInterfaces/searchInterface';
 
 export function useHeaderComponent() {
@@ -14,46 +14,46 @@ export function useHeaderComponent() {
     const [results, setResults] = useState<Partial<Product>[]>([]);
     const searchTerm = watch("search");
 
-    const handleSearch = async (term: string) => {
+    const handleSearchSuggestions = async (term: string) => {
         if (term.length < 2) {
-        setResults([]);
-        return;
+            setResults([]);
+            return;
         }
         try {
-        const products = await searchProducts(term);  
-            
-        const productsWithPrice = products.map(product => ({
-            ...product, 
-            price: 0
-        }));
-        
-        setResults(productsWithPrice);
+            const products = await searchProductSuggestions(term);  
+            setResults(products);
         } catch (err: unknown) {
-        console.error("Error al buscar productos:", err);
-        setResults([]);
+            console.error("Error al buscar sugerencias de productos:", err);
+            setResults([]);
         }
     };
 
     useEffect(() => {
         if (searchTerm) {
-        handleSearch(searchTerm);
+            handleSearchSuggestions(searchTerm); 
         } else {
-        setResults([]);
+            setResults([]);
         }
     }, [searchTerm]);
 
     const onSubmit = () => {
-        if (results.length > 0) {
-        router.push(`/products/${results[0].id}`);
+        if (searchTerm) {
+            router.push(`/marketplace?query=${encodeURIComponent(searchTerm)}`);
         } else {
-        alert("No se encontraron productos");
+            alert("Por favor, ingresa un término de búsqueda.");
         }
     };
+
+    const navigateToProductDetail = (productId: number) => {
+        router.push(`/products/${productId}`);
+    };
+
     return{
         register,
         handleSubmit,
         results,
         onSubmit,
-        router
+        router,
+        navigateToProductDetail
     }
 }
