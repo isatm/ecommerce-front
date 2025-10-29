@@ -63,7 +63,7 @@ export async function middleware(request: NextRequest) {
 
     if (pathname.startsWith("/purchase")) {
     // Si no es seller, permitir acceso solo a la ruta create-profile (evitar redirect loop)
-    if (role !== "buyer") {
+    if (role !== "buyer" && role !== "seller") {
       const allowed = pathname === "/purchase";
       if (!allowed) {
         const redirectUrl = new URL("/singin", request.url);

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-import AuthContainer from "@/components/molecules/auth/authContainerComponent";
 import PurchaseComponent from "@/components/organism/buyer/purchaseComponent";
 
 

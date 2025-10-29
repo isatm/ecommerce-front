@@ -1,28 +1,24 @@
 'use client';
 
-import { useEffect, useState } from "react";
-import { userCartStore } from "@/store/cartStore";
 import InputComponent from "@/components/atoms/inputComponent";
-import { useRegister } from "@/hooks/useRegister";
-import { supabase } from "@/libs/supabaseClient";
-import { useForm } from "react-hook-form";
-import { LoginDTO } from "@/interfaces/loginInterfaces/loginInterface";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginScheme } from "@/schemas/loginSchema";
-import { buyerService } from "@/libs/buyerService";
 import { usePurchase } from "@/hooks/usePurchase";
-
 
 export default function PurchaseComponent() {
     const { setFormData, handleFormSubmit, handleSubmit, formData, errors, getTotal, loading, products, register} = usePurchase();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setFormData(prev => ({
-        ...prev,
-        [name]: value
-        }));
-    };
+        
+        setFormData({
+            [name]: value
+            }); 
+        };
+        const handleInputChange = (field: keyof typeof formData, value: string) => {
+            setFormData({
+                [field]: value
+            });
+        };
+
     return (
         <div className="max-w-2xl mx-auto p-6">
             <h1 className="text-3xl font-bold mb-8 text-center">Finalizar Compra</h1>

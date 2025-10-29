@@ -73,6 +73,10 @@ export const userCartStore = create<CartStore>()(
                     return total + price * quantity
                 }
                 ,0);
+            },
+            
+            clearCart: () => {
+                set({ products: [] });
             }
         }),
         {

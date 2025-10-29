@@ -19,4 +19,5 @@ export interface CartStore {
     updateQuantity: (productId: number, quantity: number) => void;
     /*Obtenemos los productos del carrito porque pues nada, de donde mas? */
     getTotal: () => number;
+    clearCart: () => void;
 }
