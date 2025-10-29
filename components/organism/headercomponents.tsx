@@ -1,15 +1,17 @@
 'use client';
-import { useHeaderComponent } from "@/hooks/useHeader";
-import InputComponent from "../atoms/inputComponent";
+
 import Link from "next/link";
 import Image from "next/image";
-import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
 import { Search, Heart } from 'lucide-react'; 
-import { navLinkClass } from "@/utils/Tokens";
-import Button from "../atoms/buttonComponent";
 import React from 'react';
+
+import { useHeaderComponent } from "@/hooks/useHeader";
+import InputComponent from "../atoms/inputComponent";
 import { useAuth } from "@/contexts/authContext";
 import AvatarMenu from "@/components/organism/avatarMenuComponent";
+import { navLinkClass } from "@/utils/tokensUtils";
+import Button from "../atoms/buttonComponent";
+import ToggleButtonComponent from "../atoms/buttons/toggleButtonComponent";
 
 export default function HeaderComponent() {
   const { register, handleSubmit, results, onSubmit, router } = useHeaderComponent();

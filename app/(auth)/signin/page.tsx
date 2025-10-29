@@ -1,7 +1,9 @@
 "use client";
+
+import { useState } from "react";
+
 import AuthContainer from "@/components/molecules/auth/authContainerComponent";
 import LoginComponent from "@/components/molecules/auth/loginComponent";
-import { useState } from "react";
 
 export default function LoginPage() {
   const [isOpen, setIsOpen] = useState(true);

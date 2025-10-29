@@ -1,33 +1,17 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useAuth } from '@/contexts/authContext';
+
 import { Bell, ShoppingCart } from 'lucide-react'; 
 
+import useAvatarMenu from '@/hooks/useAvatarMenu';
+
 export default function AvatarMenu() {
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const { user, signOut } = useAuth(); 
+    const { isOpen, dropdownRef, user, handleToggle, signOut } = useAvatarMenu();
 
-  const handleToggle = () => setIsOpen(!isOpen);
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-      setIsOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  if (!user) {
-    return null; // No muestra el menú si no hay usuario logueado
+    if (!user) {
+        return null; 
   }
 
   return (

@@ -1,14 +1,15 @@
 //import { apiFetch } from "./singletonFetch"
-import { RegisterDTO } from "@/interfaces/register"
+
+import { RegisterDTO } from "@/interfaces/registerInterfaces/registerInterface"
 import Cookies from "js-cookie";
-import { LoginDTO } from "@/interfaces/login"
+import { LoginDTO } from "@/interfaces/loginInterfaces/loginInterface"
 import { supabase } from "@/libs/supabaseClient";
 
 export const loginService = async (body: LoginDTO) => {
   const { email, password } = body;
 
   // login con Supabase
-  const { data: loginData, error } = await supabase.auth.signInWithPassword({
+  const { data: loginData,  error } = await supabase.auth.signInWithPassword({
     email, 
     password,
   });

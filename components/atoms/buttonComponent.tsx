@@ -1,6 +1,7 @@
-import { ButtonProps } from "@/interfaces/buttonProps"; 
-import { useButton } from "@/hooks/useButton";    
 import React from 'react';
+
+import { ButtonProps } from "@/interfaces/buttonInterfaces/buttonPropsInterface"; 
+import { useButton } from "@/hooks/useButton";    
 
 export default function Button(props: ButtonProps) {
   const { children, icon, fullWidth, variant, className, ...restProps } = props;

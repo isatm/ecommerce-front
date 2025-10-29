@@ -1,6 +1,6 @@
-"use client"
+'use client';
 
-import { SearchForm } from "@/interfaces/searchForm";
+import { SearchForm } from "@/interfaces/searchInterfaces/searchInterface";
 import { useForm } from "react-hook-form";
 
 export default function useFooter() {

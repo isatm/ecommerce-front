@@ -1,5 +1,7 @@
-import RegionalConfigAlert from '@/components/molecules/regionalConfigAlert';
 import { Metadata } from 'next';
+
+import RegionalConfigAlert from '@/components/molecules/regionalConfigAlertComponent';
+
 
 export const metadata: Metadata = {
     title: "Iniciar sesión | Reverb",
@@ -9,12 +11,12 @@ export const metadata: Metadata = {
     export default function CategoryLayoutPage({
     children,
     }: {
-    children: React.ReactNode;
-    }) {
-    return (
-        <div>
-        {children}
-        <RegionalConfigAlert />
-        </div>
-    );
-}
+        children: React.ReactNode;
+        }) {
+            return (
+            <div>
+                {children}
+                <RegionalConfigAlert />
+            </div>
+        );
+    }

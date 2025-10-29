@@ -1,5 +1,5 @@
 import { supabase } from "@/libs/supabaseClient";
-import ProductItem from "@/components/organism/productItem"
+import ProductItem from "@/components/organism/productItemComponent"
 
 interface PageProps {
   params: Promise<{

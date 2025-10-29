@@ -1,9 +1,11 @@
 "use client";
+
+import Link from "next/link"; // Para los enlaces de Condiciones de uso
+import Image from 'next/image';
+
 import InputComponent from "@/components/atoms/inputComponent";
 import { useRegister } from "@/hooks/useRegister";
 import Button from "@/components/atoms/buttonComponent"; // Asegúrate de importar Button
-import Link from "next/link"; // Para los enlaces de Condiciones de uso
-import Image from 'next/image';
 
 export default function RegisterComponent() {
   const { handleSubmit, register, onErrors, onSubmit, errors  } = useRegister();

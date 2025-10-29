@@ -1,8 +1,10 @@
+' use client';
+
 import { supabase } from "@/libs/supabaseClient";
-import ProductGrid from "@/components/organism/productGrid";
-import CategoryGrid from "@/components/molecules/categoryGrid";
-import PromoBanner from "@/components/atoms/promoBanner";
-import RegionalConfigAlert from "@/components/molecules/regionalConfigAlert";
+import ProductGrid from "@/components/organism/productGridComponent";
+import CategoryGrid from "@/components/molecules/categoryGridComponent";
+import PromoBanner from "@/components/atoms/promoBannerComponent";
+import RegionalConfigAlert from "@/components/molecules/regionalConfigAlertComponent";
 import Link from "next/link";
 
 export default async function HomePage() {

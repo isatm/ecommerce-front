@@ -1,6 +1,7 @@
-// app/products/page.tsx
+' use client';
+
 import { supabase } from "@/libs/supabaseClient";
-import ProductGrid from "@/components/organism/productGrid";
+import ProductGrid from "@/components/organism/productGridComponent";
 
 export default async function ProductsPage() {
   const { data: products, error } = await supabase

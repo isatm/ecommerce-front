@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 'use client'
 
 import { registerService } from "@/libs/registerService";
@@ -8,6 +9,17 @@ import { RegisterScheme, RegisterFormValues } from "@/schemas/register";
 
 export function useRegister() {
   const router = useRouter();
+=======
+'use client';
+
+import { useRouter } from "next/navigation";
+import { useForm, SubmitHandler } from "react-hook-form"
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import { RegisterDTO } from "@/interfaces/registerInterfaces/registerInterface"
+import { RegisterScheme } from "@/schemas/registerSchema"
+import { registerService } from "@/libs/registerService"
+>>>>>>> mejoraHooks
 
   const {
     register,
