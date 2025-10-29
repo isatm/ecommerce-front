@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { LoginDTO } from "@/interfaces/loginInterfaces/loginInterface";
-import { buyerService } from "@/libs/buyerService";
+import { buyerService } from "@/libs/services/buyerService";
 import { supabase } from "@/libs/supabaseClient";
 import { userCartStore } from "@/store/cartStore";
 import { loginScheme } from "@/schemas/loginSchema";
@@ -34,15 +34,23 @@ export function usePurchase() {
     });
 
     const handleFormSubmit = async () => {
+        console.log('🔵 1. handleFormSubmit EJECUTADO');
+        console.log('👤 User:', user);
+        console.log('📦 Products:', products);
+        console.log('📝 FormData:', formData);
+        console.log('🛒 Total productos:', products.length);
+
         setLoading(true);
         try {
 
             if(!user) {
+                console.log('❌ 3. ERROR: No hay usuario');
                 alert("Debe iniciar sesión para comprar");
                 return;
             }
 
             if (products.length === 0) {
+                console.log('❌ 5. ERROR: Carrito vacío');
                 alert("El carrito está vacío");
                 return;
             }

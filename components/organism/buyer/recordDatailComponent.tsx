@@ -17,7 +17,7 @@ export default function RecordComponent() {
                             <p><span className="font-semibold">Compra:</span> {shop.gmail}</p>
                             <p><span className="font-semibold">Total:</span> ${shop.total.toFixed(2)}</p>
                             <p><span className="font-semibold">Estado:</span> {shop.state}</p>
-                            <p><span className="font-semibold">Dirección:</span> {shop.adress}</p>
+                            <p><span className="font-semibold">Dirección:</span> {shop.address}</p>
                             <p><span className="font-semibold">Fecha:</span> {shop.date}</p>
                             <p><span className="font-semibold"> products:</span> {JSON.stringify(shop.products)}</p>
                         </li>

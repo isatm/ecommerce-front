@@ -1,6 +1,6 @@
 
 import { CartItem } from "@/interfaces/shoppingInterfaces/cartInterface";
-import { Shop } from "@/interfaces/shoppingInterfaces/shopInterface";
+import { order } from "@/interfaces/shoppingInterfaces/orderInterface";
 
 import { supabase } from "@/libs/supabaseClient";
 
@@ -52,7 +52,7 @@ export const buyerService = {
         }
     },
 
-    async getUserPurchases(userId: string): Promise<Shop[]> {
+    async getUserPurchases(userId: string): Promise<order[]> {
         const { data: { user } } = await supabase.auth.getUser();
     
         if (!user) throw new Error("Usuario no autenticado");
@@ -65,6 +65,6 @@ export const buyerService = {
 
         if (error) throw error;
 
-        return (data as Shop[]) || [];
+        return (data as order[]) || [];
     }
 };

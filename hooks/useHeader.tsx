@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
 import { Product} from '@/interfaces/shoppingInterfaces/productInterface'
-import { searchProducts } from "@/libs/productService";
+import { searchProducts } from "@/libs/services/productService";
 import { SearchForm } from '@/interfaces/searchInterfaces/searchInterface';
 
 export function useHeaderComponent() {

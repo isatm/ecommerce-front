@@ -2,62 +2,62 @@
 
 import { useState, useEffect } from 'react';
 import { supabase } from '@/libs/supabaseClient';
-import { Shop } from '@/interfaces/shoppingInterfaces/shopInterface';
+import { order } from '@/interfaces/shoppingInterfaces/orderInterface';
 import { useAuth } from '@/contexts/authContext';
 
 export function useRecord() {
-    const [shops, setShops] = useState<Shop[]>([]);
+    const [shops, setShops] = useState<order[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const { user, loading: authLoading } = useAuth();
 
     useEffect(() => {
-        fetchUserPurchases();
-    }, []);
+        if (user) {
+            fetchUserPurchases();
+        }
+    }, [user]); // ✅ Agregar user como dependencia
 
     const fetchUserPurchases = async () => {
         try {
-        setLoading(true);
-        setError(null);
+            setLoading(true);
+            setError(null);
 
-        const { data: { user }, error: userError } = await supabase.auth.getUser();
-        
-        if (userError || !user) {
-            setError('Usuario no autenticado');
-            return;
-        }
+            // ✅ Ya tienes el user del context, no necesitas getUser() again
+            if (!user) {
+                setError('Usuario no autenticado');
+                return;
+            }
 
-        
-        const { data: purchases, error: purchasesError } = await supabase
-        .from('shops')
-        .select('*')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false });
+            const { data: purchases, error: purchasesError } = await supabase
+                .from('shops')
+                .select('*')
+                .eq('user_id', user.id)
+                .order('created_at', { ascending: false });
 
-        if (purchasesError) {
-            throw purchasesError;
-        }
+            if (purchasesError) {
+                throw purchasesError;
+            }
 
-        const formattedShops: Shop[] = (purchases || []).map(purchase => ({
-            id: purchase.id,
-            gmail: purchase.gmail,
-            total: purchase.total,
-            state: purchase.state,
-            adress: purchase.adress,
-            date: purchase.date,
-            phone: purchase.phone,
-            created_at: purchase.created_at,
-            products: purchase.products || [],
-            price: purchase.price,
-        }));
+            const formattedShops: order[] = (purchases || []).map(purchase => ({
+                fullname: purchase.fullname,
+                id: purchase.id,
+                gmail: purchase.gmail,
+                total: purchase.total,
+                state: purchase.state,
+                address: purchase.adress, 
+                date: purchase.date,
+                phone: purchase.phone,
+                created_at: purchase.created_at,
+                products: purchase.products || [],
+            }));
 
-        setShops(formattedShops);
+            setShops(formattedShops);
 
         } catch (err: any) {
-        console.error('Error fetching purchases:', err);
-        setError(err.message || 'Error al cargar el historial');
+            console.error('Error fetching purchases:', err);
+            setError(err.message || 'Error al cargar el historial');
         } finally {
-        setLoading(false);
+            setLoading(false);
         }
     };
 

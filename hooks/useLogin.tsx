@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { LoginDTO } from "@/interfaces/loginInterfaces/loginInterface";
-import { loginService } from "@/libs/loginService";
+import { loginService } from "@/libs/services/loginService";
 import { loginScheme } from "@/schemas/loginSchema";
 import { useAuth } from "@/contexts/authContext";
 

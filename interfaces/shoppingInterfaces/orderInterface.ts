@@ -1,10 +1,11 @@
 import { Product } from "./productInterface";
 
-export interface Shop{
+export interface order{
+    fullname: string;
     gmail: string;
     total: number;
     state: 'pendiente' | 'completado' | 'cancelado';
-    adress: string;
+    address: string;
     created_at?: string;
     date: string;
     products: Product[];
