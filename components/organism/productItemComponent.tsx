@@ -29,7 +29,13 @@ export default function ProductItem({ product }: { product: Product }) {
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-lg shadow-md">
+    <div>
+      <div className="flex text-m text-gray-500 gap-2 mt-4 mb-2 ml-6">
+        <h1 className="hover:text-orange-500">tipo de instrumento</h1>
+        <h1>{'>'}</h1>
+        <h1 className="hover:text-orange-500">{product.name}</h1>
+      </div>
+      <div className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-lg shadow-md">
       {/* Imagen del producto */}
       {product.image_url && (
         <div className="w-full md:w-1/2 relative">
@@ -56,10 +62,10 @@ export default function ProductItem({ product }: { product: Product }) {
         </div>
 
         {/* Botones */}
-        <div className="mt-4 flex gap-3">
+        <div className="mt-4 flex flex-col gap-3">
           <button
             onClick={handleAddToCart} 
-            className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium"
+            className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium w-full"
           >
             Agregar al carrito
           </button>
@@ -73,12 +79,13 @@ export default function ProductItem({ product }: { product: Product }) {
 
           <ToggleButtonComponent
             options={["Compartir", "Guardar", "Reportar"]}
-            buttonStyle="bg-gray-200 px-4 py-2 rounded-lg"
+            buttonStyle="bg-gray-200 px-4 py-2 rounded-lg w-full"
             content="Más opciones"
             animation="fade"
           />
         </div>
       </div>
+    </div>
     </div>
   );
 }
