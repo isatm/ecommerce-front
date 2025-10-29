@@ -22,7 +22,6 @@ export function useRecord() {
             setLoading(true);
             setError(null);
 
-            // ✅ Ya tienes el user del context, no necesitas getUser() again
             if (!user) {
                 setError('Usuario no autenticado');
                 return;
@@ -42,6 +41,7 @@ export function useRecord() {
                 fullname: purchase.fullname,
                 id: purchase.id,
                 gmail: purchase.gmail,
+                user_id: user.id,
                 total: purchase.total,
                 state: purchase.state,
                 address: purchase.adress, 
